@@ -1,53 +1,28 @@
 package task9_7_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import task9_7_1.commands.AppBotCommand;
-import task9_7_1.commands.BotCmmonCommands;
+import task9_7_1.commands.BotCommonCommands;
 import task9_7_1.functions.FilterOperation;
-import task9_7_1.utils.PhotoMessageUtils;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-
-import static task9_7_1.utils.PhotoMessageUtils.processingImage;
-
-
-
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-
-import task9_7_1.commands.BotCmmonCommands;
-import task9_7_1.commands.AppBotCommand;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 public class Bot extends TelegramLongPollingBot {
 
-    Class[] commandClasses = new Class[] {BotCmmonCommands.class};
+    Class[] commandClasses = new Class[] {BotCommonCommands.class};
 
     @Override
     public String getBotUsername() {
@@ -78,7 +53,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
     private String runCommand(String text) {
-        BotCmmonCommands commands = new BotCmmonCommands();
+        BotCommonCommands commands = new BotCommonCommands();
         Method[] classMethods = commands.getClass().getDeclaredMethods();
 
         for (Method method : classMethods) {
@@ -124,7 +99,7 @@ public class Bot extends TelegramLongPollingBot {
     private ReplyKeyboardMarkup getKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
         allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 
         replyKeyboardMarkup.setKeyboard(allKeyboardRows);
@@ -176,7 +151,7 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.commands.BotCommonCommands;
 //import task9_7_1.functions.FilterOperation;
 //import task9_7_1.utils.PhotoMessageUtils;
 //
@@ -192,7 +167,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //public class Bot extends TelegramLongPollingBot {
 //
-//    Class[] commandClasses = new Class[] {BotCmmonCommands.class};
+//    Class[] commandClasses = new Class[] {BotCommonCommands.class};
 //
 //    @Override
 //    public String getBotUsername() {
@@ -256,7 +231,7 @@ public class Bot extends TelegramLongPollingBot {
 //            }
 //
 //        }
-//        BotCmmonCommands commands = new BotCmmonCommands();
+//        BotCommonCommands commands = new BotCommonCommands();
 //        return "Unknown command";
 //
 //    }
@@ -288,7 +263,7 @@ public class Bot extends TelegramLongPollingBot {
 //    private ReplyKeyboardMarkup getKeyboard() {
 //        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 //        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
 //        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 //
 //        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
@@ -333,7 +308,7 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.commands.BotCommonCommands;
 //import task9_7_1.functions.FilterOperation;
 //import task9_7_1.utils.PhotoMessageUtils;
 //
@@ -383,7 +358,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //
 //    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException {
-//        BotCmmonCommands commands = new BotCmmonCommands();
+//        BotCommonCommands commands = new BotCommonCommands();
 //        Method[] classMethods = commands.getClass().getDeclaredMethods();
 //
 //        for (Method method : classMethods) {
@@ -430,7 +405,7 @@ public class Bot extends TelegramLongPollingBot {
 //    private ReplyKeyboardMarkup getKeyboard() {
 //        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 //        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
 //        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 //
 //        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
@@ -476,7 +451,7 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.commands.BotCommonCommands;
 //import task9_7_1.functions.FilterOperation;
 //import task9_7_1.utils.PhotoMessageUtils;
 //
@@ -576,7 +551,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //
 //    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException {
-//        BotCmmonCommands commands = new BotCmmonCommands();
+//        BotCommonCommands commands = new BotCommonCommands();
 //        Method[] classMethods = commands.getClass().getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
 ////        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
 //        KeyboardRow row = new KeyboardRow();
@@ -641,7 +616,7 @@ public class Bot extends TelegramLongPollingBot {
 //    private ReplyKeyboardMarkup getKeyboard() {
 //        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 //        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
 //        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 //
 //        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
@@ -687,7 +662,7 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.commands.BotCommonCommands;
 //import task9_7_1.functions.FilterOperation;
 //
 //import java.io.*;
@@ -772,7 +747,7 @@ public class Bot extends TelegramLongPollingBot {
 //    private ReplyKeyboardMarkup getKeyboard() {
 //        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 //        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
 //        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 //
 //        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
@@ -818,7 +793,7 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.commands.BotCommonCommands;
 //import task9_7_1.functions.FilterOperation;
 //
 //import java.io.*;
@@ -903,7 +878,7 @@ public class Bot extends TelegramLongPollingBot {
 //    private ReplyKeyboardMarkup getKeyboard() {
 //        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
 //        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
-//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
 //        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
 //
 //        replyKeyboardMarkup.setKeyboard(allKeyboardRows);

@@ -1,6 +1,6 @@
 package task9_7_1.commands;
 
-public class BotCmmonCommands {
+public class BotCommonCommands {
 
     @AppBotCommand(name = "/hello", description = "when request hello", showInHelp = true)
     String hello() {
