@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId> <!-- Здесь можно указать другой корректный groupId -->
-    <artifactId>Draft240101</artifactId>
+    <artifactId>Draft_Module10_Task1_Zadaniye1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
