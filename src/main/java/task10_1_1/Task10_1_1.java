@@ -46,6 +46,7 @@ public class Task10_1_1 {
                 }
             }
         }
+        System.out.println();
         Class parentClass = _class.getSuperclass();
         if (parentClass != null) {
             showClassInfo(_class.getSuperclass());
