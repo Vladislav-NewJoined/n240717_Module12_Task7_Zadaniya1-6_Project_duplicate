@@ -40,7 +40,7 @@ class Commands {
 
 public class Task10_1_1 {
 
-    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchFieldException {
         System.out.println("""
                 Задание:\s
                 Модуль 10. Подходы к программированию. Задание №1:\s
@@ -52,16 +52,26 @@ public class Task10_1_1 {
 
                 Решение:\s""");
 
-        System.out.println("... ...\n");
-
         Class2 class2 = new Class2();
         System.out.println("В следующем фрагменте мы проходим по дереву класса: ");
         showClassInfo(class2.getClass());
 
 
-        System.out.println("В следующем фрагменте выводим команды в функционале 'Рефлексия': ");
+        Person person = new Person("qwerty", 20, "88005553535");
+        System.out.println("В следующем фрагменте выводим методы и поля класса, используя функционал 'Рефлексия': ");
+        System.out.println(person.getClass().getSimpleName());
+        Field nameField = person.getClass().getDeclaredField("name");
+        nameField.setAccessible(true);
+        System.out.println(nameField.get(person));
+        Method[] methods = person.getClass().getDeclaredMethods();
+        for (int i = 0; i < methods.length; i++) {
+            methods[i].invoke(person);
+        }
+
+        System.out.println("\nВ следующем фрагменте выводим команды, используя функционал 'Аннотации': ");
         System.out.println("Напишите команду ниже текста этого фрагмента. Используйте команды: 'hello' или 'bye' " +
-                "или 'stop' или 'qwerty': ");
+                "или 'stop' или 'qwerty' или любую другую, на Ваше усмотрение \n(на 'qwerty' и другие команды программа " +
+                "не даст отклика): ");
         System.out.println("Select command");
         Commands commands = new Commands();
         for (Method method : commands.getClass().getDeclaredMethods()) {
@@ -82,6 +92,18 @@ public class Task10_1_1 {
                 }
             }
         }
+
+        System.out.println("""
+                \nВ следующем фрагменте привожу описание, как я понял, что такое Annotation и Reflection:
+                
+                    Annotation (аннотация) - это механизм в Java, который позволяет добавлять метаданные к коду
+                    для облегчения его анализа и обработки на этапе выполнения программы. Аннотации могут быть
+                    использованы для описания классов, методов, переменных и прочих элементов программы.
+                
+                    Reflection (отражение) - это механизм в Java, позволяющий программе изучать и модифицировать
+                    свою структуру и поведение во время выполнения. С помощью рефлексии можно получить информацию
+                    о классе, вызвать его методы, изменить значения полей и т.д. Рефлексия используется, например,
+                    для создания универсальных библиотек, плагинов и тестовых фреймворков.\s""");
     }
 
     static void showClassInfo(Class _class) {
@@ -152,3 +174,24 @@ class Class2 extends Class1 {
     Double method33() {return 0.0;}
 }
 
+class Person{
+    private final String name;
+    public int age;
+    public final String phone;
+
+    Person(String name, int age, String phone) {
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+    }
+
+    void display () {
+        System.out.println(name + age + phone);
+    }
+
+    void display1 () {
+        System.out.println(name + phone);
+    }
+
+
+}
