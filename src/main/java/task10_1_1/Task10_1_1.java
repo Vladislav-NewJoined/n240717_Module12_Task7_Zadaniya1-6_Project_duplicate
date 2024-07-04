@@ -42,17 +42,27 @@ class Class1 {
 
     @FilterIt(show = true)
     void method1() {}
+    @FilterIt(show = true)
     void method2() {}
+    @FilterIt(show = false)
     void method3() {}
 }
 
 class Class2 extends Class1 {
+    @FilterIt(show = true)
     String field11;
+    @FilterIt(show = true)
     Object field22;
+    @FilterIt(show = true)
     int field33;
 
+    @FilterIt(show = true)
     String method11() {return "";}
+
+    @FilterIt(show = true)
     Integer method22() {return 0;}
+
+    @FilterIt(show = false)
     Double method33() {return 0.0;}
 }
 
