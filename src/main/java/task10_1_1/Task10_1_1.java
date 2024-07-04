@@ -2,6 +2,11 @@ package task10_1_1;
 
 // С этого метода, Draft_Module10_Task1_Zadaniye1,
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 public class Task10_1_1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
@@ -18,3 +23,36 @@ public class Task10_1_1 {
         System.out.println("... ...\n");
     }
 }
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@interface FilterIt {
+    boolean show();
+}
+
+
+
+class Class1 {
+    @FilterIt(show = true)
+    String field1;
+    @FilterIt(show = false)
+    String field2;
+    @FilterIt(show = true)
+    String field3;
+
+    @FilterIt(show = true)
+    void method1() {}
+    void method2() {}
+    void method3() {}
+}
+
+class Class2 extends Class1 {
+    String field11;
+    Object field22;
+    int field33;
+
+    String method11() {return "";}
+    Integer method22() {return 0;}
+    Double method33() {return 0.0;}
+}
+
