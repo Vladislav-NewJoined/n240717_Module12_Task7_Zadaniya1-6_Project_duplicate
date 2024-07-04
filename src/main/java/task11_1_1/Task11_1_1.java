@@ -1,8 +1,8 @@
-package task10_1_1;
+package task11_1_1;
 
 // В этом фрагменте, Draft_Module11_Task1_Zadaniya1-5, приступил к Модулю 11
 
-public class Task10_1_1 {
+public class Task11_1_1 {
 
     public static void main(String[] args) {
         System.out.println("""
