@@ -9,7 +9,35 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface Command {
+    String name();
+    boolean showInHelp();
+}
+
+class Commands {
+    @Command(name = "hello", showInHelp = true)
+    public void hello() {
+        System.out.println("Hello, human");
+    }
+
+    @Command(name = "bye", showInHelp = true)
+    public void bye() {
+        System.out.println("Bye, human");
+    }
+
+    @Command(name = "stop", showInHelp = true)
+        public void stop() {
+            System.out.println("I'm stopped");
+        }
+    @Deprecated
+    public void qwerty () {
+    }
+}
+
 public class Task10_1_1 {
+
     public static void main(String[] args) throws Exception {
         System.out.println("""
                 Задание:\s
@@ -27,6 +55,18 @@ public class Task10_1_1 {
         Class2 class2 = new Class2();
         System.out.println("В следующем фрагменте мы проходим по дереву класса: ");
         showClassInfo(class2.getClass());
+
+
+        Commands commands = new Commands();
+        System.out.println("Проверка1");
+        for (Method method : commands.getClass().getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Command.class)) {
+                Command command = method.getAnnotation(Command.class);
+                if (command.showInHelp()) {
+                    System.out.println(command.name());
+                }
+            }
+        }
     }
 
     static void showClassInfo(Class _class) {
@@ -97,5 +137,3 @@ class Class2 extends Class1 {
     Double method33() {return 0.0;}
 }
 
-@Retention()
-@interface MyAnnotatuin{}
