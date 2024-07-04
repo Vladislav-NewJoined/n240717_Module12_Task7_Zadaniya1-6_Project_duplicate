@@ -46,6 +46,10 @@ public class Task10_1_1 {
                 }
             }
         }
+        Class parentClass = _class.getSuperclass();
+        if (parentClass != null) {
+            showClassInfo(_class.getSuperclass());
+        }
     }
 }
 
