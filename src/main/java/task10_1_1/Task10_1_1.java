@@ -25,6 +25,7 @@ public class Task10_1_1 {
         System.out.println("... ...\n");
 
         Class2 class2 = new Class2();
+        System.out.println("В следующем фрагменте мы проходим по дереву класса: ");
         showClassInfo(class2.getClass());
     }
 
