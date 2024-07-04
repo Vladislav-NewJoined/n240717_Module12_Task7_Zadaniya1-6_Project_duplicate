@@ -1,6 +1,6 @@
 package task10_1_1;
 
-// этот фрагмент, Draft_Module10_Task1_Zadaniye1_part2, в точности записывая всдед за видео n240703_Module10_Task1_Zadaniye1_08
+// этот фрагмент, Draft_Module10_Task1_Zadaniye1_part3, записывается следуя за видео 09
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
