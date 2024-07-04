@@ -6,6 +6,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class Task10_1_1 {
     public static void main(String[] args) throws Exception {
@@ -21,6 +23,29 @@ public class Task10_1_1 {
                 Решение:\s""");
 
         System.out.println("... ...\n");
+
+        Class2 class2 = new Class2();
+        showClassInfo(class2.getClass());
+    }
+
+    static void showClassInfo(Class _class) {
+        System.out.println(_class.getSimpleName());
+        for (Field field : _class.getDeclaredFields()) {
+            if (field.isAnnotationPresent(FilterIt.class)) {
+                FilterIt f = field.getAnnotation(FilterIt.class);
+                if (f.show()) {
+                    System.out.println(field.getName());
+                }
+            }
+        }
+        for (Method method : _class.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(FilterIt.class)) {
+                FilterIt f = method.getAnnotation(FilterIt.class);
+                if (f.show()) {
+                    System.out.println(method.getName());
+                }
+            }
+        }
     }
 }
 
@@ -53,7 +78,7 @@ class Class2 extends Class1 {
     String field11;
     @FilterIt(show = true)
     Object field22;
-    @FilterIt(show = true)
+    @FilterIt(show = false)
     int field33;
 
     @FilterIt(show = true)
