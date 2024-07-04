@@ -7,7 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
@@ -27,18 +29,18 @@ class Commands {
         System.out.println("Bye, human");
     }
 
-    @Command(name = "stop", showInHelp = true)
+    @Command(name = "stop", showInHelp = false)
         public void stop() {
             System.out.println("I'm stopped");
         }
-    @Deprecated
+    @Command(name = "qwerty", showInHelp = false)
     public void qwerty () {
     }
 }
 
 public class Task10_1_1 {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
         System.out.println("""
                 Задание:\s
                 Модуль 10. Подходы к программированию. Задание №1:\s
@@ -57,13 +59,26 @@ public class Task10_1_1 {
         showClassInfo(class2.getClass());
 
 
+        System.out.println("В следующем фрагменте выводим команды в функционале 'Рефлексия': ");
+        System.out.println("Напишите команду ниже текста этого фрагмента. Используйте команды: 'hello' или 'bye' " +
+                "или 'stop' или 'qwerty': ");
+        System.out.println("Select command");
         Commands commands = new Commands();
-        System.out.println("Проверка1");
         for (Method method : commands.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(Command.class)) {
                 Command command = method.getAnnotation(Command.class);
                 if (command.showInHelp()) {
                     System.out.println(command.name());
+                }
+            }
+        }
+        Scanner scanner = new Scanner(System.in);
+        final String myCommand = scanner.nextLine();
+        for (Method method : commands.getClass().getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Command.class)) {
+                Command command = method.getAnnotation(Command.class);
+                if (command.name().equals(myCommand)) {
+                    method.invoke(commands);
                 }
             }
         }
