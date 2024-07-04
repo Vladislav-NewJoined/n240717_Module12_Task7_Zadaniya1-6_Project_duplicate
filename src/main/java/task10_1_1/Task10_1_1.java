@@ -97,3 +97,5 @@ class Class2 extends Class1 {
     Double method33() {return 0.0;}
 }
 
+@Retention()
+@interface MyAnnotatuin{}
