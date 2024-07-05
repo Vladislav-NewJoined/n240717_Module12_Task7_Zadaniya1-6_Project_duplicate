@@ -2,8 +2,10 @@ package task11_5_1;
 
 // В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3,
 
+import java.io.*;
+
 public class Task11_5_1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("""
                 Задание:\s
                 Модуль 11. Протокол “HTTP”. Задание №5:\s
@@ -22,5 +24,34 @@ public class Task11_5_1 {
                   - GET - запрос для получения данных с сервера.
                 
                   \s""");
+
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.dat"));
+        final Person person = new Person("Qwerty", 20, 170);
+        out.writeObject(person);
+
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream("data.dat"));
+        Person inPerson = (Person) input.readObject();
+        System.out.println(inPerson);
+    }
+}
+
+class Person implements Serializable {
+    final String name;
+    final int age;
+    final int height;
+
+    Person(String name, int age, int height) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                '}';
     }
 }
