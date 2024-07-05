@@ -1,12 +1,12 @@
-package task11_2_1;
+package task11_3_1;
 
 // В этом фрагменте, Draft_Module11_Task2_Zadaniya1-3,
 
-public class Task11_2_1 {
+public class Task11_3_1 {
     public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
-                Модуль 11. Протокол “HTTP”. Задание №2:\s
+                Модуль 11. Протокол “HTTP”. Задание №3:\s
                 Цель задания: получить базовое представление о заголовках в   HTTP\s
                     Задание:
                     1. Ознакомьтесь с информацией о заголовках HTTP https://developer.mozilla.org/ru/docs/Web/HTTP/Headers
