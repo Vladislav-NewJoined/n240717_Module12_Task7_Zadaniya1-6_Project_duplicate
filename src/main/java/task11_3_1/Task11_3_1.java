@@ -1,17 +1,16 @@
 package task11_3_1;
 
-// В этом фрагменте, Draft_Module11_Task2_Zadaniya1-3,
+// В этом фрагменте, Draft_Module11_Task3_Zadaniya1-2,
 
 public class Task11_3_1 {
     public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
                 Модуль 11. Протокол “HTTP”. Задание №3:\s
-                Цель задания: получить базовое представление о заголовках в   HTTP\s
+                Цель задания: познакомиться с видами запросов в HTTP
                     Задание:
-                    1. Ознакомьтесь с информацией о заголовках HTTP https://developer.mozilla.org/ru/docs/Web/HTTP/Headers
-                    2. О каких видах заголовках в HTTP   вы узнали?
-                    3. Расскажите о различиях HTTP  и  HTTPS?
+                    1. Какие запросы в HTTP вы знаете ?\s
+                    2. Приведите пример любого HTTP запроса?
                 
                 Решение:\s""");
 
