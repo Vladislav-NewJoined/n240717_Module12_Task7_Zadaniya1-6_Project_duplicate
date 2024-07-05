@@ -32,6 +32,19 @@ public class Task11_5_1 {
         ObjectInputStream input = new ObjectInputStream(new FileInputStream("src/main/java/task11_5_1/data.dat"));
         Person inPerson = (Person) input.readObject();
         System.out.println(inPerson);
+
+
+
+        // Пробуем ещё одним способом:
+        ObjectOutputStream out2 = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data2.dat"));
+        final Person2 person2 = new Person2("Qwerty2", 22, 182);
+        final AuthData authData = new AuthData("StrongPassword", person2);
+        out.writeObject(person2);
+
+        ObjectInputStream input2 = new ObjectInputStream(new FileInputStream("src/main/java/task11_5_1/data2.dat"));
+        AuthData data = (AuthData) input2.readObject();
+        System.out.println(data);
+
     }
 }
 
@@ -57,7 +70,7 @@ class Person implements Serializable{
 }
 
 
-class AuthData {
+class AuthData implements Serializable{
     final String password;
     final Person2 person2;
 
@@ -67,7 +80,7 @@ class AuthData {
     }
 }
 
-class Person2 {
+class Person2 implements Serializable{
     final String name;
     final int age;
     final int height;
