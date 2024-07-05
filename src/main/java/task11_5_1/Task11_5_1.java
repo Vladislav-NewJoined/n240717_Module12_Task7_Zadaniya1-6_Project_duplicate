@@ -35,7 +35,7 @@ public class Task11_5_1 {
     }
 }
 
-class Person implements Serializable {
+class Person implements Serializable{
     final String name;
     final int age;
     final int height;
@@ -55,3 +55,36 @@ class Person implements Serializable {
                 '}';
     }
 }
+
+
+class AuthData {
+    final String password;
+    final Person2 person2;
+
+    AuthData(String password, Person2 person2) {
+        this.password = password;
+        this.person2 = person2;
+    }
+}
+
+class Person2 {
+    final String name;
+    final int age;
+    final int height;
+
+    Person2(String name, int age, int height) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "Person2{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                '}';
+    }
+}
+
