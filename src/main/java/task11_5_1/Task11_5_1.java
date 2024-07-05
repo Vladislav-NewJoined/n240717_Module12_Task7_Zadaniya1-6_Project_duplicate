@@ -25,11 +25,11 @@ public class Task11_5_1 {
                 
                   \s""");
 
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.dat"));
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data.dat"));
         final Person person = new Person("Qwerty", 20, 170);
         out.writeObject(person);
 
-        ObjectInputStream input = new ObjectInputStream(new FileInputStream("data.dat"));
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream("src/main/java/task11_5_1/data.dat"));
         Person inPerson = (Person) input.readObject();
         System.out.println(inPerson);
     }
