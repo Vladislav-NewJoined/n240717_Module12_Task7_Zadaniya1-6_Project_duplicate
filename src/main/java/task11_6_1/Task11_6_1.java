@@ -40,7 +40,7 @@ public class Task11_6_1 {
                   расширения, что делает его популярным выбором для хостинга веб-сайтов и приложений на Java
                   и других языках программирования.
                 
-                \s""");
+                Примеры использования Apache HTTP с использованием запросов GET и POST:\s""");
 
 //        CloseableHttpClient httpClient = HttpClients.createDefault();
 //
