@@ -71,8 +71,8 @@ public class Task11_5_1 {
 
 
 class AuthData implements Serializable{
+    static Person2 person2;
     final String password;
-    final Person2 person2;
 
     AuthData(String password, Person2 person2) {
         this.password = password;
@@ -80,7 +80,7 @@ class AuthData implements Serializable{
     }
 }
 
-class Person2 implements Serializable{
+class Person2 /*implements Serializable*/{
     final String name;
     final int age;
     final int height;
