@@ -1,7 +1,13 @@
 package task11_6_1;
 
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
+import java.io.IOException;
+
 public class Task11_6_1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("""
                 Задание:\s
                 Модуль 11. Протокол “HTTP”. Задание №6:\s
@@ -25,5 +31,8 @@ public class Task11_6_1 {
                 
                 \s""");
 
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet httpGet = new HttpGet();
+        httpClient.execute(httpGet);
     }
 }
