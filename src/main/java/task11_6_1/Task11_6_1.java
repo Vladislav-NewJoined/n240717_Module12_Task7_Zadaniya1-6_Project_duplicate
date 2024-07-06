@@ -64,34 +64,60 @@ public class Task11_6_1 {
 
 
 
+//        try {
+//            URL url = new URL("https://jsonplaceholder.typicode.com/posts");
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setRequestMethod("POST");
+//            connection.setDoOutput(true);
+//
+//            // Отправляем POST данные, если необходимо
+//            String postData = "key1=value1&key2=value2";
+//            try (OutputStream os = connection.getOutputStream()) {
+//                byte[] input = postData.getBytes("utf-8");
+//                os.write(input, 0, input.length);
+//            }
+//
+//            // Получаем ответ
+//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//            while ((inputLine = in.readLine()) != null) {
+//                response.append(inputLine);
+//            }
+//            in.close();
+//
+//            // Выводим ответ в консоль
+//            System.out.println(response.toString());
+//
+//            connection.disconnect();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+
+
+
+
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/posts");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
 
-            // Отправляем POST данные, если необходимо
-            String postData = "key1=value1&key2=value2";
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = postData.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            // Получаем ответ
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
+
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
             in.close();
 
-            // Выводим ответ в консоль
             System.out.println(response.toString());
-
-            connection.disconnect();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 }
