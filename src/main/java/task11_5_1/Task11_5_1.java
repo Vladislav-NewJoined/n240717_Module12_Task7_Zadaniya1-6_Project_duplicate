@@ -2,7 +2,7 @@ package task11_5_1;
 
 import java.io.*;
 
-// В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3,
+// В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3_part3, всё работает до видео мин 1448
 
 public class Task11_5_1 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
