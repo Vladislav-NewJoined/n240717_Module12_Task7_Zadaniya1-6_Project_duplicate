@@ -3,8 +3,6 @@ package task11_5_1;
 import java.io.*;
 import java.util.Locale;
 
-// В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3_part3, всё работает до видео мин 1448
-
 public class Task11_5_1 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("""
@@ -46,6 +44,7 @@ public class Task11_5_1 {
                 
                 Примеры использования:\s""");
 
+        // Способ 1:
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data.dat"));
         final Person person = new Person("Qwerty", 20, 170);
         out.writeObject(person);
