@@ -40,84 +40,70 @@ public class Task11_6_1 {
                   расширения, что делает его популярным выбором для хостинга веб-сайтов и приложений на Java
                   и других языках программирования.
                 
-                Примеры использования Apache HTTP с использованием запросов GET и POST:\s""");
+                Ответ на вопрос 2, Для чего используется Apache в рамках работы протокола HTTP?:
+                  Apache в контексте протокола HTTP — это веб-сервер, официально известный как Apache HTTP Server.
+                
+                
+                Примеры использования Apache HTTP с использованием запросов GET и POST:
+                \s""");
 
-//        CloseableHttpClient httpClient = HttpClients.createDefault();
-//
-//        HttpGet request = new HttpGet("https://api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
-//        HttpResponse response = httpClient.execute(request);
-//        Scanner sc = new Scanner(response.getEntity().getContent());
-//        System.out.println(response.getStatusLine());
-//        while (sc.hasNext()) {
-//            System.out.println(sc.nextLine());
-//        }
-//
-////        HttpPost requestPost = new HttpPost("https://api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
-////        HttpResponse response = httpClient.execute(request);
-////        Scanner sc = new Scanner(response.getEntity().getContent());
-////        System.out.println(response.getStatusLine());
-////        while (sc.hasNext()) {
-////            System.out.println(sc.nextLine());
-////        }
-
-
-
-
-
-//        try {
-//            URL url = new URL("https://jsonplaceholder.typicode.com/posts");
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("POST");
-//            connection.setDoOutput(true);
-//
-//            // Отправляем POST данные, если необходимо
-//            String postData = "key1=value1&key2=value2";
-//            try (OutputStream os = connection.getOutputStream()) {
-//                byte[] input = postData.getBytes("utf-8");
-//                os.write(input, 0, input.length);
-//            }
-//
-//            // Получаем ответ
-//            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            StringBuffer response = new StringBuffer();
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//
-//            // Выводим ответ в консоль
-//            System.out.println(response.toString());
-//
-//            connection.disconnect();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-
-
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet request = new HttpGet("https://api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
+        HttpResponse response = httpClient.execute(request);
+        Scanner sc = new Scanner(response.getEntity().getContent());
+        System.out.println(response.getStatusLine());
+        while (sc.hasNext()) {
+            System.out.println(sc.nextLine());
+        }
 
         try {
-            URL url = new URL("https://jsonplaceholder.typicode.com/posts");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
+            URL url2 = new URL("https://jsonplaceholder.typicode.com/posts");
+            HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+            connection2.setRequestMethod("POST");
+            connection2.setDoOutput(true);
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            // Отправляем POST данные, если необходимо
+            String postData2 = "key1=value1&key2=value2";
+            try (OutputStream os = connection2.getOutputStream()) {
+                byte[] input2 = postData2.getBytes("utf-8");
+                os.write(input2, 0, input2.length);
             }
-            in.close();
 
-            System.out.println(response.toString());
-        } catch (Exception e) {
+            // Получаем ответ
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+            String inputLine2;
+            StringBuffer response2 = new StringBuffer();
+            while ((inputLine2 = in2.readLine()) != null) {
+                response2.append(inputLine2);
+            }
+            in2.close();
+
+            // Выводим ответ в консоль
+            System.out.println(response2.toString());
+
+            connection2.disconnect();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+        try {
+            URL url3 = new URL("https://jsonplaceholder.typicode.com/posts");
+            HttpURLConnection connection3 = (HttpURLConnection) url3.openConnection();
+            connection3.setRequestMethod("POST");
+
+            BufferedReader in3 = new BufferedReader(new InputStreamReader(connection3.getInputStream()));
+            String inputLine3;
+            StringBuffer response3 = new StringBuffer();
+
+            while ((inputLine3 = in3.readLine()) != null) {
+                response3.append(inputLine3);
+            }
+            in3.close();
+
+            System.out.println(response3.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
