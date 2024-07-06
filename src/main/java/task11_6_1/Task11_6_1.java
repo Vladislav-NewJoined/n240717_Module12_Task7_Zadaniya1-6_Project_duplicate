@@ -35,7 +35,7 @@ public class Task11_6_1 {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
-        HttpGet request = new HttpGet("api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
+        HttpGet request = new HttpGet("https://api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
         HttpResponse response = httpClient.execute(request);
         Scanner sc = new Scanner(response.getEntity().getContent());
         System.out.println(response.getStatusLine());
