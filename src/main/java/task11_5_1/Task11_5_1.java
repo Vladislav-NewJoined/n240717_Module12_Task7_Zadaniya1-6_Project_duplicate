@@ -1,8 +1,8 @@
 package task11_5_1;
 
-// В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3,
-
 import java.io.*;
+
+// В этом фрагменте, Draft_Module11_Task5_Zadaniya1-3,
 
 public class Task11_5_1 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -37,9 +37,9 @@ public class Task11_5_1 {
 
         // Пробуем ещё одним способом:
         ObjectOutputStream out2 = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data2.dat"));
-        final Person2 person2 = new Person2("Qwerty2", 22, 182);
+        final Person2 person2 = new Person2("Qwerty2", 32, 182);
         final AuthData authData = new AuthData("StrongPassword", person2);
-        out.writeObject(person2);
+        out2.writeObject(authData);
 
         ObjectInputStream input2 = new ObjectInputStream(new FileInputStream("src/main/java/task11_5_1/data2.dat"));
         AuthData data = (AuthData) input2.readObject();
