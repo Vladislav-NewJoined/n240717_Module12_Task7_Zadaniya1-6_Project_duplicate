@@ -1,10 +1,12 @@
 package task11_6_1;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Task11_6_1 {
     public static void main(String[] args) throws IOException {
@@ -32,7 +34,13 @@ public class Task11_6_1 {
                 \s""");
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet();
-        httpClient.execute(httpGet);
+
+        HttpGet request = new HttpGet("api.openweathermap.org/data/2.5/weather?lat=52.27483630743035&lon=104.25449925002037&appid=aba15956c1b0894dd6c841fd1e154d45");
+        HttpResponse response = httpClient.execute(request);
+        Scanner sc = new Scanner(response.getEntity().getContent());
+        System.out.println(response.getStatusLine());
+        while (sc.hasNext()) {
+            System.out.println(sc.nextLine());
+        }
     }
 }
