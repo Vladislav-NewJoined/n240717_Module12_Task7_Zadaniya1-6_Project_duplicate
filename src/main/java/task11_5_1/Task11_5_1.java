@@ -36,15 +36,15 @@ public class Task11_5_1 {
                   и работать с этими данными в своем приложении.
                 
                 Ответ на вопрос 3, За что отвечает HttpMessageConverter?:
-                  Десериализация в контексте протокола HTTP - это процесс преобразования потока байтов, полученных
-                  по сети, обратно в объект в языке программирования Java. В случае HTTP, данные, отправленные
-                  по сети, могут быть сериализованы на одном конце соединения (например, в JSON формате),
-                  переданы по сети, а затем десериализованы на другом конце соединения обратно в объект Java.
-                  Десериализация позволяет приложению получать данные по сети, преобразовывать их обратно в объекты
-                  и работать с этими данными в своем приложении.
+                  HttpMessageConverter в Java отвечает за преобразование HTTP сообщений в объекты Java и обратно.
+                  Он предназначен для работы с телом запроса и ответа, преобразуя данные из формата, используемого
+                  для передачи по сети (например, JSON, XML, HTML), в объекты Java, которые можно использовать в
+                  приложении, и наоборот. HttpMessageConverter позволяет Spring Framework автоматически
+                  преобразовывать данные, переданные по HTTP, в нужный формат без необходимости вручную выполнять
+                  процесс сериализации и десериализации. Этот механизм очень удобен при разработке веб-приложений
+                  на Java.
                 
-                  Примеры использования:
-                  \s""");
+                Примеры использования:\s""");
 
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data.dat"));
         final Person person = new Person("Qwerty", 20, 170);
@@ -56,7 +56,7 @@ public class Task11_5_1 {
 
 
 
-        // Пробуем ещё одним способом:
+        // Способ 2:
         ObjectOutputStream out2 = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data2.dat"));
         final Person2 person2 = new Person2("Qwerty2", 32, 182);
         final AuthData authData = new AuthData("StrongPassword", person2);
@@ -68,7 +68,7 @@ public class Task11_5_1 {
 
 
 
-        // Пробуем ещё одним способом:
+        // Способ 3:
         ObjectOutputStream out3 = new ObjectOutputStream(new FileOutputStream("src/main/java/task11_5_1/data3.dat"));
         final Person3 person3 = new Person3("Qwerty3", 42, 192);
         final AuthData3 authData3 = new AuthData3("StrongPassword", person3);
@@ -179,6 +179,3 @@ class Person3 implements Serializable{
                 '}';
     }
 }
-
-
-
