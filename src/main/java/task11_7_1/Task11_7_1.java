@@ -2,7 +2,8 @@ package task11_7_1;
 
 import retrofit2.Retrofit;
 
-import javax.ws.rs.GET;
+import retrofit2.http.GET;
+
 import javax.ws.rs.Path;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,12 +18,14 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static org.telegram.telegrambots.meta.ApiConstants.BASE_URL;
+
 public class Task11_7_1 {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
 
     public interface JsonPlaceholderAPI {
-        @GET("posts/1")
+        @GET("/posts/1")
         Call<Post> getPost();
     }
 
@@ -90,8 +93,6 @@ public class Task11_7_1 {
         }
     }
 }
-
-
 
 
 
