@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Draft_Module11_Task8_Zadaniya1-3" />
+        <module name="Draft_Module11_Task9_Zadaniya1-8_Project" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Draft_Module11_Task8_Zadaniya1-3" options="" />
+      <module name="Draft_Module11_Task9_Zadaniya1-8_Project" options="" />
     </option>
   </component>
 </project>
