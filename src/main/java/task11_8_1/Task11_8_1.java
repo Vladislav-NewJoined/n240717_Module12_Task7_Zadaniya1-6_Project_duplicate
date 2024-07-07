@@ -47,26 +47,10 @@ public class Task11_8_1 {
         String json = gson.toJson(post);
         System.out.println(json);
         System.out.println(gson.fromJson(json,Post.class));
-
-
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        JsonPlaceholderAPI jsonPlaceholderAPI = retrofit.create(JsonPlaceholderAPI.class);
-//
-//        Call<Post> call = jsonPlaceholderAPI.getPost();
-//
-//        try {
-//            Post post = call.execute().body();
-//            System.out.println("Post title: " + post.getTitle());
-//        } catch (Exception e) {
-//            e.printStackTrace();
         }
     }
 
-    /*public */class Post {
+    class Post {
         private int userId;
         private int id;
         private String title;
