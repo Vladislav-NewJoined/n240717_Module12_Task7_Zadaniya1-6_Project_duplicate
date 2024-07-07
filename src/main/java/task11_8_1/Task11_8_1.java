@@ -1,11 +1,11 @@
-package task11_7_1;
+package task11_8_1;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
-public class Task11_7_1 {
+public class Task11_8_1 {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
 
