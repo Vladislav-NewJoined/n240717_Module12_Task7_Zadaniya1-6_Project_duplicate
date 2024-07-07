@@ -14,11 +14,6 @@
             <artifactId>converter-gson</artifactId>
             <version>2.11.0</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.example</groupId>-->
-<!--            <artifactId>Draft_Module11_Task7_Zadaniya1-2</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>

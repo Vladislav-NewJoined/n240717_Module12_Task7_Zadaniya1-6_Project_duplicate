@@ -1,24 +1,9 @@
 package task11_7_1;
 
-import retrofit2.Retrofit;
-
-import retrofit2.http.GET;
-
-import javax.ws.rs.Path;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static org.telegram.telegrambots.meta.ApiConstants.BASE_URL;
+import retrofit2.http.GET;
 
 public class Task11_7_1 {
 
@@ -56,14 +41,19 @@ public class Task11_7_1 {
                   с JSON, и RxJava для реактивного программирования.
                 
                 Ответ по заданию 2, Приведите сценарий его использования:
-                  Retrofit - это библиотека для работы с HTTP запросами в приложениях на языке
+                  Основной сценарий использования Retrofit заключается в выполнении HTTP запросов к
+                  удалённому серверу и обработке полученных данных.
+                
+                  Например, мы можем создать интерфейс, в котором будут описаны все необходимые
+                  запросы к API. Затем с помощью Retrofit мы создадим объект, который будет
+                  использовать этот интерфейс для отправки запросов и обработки ответов от сервера.
+                
+                  Таким образом, Retrofit позволяет упростить процесс взаимодействия с сервером,
+                  обеспечивая удобный и гибкий способ работы с сетевыми запросами в приложениях
+                  на Java.
 
                 Примеры использования "Retrofit":
                 \s""");
-
-
-
-
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -93,57 +83,3 @@ public class Task11_7_1 {
         }
     }
 }
-
-
-
-
-
-
-//        // Способ 2
-//        try {
-//            URL url2 = new URL("https://jsonplaceholder.typicode.com/posts");
-//            HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
-//            connection2.setRequestMethod("POST");
-//            connection2.setDoOutput(true);
-//
-//            // Отправляем POST данные, если необходимо
-//            String postData2 = "key1=value1&key2=value2";
-//            try (OutputStream os = connection2.getOutputStream()) {
-//                byte[] input2 = postData2.getBytes(StandardCharsets.UTF_8);
-//                os.write(input2, 0, input2.length);
-//            }
-//
-//            // Получаем ответ
-//            BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
-//            String inputLine2;
-//            StringBuffer response2 = new StringBuffer();
-//            while ((inputLine2 = in2.readLine()) != null) {
-//                response2.append(inputLine2);
-//            }
-//            in2.close();
-//
-//            // Выводим ответ в консоль
-//            System.out.println(response2.toString());
-//
-//            connection2.disconnect();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//
-//
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://opi.github.com/")
-//                .build();
-//
-////        GitHubService service = retrofit.create(GitHubService.class);
-//    }
-//}
-
-//interface GitHubService {
-////    @GET("users/{user}/repos")
-//    @GET("users/{user}/repos")
-//    Call<List<Repo>> listRepos(@Path("user") String user);
-//}
