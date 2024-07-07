@@ -1,9 +1,12 @@
 package task11_8_1;
 
+import com.google.gson.Gson;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+
+// Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
 public class Task11_8_1 {
 
@@ -36,27 +39,34 @@ public class Task11_8_1 {
                 Ответ по заданию 2, Для чего он используется?:
                   Основной сценарий использования Retrofit заключается в выполнении HTTP запросов к
 
-                Примеры использования "GSON":
+                Пример использования "GSON":
                 \s""");
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        Gson gson = new Gson();
+        Post post = new Post();
+        String json = gson.toJson(post);
+        System.out.println(json);
+        System.out.println(gson.fromJson(json,Post.class));
 
-        JsonPlaceholderAPI jsonPlaceholderAPI = retrofit.create(JsonPlaceholderAPI.class);
 
-        Call<Post> call = jsonPlaceholderAPI.getPost();
-
-        try {
-            Post post = call.execute().body();
-            System.out.println("Post title: " + post.getTitle());
-        } catch (Exception e) {
-            e.printStackTrace();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        JsonPlaceholderAPI jsonPlaceholderAPI = retrofit.create(JsonPlaceholderAPI.class);
+//
+//        Call<Post> call = jsonPlaceholderAPI.getPost();
+//
+//        try {
+//            Post post = call.execute().body();
+//            System.out.println("Post title: " + post.getTitle());
+//        } catch (Exception e) {
+//            e.printStackTrace();
         }
     }
 
-    public static class Post {
+    /*public */class Post {
         private int userId;
         private int id;
         private String title;
@@ -66,4 +76,3 @@ public class Task11_8_1 {
             return title;
         }
     }
-}
