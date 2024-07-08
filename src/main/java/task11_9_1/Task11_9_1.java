@@ -107,8 +107,7 @@ public class Task11_9_1 {
         LocationService locationService = retrofit.create(LocationService.class);
 
         // Создаем объект LocationDto с заданными координатами
-        LocationDto location = new LocationDto(70, 50);
-//        LocationDto location = new LocationDto(51.5074, 0.1278);
+        LocationDto location = new LocationDto(51.5074, 0.1278);
 
         // Отправляем координаты на сервер
         Call<LocationDto> locationCall = locationService.sendLocation(location);
