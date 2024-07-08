@@ -1,21 +1,16 @@
 package task11_9_1;
 
-import com.google.gson.Gson;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 import javax.sound.midi.Receiver;
 
 import java.io.IOException;
 import java.util.List;
-
-import static javax.swing.text.html.HTML.Tag.I;
-import static retrofit2.Retrofit.*;
 
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
@@ -81,7 +76,7 @@ public class Task11_9_1 {
 
 
 
-        Retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://receivers.api.ecohub.eco/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -90,7 +85,7 @@ public class Task11_9_1 {
         InRadiusDto dto = new InRadiusDto(0, 0, 100000, 0, 10);
         Call<List<Receiver>> repos = service.listReceivers(dto);
         try {
-            Response<List<Receiver>> res = repos.execute());
+            Response<List<Receiver>> res = repos.execute();
             for (Receiver r : res.body()) {
                 System.out.println(r);
             }
@@ -100,13 +95,47 @@ public class Task11_9_1 {
     }
 }
 
-    class Post {
-        private int userId;
-        private int id;
-        private String title;
-        private String body;
+class Post {
+    private int userId;
+    private int id;
+    private String title;
+    private String body;
 
-        public String getTitle() {
-            return title;
-        }
+    public String getTitle() {
+        return title;
     }
+}
+
+class InRadiusDto {
+    final float latitude;
+    final float longitude;
+    final int radius;
+    final int page;
+    final int pageSize;
+
+    InRadiusDto(float latitude, float longitude, int radius, int page, int pageSize) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.radius = radius;
+        this.page = page;
+        this.pageSize = pageSize;
+    }
+}
+
+class Receiver {
+    final String id;
+    final String title;
+
+    Receiver(String id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Receiver{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
+}
