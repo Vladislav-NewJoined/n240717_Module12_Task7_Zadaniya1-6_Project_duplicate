@@ -7,16 +7,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
+import javax.ws.rs.Path;
 import java.io.IOException;
 import java.util.List;
 
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
-    interface ReceiversService {
-        @POST("inRadius")
-        Call<List<Receiver>> listReceivers(@Body InRadiusDto dto);
-    }
-
+interface ReceiversService {
+    @POST("/posts")
+    Call<Post> createUserPost(@Body Post post);
+}
 public class Task11_9_1 {
 
 //    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
@@ -75,20 +75,18 @@ public class Task11_9_1 {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://receivers.api.ecohub.eco/")
+                .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ReceiversService service = retrofit.create(ReceiversService.class);
-        InRadiusDto dto = new InRadiusDto(0, 0, 100000, 0, 10);
-        Call<List<Receiver>> repos = service.listReceivers(dto);
+        Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
+        Call<Post> repos = service.createUserPost(newPost); // Пример: создание нового поста
         try {
-            Response<List<Receiver>> res = repos.execute();
-            for (Receiver r : res.body()) {
-                System.out.println(r);
-            }
+            Response<Post> res = repos.execute();
+            System.out.println(res.body());
         } catch (IOException e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }
@@ -98,6 +96,10 @@ class Post {
     private int id;
     private String title;
     private String body;
+
+    public Post(int i, String newPostTitle, String newPostBody) {
+
+    }
 
     public String getTitle() {
         return title;
