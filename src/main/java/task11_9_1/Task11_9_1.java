@@ -2,22 +2,36 @@ package task11_9_1;
 
 import com.google.gson.Gson;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+
+import javax.sound.midi.Receiver;
+
+import java.io.IOException;
+import java.util.List;
 
 import static javax.swing.text.html.HTML.Tag.I;
 import static retrofit2.Retrofit.*;
 
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
+    interface ReceiversService {
+        @POST("inRadius")
+        Call<List<Receiver>> listReceivers(@Body InRadiusDto dto);
+    }
+
 public class Task11_9_1 {
 
-    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
-
-    public interface JsonPlaceholderAPI {
-        @GET("/posts/1")
-        Call<Post> getPost();
-    }
+//    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
+//
+//    public interface JsonPlaceholderAPI {
+//        @GET("/posts/1")
+//        Call<Post> getPost();
+//    }
 
     public static void main(String[] args) {
         System.out.println("""
@@ -58,31 +72,33 @@ public class Task11_9_1 {
                 Пример использования "GSON":
                 \s""");
 
-        Gson gson = new Gson();
-        Post post = new Post();
-        String json = gson.toJson(post);
-        System.out.println(json);
-        System.out.println(gson.fromJson(json,Post.class));
+//        Gson gson = new Gson();
+//        Post post = new Post();
+//        String json = gson.toJson(post);
+//        System.out.println(json);
+//        System.out.println(gson.fromJson(json,Post.class));
 
 
 
 
-        Retrofit = new Builder()
-                .baseUrl()
-                . ba s e u rl ("https://receivers.api.ecQhuti.eGQ/")
-                . addConverterFactory(GsonConverterFactory. create()) .buildO;
-        ReceiversService service = retrofit.create(ReceiversService.class); InRadiusDto dto = new InRadiusDto(0, 0, 100000, 0, 10);
-        Call<List<Receiver» repos = service.listReceivers(dto);
-        try ■{
-            Response<List<Receiver>> res = repos.executeC);
-            for (Receiver r : res.bodyO) { System.out.println(r);
-            } catch (lOException e) •(
-                    e.printStackTrace();
-        } I
+        Retrofit = new Retrofit.Builder()
+                .baseUrl("https://receivers.api.ecohub.eco/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-
+        ReceiversService service = retrofit.create(ReceiversService.class);
+        InRadiusDto dto = new InRadiusDto(0, 0, 100000, 0, 10);
+        Call<List<Receiver>> repos = service.listReceivers(dto);
+        try {
+            Response<List<Receiver>> res = repos.execute());
+            for (Receiver r : res.body()) {
+                System.out.println(r);
+            }
+        } catch (IOException e) {
+                e.printStackTrace();
         }
     }
+}
 
     class Post {
         private int userId;
