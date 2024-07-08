@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import task11_9_1.zadaniye3.models.LocationDto;
+import task11_9_1.zadaniye3.models.Post;
 
 import java.io.IOException;
 import java.util.List;
@@ -140,32 +142,32 @@ public class Task11_9_3 {
     }
 }
 
-class Post { // Этот продублирован в папке/package models
-    private int userId;
-    private int id;
-    private String title;
-    private String body;
-
-    public Post(int userId, String title, String body) {
-        this.userId = userId;
-        this.title = title;
-        this.body = body;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "userId=" + userId +
-                ", id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                '}';
-    }
-}
+//class Post { // Этот продублирован в папке/package models
+//    private int userId;
+//    private int id;
+//    private String title;
+//    private String body;
+//
+//    public Post(int userId, String title, String body) {
+//        this.userId = userId;
+//        this.title = title;
+//        this.body = body;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "Post{" +
+//                "userId=" + userId +
+//                ", id=" + id +
+//                ", title='" + title + '\'' +
+//                ", body='" + body + '\'' +
+//                '}';
+//    }
+//}
 
 class InRadiusDto {
     final float latitude;
@@ -194,30 +196,30 @@ record Receiver(String id, String title) {
     }
 }
 
-// Создаем класс LocationDto для координат
-class LocationDto {
-    private final double latitude;
-    private final double longitude;
-
-    public LocationDto(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    @Override
-    public String toString() {
-        return "LocationDto{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
-    }
-}
+//// Создаем класс LocationDto для координат
+//class LocationDto {
+//    private final double latitude;
+//    private final double longitude;
+//
+//    public LocationDto(double latitude, double longitude) {
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//    }
+//
+//    public double getLatitude() {
+//        return latitude;
+//    }
+//
+//    public double getLongitude() {
+//        return longitude;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "LocationDto{" +
+//                "latitude=" + latitude +
+//                ", longitude=" + longitude +
+//                '}';
+//    }
+//}
 
