@@ -21,6 +21,12 @@ interface ReceiversService {
     Call<Post> createUserPost(@Body Post post);
 }
 
+// Интерфейс сервиса с методом POST
+interface LocationService {
+    @POST("/location") // Предположим, что есть эндпоинт для отправки координат
+    Call<LocationDto> sendLocation(@Body LocationDto location);
+}
+
 public class Task11_9_1 {
 
 //    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
@@ -92,6 +98,31 @@ public class Task11_9_1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
+
+        LocationService locationService = retrofit.create(LocationService.class);
+
+        // Создаем объект LocationDto с заданными координатами
+        LocationDto location = new LocationDto(51.5074, 0.1278);
+
+        // Отправляем координаты на сервер
+        Call<LocationDto> locationCall = locationService.sendLocation(location);
+
+        try {
+            Response<LocationDto> response = locationCall.execute();
+            if (response.isSuccessful()) {
+                LocationDto receivedLocation = response.body();
+                System.out.println("Received location: " + receivedLocation);
+            } else {
+                System.out.println("Request was not successful: " + response.errorBody().string());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
@@ -149,6 +180,7 @@ record Receiver(String id, String title) {
     }
 }
 
+// Создаем класс LocationDto для координат
 class LocationDto {
     private final double latitude;
     private final double longitude;
@@ -174,3 +206,4 @@ class LocationDto {
                 '}';
     }
 }
+
