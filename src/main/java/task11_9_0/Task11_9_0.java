@@ -1,15 +1,17 @@
-package task11_9_1;
+package task11_9_0;
 
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
 
+//import javax.ws.rs.GET;
 import java.io.IOException;
 import java.util.List;
+
+import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
@@ -21,7 +23,7 @@ interface ReceiversService {
     Call<Post> createUserPost(@Body Post post);
 }
 
-public class Task11_9_1 {
+public class Task11_9_0 {
 
 //    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
 //
@@ -95,7 +97,7 @@ public class Task11_9_1 {
     }
 }
 
-class Post { // Этот продублирован в папке/package models
+class Post {
     private int userId;
     private int id;
     private String title;
