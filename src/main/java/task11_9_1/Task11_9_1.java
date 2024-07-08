@@ -5,18 +5,27 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
-import retrofit2.http.POST;
 
+//import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import java.io.IOException;
 import java.util.List;
 
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 
 interface ReceiversService {
+    @GET("/post")
+    Call<List<Post>> getPosts();
+//    @GET("/posts") // Указываем путь к ресурсу
+//    Call<List<Post>> getPosts();
+
     @POST("/posts")
     Call<Post> createUserPost(@Body Post post);
 }
+
 public class Task11_9_1 {
 
 //    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
@@ -97,12 +106,24 @@ class Post {
     private String title;
     private String body;
 
-    public Post(int i, String newPostTitle, String newPostBody) {
-
+    public Post(int userId, String title, String body) {
+        this.userId = userId;
+        this.title = title;
+        this.body = body;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "userId=" + userId +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                '}';
     }
 }
 
