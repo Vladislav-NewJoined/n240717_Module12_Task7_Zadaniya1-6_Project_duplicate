@@ -7,8 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-import javax.sound.midi.Receiver;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -122,14 +120,7 @@ class InRadiusDto {
     }
 }
 
-class Receiver {
-    final String id;
-    final String title;
-
-    Receiver(String id, String title) {
-        this.id = id;
-        this.title = title;
-    }
+record Receiver(String id, String title) {
 
     @Override
     public String toString() {
