@@ -1,5 +1,6 @@
 package task11_9_1;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -106,18 +107,23 @@ public class Task11_9_1 {
         LocationService locationService = retrofit.create(LocationService.class);
 
         // Создаем объект LocationDto с заданными координатами
-        LocationDto location = new LocationDto(51.5074, 0.1278);
+        LocationDto location = new LocationDto(70, 50);
+//        LocationDto location = new LocationDto(51.5074, 0.1278);
 
         // Отправляем координаты на сервер
         Call<LocationDto> locationCall = locationService.sendLocation(location);
 
         try {
             Response<LocationDto> response = locationCall.execute();
-            if (response.isSuccessful()) {
-                LocationDto receivedLocation = response.body();
-                System.out.println("Received location: " + receivedLocation);
-            } else {
-                System.out.println("Request was not successful: " + response.errorBody().string());
+            try (ResponseBody responseBody = response.errorBody()) {
+                if (response.isSuccessful()) {
+                    LocationDto receivedLocation = response.body();
+                    System.out.println("Received location: " + receivedLocation);
+                } else {
+                    System.out.println("Request was not successful: " + responseBody.string());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
