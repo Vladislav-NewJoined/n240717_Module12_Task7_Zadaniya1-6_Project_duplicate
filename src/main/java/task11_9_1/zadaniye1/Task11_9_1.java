@@ -1,4 +1,4 @@
-package task11_9_1;
+package task11_9_1.zadaniye1;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,6 +27,8 @@ interface LocationService {
     @POST("/location") // Предположим, что есть эндпоинт для отправки координат
     Call<LocationDto> sendLocation(@Body LocationDto location);
 }
+
+
 
 public class Task11_9_1 {
 
@@ -62,18 +64,22 @@ public class Task11_9_1 {
                     7. В классе Main находящегося в папке models создайте сервис и передайте в него ранее созданный
                        receiverApiDataSource
                     8. Реализуйте циклическую загрузку данных при вводе значения latitude и longitude
-                
-                Решение:\s""");
+                \s""");
 
         System.out.println("""
                 Решение по заданию 1, В ранее созданном проекте, в папке main  создайте New Package c
                   названием models, далее класс Receiver:
-                  GSON - это библиотека для Java, разработанная Google, которая используется для преобразования
-                  объектов Java в формат JSON и наоборот. С помощью GSON можно легко осуществлять сериализацию
-                  и десериализацию Java объектов в JSON и обратно, что часто требуется при взаимодействии с
-                  веб-сервисами или при работе с базами данных.
-                
-                Пример использования "GSON":
+                \s""");
+
+        System.out.println("""
+                Примечание: адрес веб-страницы 'https://github.com/google/gson' в настоящее время является
+                недействительным, поэтому вместо него использован веб-сервис для тестирования и создания фейковых
+                координат в ответ на запросы: 'https://jsonplaceholder.typicode.com' и, соответственно, названия папок
+                были изменены на актуальные для этого ресурса.\s
+                \s""");
+
+        System.out.println("""
+                Примеры получения ответов на запросы с использованием протокола 'HTTP':\s
                 \s""");
 
 //        Gson gson = new Gson();
@@ -82,10 +88,8 @@ public class Task11_9_1 {
 //        System.out.println(json);
 //        System.out.println(gson.fromJson(json,Post.class));
 
-
-
-
         Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -114,6 +118,10 @@ public class Task11_9_1 {
 
         try {
             Response<LocationDto> response = locationCall.execute();
+            // Проверка статус кода ответа
+            int statusCode = response.code();
+            System.out.println("Status code: " + statusCode);
+
             try (ResponseBody responseBody = response.errorBody()) {
                 if (response.isSuccessful()) {
                     LocationDto receivedLocation = response.body();
