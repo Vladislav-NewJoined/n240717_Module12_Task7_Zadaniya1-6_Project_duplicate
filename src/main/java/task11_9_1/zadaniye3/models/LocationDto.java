@@ -1,4 +1,4 @@
-package task11_9_1.zadaniye2.models;
+package task11_9_1.zadaniye3.models;
 
 public class LocationDto {
 //    private final double latitude;
