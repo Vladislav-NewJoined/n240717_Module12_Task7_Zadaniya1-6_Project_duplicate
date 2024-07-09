@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import task11_9_1.zadaniye7.data_sources.ReceiverApiDataSource;
 import task11_9_1.zadaniye7.domain.ReceiverService;
 
-// с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part6, всё работает, но печатает 2 раза
+// с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part7, всё работает, но печатает 2 раза
 // и на печать выводит 'New PostModel Title' вместо координат
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
 

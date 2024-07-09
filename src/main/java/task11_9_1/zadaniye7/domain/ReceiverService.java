@@ -32,7 +32,6 @@ public class ReceiverService {
         Call<PostModel> repos = receiverApiDataSource.createUserPost(newPostModel); // Пример: создание нового поста
         try {
             Response<PostModel> res = repos.execute();
-            System.out.println(res.body());
             return res.body();
         } catch (IOException e) {
             e.printStackTrace();
