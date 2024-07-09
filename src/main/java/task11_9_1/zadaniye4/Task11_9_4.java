@@ -106,10 +106,6 @@ public class Task11_9_4 {
             e.printStackTrace();
         }
 
-
-
-
-
         LocationService locationService = retrofit.create(LocationService.class);
 
         // Создаем объект LocationDto с заданными координатами
