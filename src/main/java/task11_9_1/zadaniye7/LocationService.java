@@ -7,6 +7,6 @@ import task11_9_1.zadaniye7.models.LocationDto;
 
 // Интерфейс сервиса с методом POST
 public interface LocationService {
-    @POST("/location") // Предположим, что есть эндпоинт для отправки координат
-    Call<LocationDto> sendLocation(@Body LocationDto location);
+//    @POST("/location") // Предположим, что есть эндпоинт для отправки координат
+//    Call<LocationDto> sendLocation(@Body LocationDto location);
 }
