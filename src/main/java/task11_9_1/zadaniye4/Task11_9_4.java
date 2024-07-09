@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import task11_9_1.zadaniye4.data_sources.ReceiverApiDataSource;
 import task11_9_1.zadaniye4.models.LocationDto;
 import task11_9_1.zadaniye4.models.Post;
 
@@ -96,9 +97,9 @@ public class Task11_9_4 {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ReceiversService service = retrofit.create(ReceiversService.class);
+        ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
         Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
-        Call<Post> repos = service.createUserPost(newPost); // Пример: создание нового поста
+        Call<Post> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
         try {
             Response<Post> res = repos.execute();
             System.out.println(res.body());
