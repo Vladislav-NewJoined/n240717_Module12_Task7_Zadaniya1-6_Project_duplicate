@@ -18,7 +18,7 @@ public class Post { // Этот продублирован в папке/package
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "PostModel{" +
                 "userId=" + userId +
                 ", id=" + id +
                 ", title='" + title + '\'' +

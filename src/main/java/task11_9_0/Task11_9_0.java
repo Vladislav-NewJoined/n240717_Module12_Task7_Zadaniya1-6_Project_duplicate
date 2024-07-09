@@ -29,7 +29,7 @@ public class Task11_9_0 {
 //
 //    public interface JsonPlaceholderAPI {
 //        @GET("/posts/1")
-//        Call<Post> getPost();
+//        Call<PostModel> getPost();
 //    }
 
     public static void main(String[] args) {
@@ -72,10 +72,10 @@ public class Task11_9_0 {
                 \s""");
 
 //        Gson gson = new Gson();
-//        Post post = new Post();
+//        PostModel post = new PostModel();
 //        String json = gson.toJson(post);
 //        System.out.println(json);
-//        System.out.println(gson.fromJson(json,Post.class));
+//        System.out.println(gson.fromJson(json,PostModel.class));
 
 
 
@@ -86,7 +86,7 @@ public class Task11_9_0 {
                 .build();
 
         ReceiversService service = retrofit.create(ReceiversService.class);
-        Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
+        Post newPost = new Post(1, "New PostModel Title", "New PostModel Body"); // Пример создания нового поста
         Call<Post> repos = service.createUserPost(newPost); // Пример: создание нового поста
         try {
             Response<Post> res = repos.execute();
@@ -115,7 +115,7 @@ class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "PostModel{" +
                 "userId=" + userId +
                 ", id=" + id +
                 ", title='" + title + '\'' +

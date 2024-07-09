@@ -32,7 +32,7 @@ public class Task11_9_4 {
 //
 //    public interface JsonPlaceholderAPI {
 //        @GET("/posts/1")
-//        Call<Post> getPost();
+//        Call<PostModel> getPost();
 //    }
 
     public static void main(String[] args) {
@@ -79,10 +79,10 @@ public class Task11_9_4 {
                 \s""");
 
 //        Gson gson = new Gson();
-//        Post post = new Post();
+//        PostModel post = new PostModel();
 //        String json = gson.toJson(post);
 //        System.out.println(json);
-//        System.out.println(gson.fromJson(json,Post.class));
+//        System.out.println(gson.fromJson(json,PostModel.class));
 
 //        Retrofit retrofit = new Retrofit.Builder()
 ////                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
@@ -91,10 +91,10 @@ public class Task11_9_4 {
 //                .build();
 //
 //        ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
-//        Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
-//        Call<Post> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
+//        PostModel newPost = new PostModel(1, "New PostModel Title", "New PostModel Body"); // Пример создания нового поста
+//        Call<PostModel> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
 //        try {
-//            Response<Post> res = repos.execute();
+//            Response<PostModel> res = repos.execute();
 //            System.out.println(res.body());
 //        } catch (IOException e) {
 //            e.printStackTrace();
@@ -131,13 +131,13 @@ public class Task11_9_4 {
     }
 }
 
-//class Post { // Этот продублирован в папке/package models
+//class PostModel { // Этот продублирован в папке/package models
 //    private int userId;
 //    private int id;
 //    private String title;
 //    private String body;
 //
-//    public Post(int userId, String title, String body) {
+//    public PostModel(int userId, String title, String body) {
 //        this.userId = userId;
 //        this.title = title;
 //        this.body = body;
@@ -149,7 +149,7 @@ public class Task11_9_4 {
 //
 //    @Override
 //    public String toString() {
-//        return "Post{" +
+//        return "PostModel{" +
 //                "userId=" + userId +
 //                ", id=" + id +
 //                ", title='" + title + '\'' +

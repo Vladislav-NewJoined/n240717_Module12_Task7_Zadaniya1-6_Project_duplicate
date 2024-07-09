@@ -1,16 +1,11 @@
-package task11_9_1.zadaniye1;
+package task11_9_1.zadaniye6;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import task11_9_1.zadaniye1.models.Post;
+import task11_9_1.zadaniye6.models.Post;
 
-import java.io.IOException;
 import java.util.List;
 
 // Библиотека GSON добавляется отсюда: https://github.com/google/gson в виде зависимости Maven
@@ -23,15 +18,8 @@ interface ReceiversService {
     Call<Post> createUserPost(@Body Post post);
 }
 
-// Интерфейс сервиса с методом POST
-interface LocationService {
-    @POST("/location") // Предположим, что есть эндпоинт для отправки координат
-    Call<LocationDto> sendLocation(@Body LocationDto location);
-}
 
-
-
-public class Task11_9_1 {
+public class Task11_9_6 {
 
 //    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
 //
@@ -68,8 +56,12 @@ public class Task11_9_1 {
                 \s""");
 
         System.out.println("""
-                Решение по заданию 1, В ранее созданном проекте, в папке main  создайте New Package c
-                  названием models, далее класс Receiver:
+                Решение по заданию 6, В папке  domain создайте класс ReceiveService в нем сделайте
+                       import data_sources.ReceiverApiDataSource и в созданном публичном классе реализуйте
+                       получение экземпляра  receiverApiDataSource далее реализуйте метод fetch и перенесите
+                       в него содержимое из класса  Main в находящегося в папке models, подставьте в
+                       соответствующую строчку кода  receiverApiDataSource в исключении try реализуйте
+                       возврат res.body, а в исключении catch возврат null:
                 \s""");
 
         System.out.println("""
@@ -89,52 +81,49 @@ public class Task11_9_1 {
 //        System.out.println(json);
 //        System.out.println(gson.fromJson(json,PostModel.class));
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ReceiversService service = retrofit.create(ReceiversService.class);
-        Post newPost = new Post(1, "New PostModel Title", "New PostModel Body"); // Пример создания нового поста
-        Call<Post> repos = service.createUserPost(newPost); // Пример: создание нового поста
-        try {
-            Response<Post> res = repos.execute();
-            System.out.println(res.body());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-        LocationService locationService = retrofit.create(LocationService.class);
-
-        // Создаем объект LocationDto с заданными координатами
-        LocationDto location = new LocationDto(51.5074, 0.1278);
-
-        // Отправляем координаты на сервер
-        Call<LocationDto> locationCall = locationService.sendLocation(location);
-
-        try {
-            Response<LocationDto> response = locationCall.execute();
-            // Проверка статус кода ответа
-            int statusCode = response.code();
-            System.out.println("Status code: " + statusCode);
-
-            try (ResponseBody responseBody = response.errorBody()) {
-                if (response.isSuccessful()) {
-                    LocationDto receivedLocation = response.body();
-                    System.out.println("Received location: " + receivedLocation);
-                } else {
-                    System.out.println("Request was not successful: " + responseBody.string());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Retrofit retrofit = new Retrofit.Builder()
+////                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
+//                .baseUrl("https://jsonplaceholder.typicode.com")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
+//        PostModel newPost = new PostModel(1, "New PostModel Title", "New PostModel Body"); // Пример создания нового поста
+//        Call<PostModel> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
+//        try {
+//            Response<PostModel> res = repos.execute();
+//            System.out.println(res.body());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        LocationService locationService = retrofit.create(LocationService.class);
+//
+//        // Создаем объект LocationDto с заданными координатами
+//        LocationDto location = new LocationDto(51.5074, 0.1278);
+//
+//        // Отправляем координаты на сервер
+//        Call<LocationDto> locationCall = locationService.sendLocation(location);
+//
+//        try {
+//            Response<LocationDto> response = locationCall.execute();
+//            // Проверка статус кода ответа
+//            int statusCode = response.code();
+//            System.out.println("Status code: " + statusCode);
+//
+//            try (ResponseBody responseBody = response.errorBody()) {
+//                if (response.isSuccessful()) {
+//                    LocationDto receivedLocation = response.body();
+//                    System.out.println("Received location: " + receivedLocation);
+//                } else {
+//                    System.out.println("Request was not successful: " + responseBody.string());
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
@@ -193,30 +182,30 @@ record Receiver(String id, String title) {
     }
 }
 
-// Создаем класс LocationDto для координат
-class LocationDto {
-    private final double latitude;
-    private final double longitude;
-
-    public LocationDto(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    @Override
-    public String toString() {
-        return "LocationDto{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
-    }
-}
+//// Создаем класс LocationDto для координат
+//class LocationDto {
+//    private final double latitude;
+//    private final double longitude;
+//
+//    public LocationDto(double latitude, double longitude) {
+//        this.latitude = latitude;
+//        this.longitude = longitude;
+//    }
+//
+//    public double getLatitude() {
+//        return latitude;
+//    }
+//
+//    public double getLongitude() {
+//        return longitude;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "LocationDto{" +
+//                "latitude=" + latitude +
+//                ", longitude=" + longitude +
+//                '}';
+//    }
+//}
 

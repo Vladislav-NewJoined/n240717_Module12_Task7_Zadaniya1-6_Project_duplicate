@@ -1,14 +1,14 @@
-package task11_9_1.zadaniye4.domain;
+package task11_9_1.zadaniye5.domain;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import task11_9_1.zadaniye4.LocationService;
-import task11_9_1.zadaniye4.data_sources.ReceiverApiDataSource;
-import task11_9_1.zadaniye4.models.LocationDto;
-import task11_9_1.zadaniye4.models.Post;
+import task11_9_1.zadaniye5.LocationService;
+import task11_9_1.zadaniye5.data_sources.ReceiverApiDataSource;
+import task11_9_1.zadaniye5.models.Post;
+import task11_9_1.zadaniye5.models.LocationDto;
 
 import java.io.IOException;
 
