@@ -25,13 +25,6 @@ interface ReceiversService {
     Call<Post> createUserPost(@Body Post post);
 }
 
-// Интерфейс сервиса с методом POST
-interface LocationService {
-    @POST("/location") // Предположим, что есть эндпоинт для отправки координат
-    Call<LocationDto> sendLocation(@Body LocationDto location);
-}
-
-
 
 public class Task11_9_4 {
 
@@ -91,49 +84,49 @@ public class Task11_9_4 {
 //        System.out.println(json);
 //        System.out.println(gson.fromJson(json,Post.class));
 
-        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
-                .baseUrl("https://jsonplaceholder.typicode.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
-        Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
-        Call<Post> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
-        try {
-            Response<Post> res = repos.execute();
-            System.out.println(res.body());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        LocationService locationService = retrofit.create(LocationService.class);
-
-        // Создаем объект LocationDto с заданными координатами
-        LocationDto location = new LocationDto(51.5074, 0.1278);
-
-        // Отправляем координаты на сервер
-        Call<LocationDto> locationCall = locationService.sendLocation(location);
-
-        try {
-            Response<LocationDto> response = locationCall.execute();
-            // Проверка статус кода ответа
-            int statusCode = response.code();
-            System.out.println("Status code: " + statusCode);
-
-            try (ResponseBody responseBody = response.errorBody()) {
-                if (response.isSuccessful()) {
-                    LocationDto receivedLocation = response.body();
-                    System.out.println("Received location: " + receivedLocation);
-                } else {
-                    System.out.println("Request was not successful: " + responseBody.string());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Retrofit retrofit = new Retrofit.Builder()
+////                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
+//                .baseUrl("https://jsonplaceholder.typicode.com")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
+//        Post newPost = new Post(1, "New Post Title", "New Post Body"); // Пример создания нового поста
+//        Call<Post> repos = receiverApiDataSource.createUserPost(newPost); // Пример: создание нового поста
+//        try {
+//            Response<Post> res = repos.execute();
+//            System.out.println(res.body());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        LocationService locationService = retrofit.create(LocationService.class);
+//
+//        // Создаем объект LocationDto с заданными координатами
+//        LocationDto location = new LocationDto(51.5074, 0.1278);
+//
+//        // Отправляем координаты на сервер
+//        Call<LocationDto> locationCall = locationService.sendLocation(location);
+//
+//        try {
+//            Response<LocationDto> response = locationCall.execute();
+//            // Проверка статус кода ответа
+//            int statusCode = response.code();
+//            System.out.println("Status code: " + statusCode);
+//
+//            try (ResponseBody responseBody = response.errorBody()) {
+//                if (response.isSuccessful()) {
+//                    LocationDto receivedLocation = response.body();
+//                    System.out.println("Received location: " + receivedLocation);
+//                } else {
+//                    System.out.println("Request was not successful: " + responseBody.string());
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
