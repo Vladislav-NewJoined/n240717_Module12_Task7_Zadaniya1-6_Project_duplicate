@@ -5,12 +5,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import task11_9_1.zadaniye8.domain.ReceiverService;
 import task11_9_1.zadaniye8.data_sources.ReceiverApiDataSource;
 
+import java.io.IOException;
+
 // с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part12, добавлено zadaniye8, осталось добавить только то,
 // что в видео 08 (т.е. 2-ю часть)
 
 public class Task11_9_8 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("""
                 Задание:\s
                 Модуль 11. Протокол “HTTP”. Задание №9, Проект:\s
@@ -67,6 +69,6 @@ public class Task11_9_8 {
 //
         ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
         ReceiverService service = new ReceiverService(receiverApiDataSource);
-        System.out.println(service.fetch());
+        System.out.println(service.fetchAll(123.456F, 78.910F, 10000));
     }
 }

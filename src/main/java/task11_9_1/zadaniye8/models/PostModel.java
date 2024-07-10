@@ -5,13 +5,19 @@ public class PostModel { // Этот продублирован в папке/pa
     private int id;
     private String title;
     private String body;
-    private double latitude;
-    private double longitude;
+    private int page;
+    private int pageSize;
+    private int radiusKm;
+    private float latitude;
+    private float longitude;
 
-    public PostModel(int userId, String title, String body, double latitude, double longitude) {
+    public PostModel(int userId, String title, String body, int page, int pageSize, int radiusKm, float latitude, float longitude) {
         this.userId = userId;
         this.title = title;
         this.body = body;
+        this.page = page;
+        this.pageSize = pageSize;
+        this.radiusKm = radiusKm;
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -27,6 +33,9 @@ public class PostModel { // Этот продублирован в папке/pa
                 ", id=" + id +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
+                ", page='" + page + '\'' +
+                ", pageSize='" + pageSize + '\'' +
+                ", radiusKm='" + radiusKm + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
