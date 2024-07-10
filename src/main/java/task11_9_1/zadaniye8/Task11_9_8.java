@@ -2,14 +2,11 @@ package task11_9_1.zadaniye8;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import task11_9_1.zadaniye8.domain.ReceiverService;
 import task11_9_1.zadaniye8.data_sources.ReceiverApiDataSource;
+import task11_9_1.zadaniye8.domain.ReceiverService;
 
 import java.io.IOException;
 import java.util.Scanner;
-
-// с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part12, добавлено zadaniye8, осталось добавить только то,
-// что в видео 08 (т.е. 2-ю часть)
 
 public class Task11_9_8 {
 
@@ -58,14 +55,6 @@ public class Task11_9_8 {
         System.out.println("""
                 Примеры получения ответов на запросы с использованием протокола 'HTTP':\s
                 \s""");
-
-
-
-//        Gson gson = new Gson();
-//        PostModel post = new PostModel();
-//        String json = gson.toJson(post);
-//        System.out.println(json);
-//        System.out.println(gson.fromJson(json,PostModel.class));
 
         Scanner scanner = new Scanner(System.in);
         Retrofit retrofit = new Retrofit.Builder()

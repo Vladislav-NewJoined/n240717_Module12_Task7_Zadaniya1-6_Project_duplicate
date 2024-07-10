@@ -1,7 +1,5 @@
 package task11_9_1.zadaniye8.domain;
 
-//import task11_9_1.zadaniye7.LocationService;
-
 import task11_9_1.zadaniye8.data_sources.ReceiverApiDataSource;
 import task11_9_1.zadaniye8.models.PostModel;
 
@@ -9,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class ReceiverService {

@@ -5,9 +5,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import task11_9_1.zadaniye7.data_sources.ReceiverApiDataSource;
 import task11_9_1.zadaniye7.domain.ReceiverService;
 
-// с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part8, всё работает, осталось добавить только то,
-// что в видео 08 (т.е. 2-ю часть)
-
 public class Task11_9_7 {
 
     public static void main(String[] args) {
@@ -53,19 +50,11 @@ public class Task11_9_7 {
                 Примеры получения ответов на запросы с использованием протокола 'HTTP':\s
                 \s""");
 
-
-
-//        Gson gson = new Gson();
-//        PostModel post = new PostModel();
-//        String json = gson.toJson(post);
-//        System.out.println(json);
-//        System.out.println(gson.fromJson(json,PostModel.class));
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-//
+
         ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
         ReceiverService service = new ReceiverService(receiverApiDataSource);
         System.out.println(service.fetch());

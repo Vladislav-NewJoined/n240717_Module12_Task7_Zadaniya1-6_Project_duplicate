@@ -21,7 +21,6 @@ public class ReceiversService {
 
 
     Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://jsonplaceholder.typicode.com/posts/")
             .baseUrl("https://jsonplaceholder.typicode.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
@@ -67,5 +66,4 @@ public class ReceiversService {
         }
         return null;
     }
-
 }

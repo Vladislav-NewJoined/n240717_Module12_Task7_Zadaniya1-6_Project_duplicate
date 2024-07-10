@@ -1,6 +1,6 @@
 package task11_9_1.zadaniye4.models;
 
-public class Post { // Этот продублирован в папке/package models
+public class Post { // Этот класс продублирован в папке/package models
     private int userId;
     private int id;
     private String title;

@@ -5,7 +5,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-//import task11_9_1.zadaniye7.LocationService;
 import task11_9_1.zadaniye7.models.LocationDto;
 import task11_9_1.zadaniye7.data_sources.ReceiverApiDataSource;
 import task11_9_1.zadaniye7.models.PostModel;
@@ -47,6 +46,5 @@ public class ReceiverService {
             e.printStackTrace();
             return null; // Возвращаем null в случае неудачного запроса
         }
-
     }
 }

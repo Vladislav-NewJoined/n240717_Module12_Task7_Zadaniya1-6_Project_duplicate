@@ -29,17 +29,7 @@ interface LocationService {
     Call<LocationDto> sendLocation(@Body LocationDto location);
 }
 
-
-
 public class Task11_9_1 {
-
-//    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
-//
-//    public interface JsonPlaceholderAPI {
-//        @GET("/posts/1")
-//        Call<PostModel> getPost();
-//    }
-
     public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
@@ -83,12 +73,6 @@ public class Task11_9_1 {
                 Примеры получения ответов на запросы с использованием протокола 'HTTP':\s
                 \s""");
 
-//        Gson gson = new Gson();
-//        PostModel post = new PostModel();
-//        String json = gson.toJson(post);
-//        System.out.println(json);
-//        System.out.println(gson.fromJson(json,PostModel.class));
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -103,10 +87,6 @@ public class Task11_9_1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
 
         LocationService locationService = retrofit.create(LocationService.class);
 
@@ -138,33 +118,6 @@ public class Task11_9_1 {
 
     }
 }
-
-//class PostModel { // Этот продублирован в папке/package models
-//    private int userId;
-//    private int id;
-//    private String title;
-//    private String body;
-//
-//    public PostModel(int userId, String title, String body) {
-//        this.userId = userId;
-//        this.title = title;
-//        this.body = body;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "PostModel{" +
-//                "userId=" + userId +
-//                ", id=" + id +
-//                ", title='" + title + '\'' +
-//                ", body='" + body + '\'' +
-//                '}';
-//    }
-//}
 
 class InRadiusDto {
     final float latitude;
