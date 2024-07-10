@@ -32,7 +32,7 @@ public class ReceiverService {
 
 
     public PostModel fetch() {
-        PostModel newPostModel = new PostModel(1, "New PostModel Title", "New PostModel Body"); // Пример создания нового поста
+        PostModel newPostModel = new PostModel(1, "New Post", "This is a new post with coordinates", 123.456, 78.910); // Пример создания нового поста
 //        Call<PostModel> repos = receiverApiDataSource.createUserPost(newPostModel); // Пример: создание нового поста
 //        try {
 //            Response<PostModel> res = repos.execute();

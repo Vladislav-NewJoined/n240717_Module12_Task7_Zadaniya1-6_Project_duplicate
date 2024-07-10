@@ -5,11 +5,15 @@ public class PostModel { // Этот продублирован в папке/pa
     private int id;
     private String title;
     private String body;
+    private double latitude;
+    private double longitude;
 
-    public PostModel(int userId, String title, String body) {
+    public PostModel(int userId, String title, String body, double latitude, double longitude) {
         this.userId = userId;
         this.title = title;
         this.body = body;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getTitle() {
@@ -23,6 +27,8 @@ public class PostModel { // Этот продублирован в папке/pa
                 ", id=" + id +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
 }
