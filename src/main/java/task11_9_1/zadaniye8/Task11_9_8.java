@@ -6,6 +6,7 @@ import task11_9_1.zadaniye8.domain.ReceiverService;
 import task11_9_1.zadaniye8.data_sources.ReceiverApiDataSource;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 // с этого проекта, Draft_Module11_Task9_Zadaniya1-8_Project_part12, добавлено zadaniye8, осталось добавить только то,
 // что в видео 08 (т.е. 2-ю часть)
@@ -62,13 +63,35 @@ public class Task11_9_8 {
 //        System.out.println(json);
 //        System.out.println(gson.fromJson(json,PostModel.class));
 
+        Scanner scanner = new Scanner(System.in);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-//
+
         ReceiverApiDataSource receiverApiDataSource = retrofit.create(ReceiverApiDataSource.class);
         ReceiverService service = new ReceiverService(receiverApiDataSource);
-        System.out.println(service.fetchAll(123.456F, 78.910F, 10000));
+
+        String inputLatitude;
+        String inputLongitude;
+
+        while (true) {
+            System.out.println("Введите значение latitude (для выхода введите 'exit'): ");
+            inputLatitude = scanner.nextLine();
+            if (inputLatitude.equalsIgnoreCase("exit")) {
+                break;
+            }
+
+            System.out.println("Введите значение longitude: ");
+            inputLongitude = scanner.nextLine();
+
+            try {
+                System.out.println(service.fetchAll(Float.parseFloat(inputLatitude), Float.parseFloat(inputLongitude), 10000));
+            } catch (NumberFormatException e) {
+                System.out.println("Некорректный формат ввода. Повторите попытку.");
+            }
+        }
+
+        scanner.close();
     }
 }
