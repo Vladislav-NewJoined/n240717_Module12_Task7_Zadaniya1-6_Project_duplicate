@@ -4,7 +4,7 @@ public class Task12_1_1 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
-            Модуль 12. Базы данных и Git. Задание №1:\s
+            Модуль 12. Базы данных и Git. Задание №2:\s
             Цель задания: формирование базового представления о Docker и его предназначении\s
                 Задание:
                 1. Что такое Docker?
