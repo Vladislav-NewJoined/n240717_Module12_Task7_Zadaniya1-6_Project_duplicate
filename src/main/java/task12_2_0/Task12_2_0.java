@@ -1,6 +1,6 @@
-package task12_1_0;
+package task12_2_0;
 
-public class Task12_1_0 {
+public class Task12_2_0 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
