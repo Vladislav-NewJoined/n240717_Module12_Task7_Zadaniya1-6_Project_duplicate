@@ -1,5 +1,9 @@
 package task12_2_1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Task12_2_1 {
     public static void main(String[] args) {
         System.out.println("""
@@ -42,5 +46,16 @@ public class Task12_2_1 {
                 Команды в терминале IntelliJ IDEA для работы с Docker и Docker.hub и выполнение этих команд выглядят так: \s
                 ```
             \s""");
+
+
+        String url = "jdbc:sqlite:C:\\Users\\User\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1";
+
+        try {
+            Connection connection = DriverManager.getConnection(url);
+            System.out.println("Соединение с базой данных установлено.");
+            // Дальнейшая работа с базой данных
+        } catch (SQLException e) {
+            System.out.println("Ошибка при установлении соединения с базой данных: " + e.getMessage());
+        }
     }
 }
