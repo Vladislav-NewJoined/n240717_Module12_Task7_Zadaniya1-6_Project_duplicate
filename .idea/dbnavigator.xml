@@ -6,18 +6,18 @@
   </component>
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="true" />
+    <show-object-properties value="false" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df">
-      <console name="DBeaver Sample Database (SQLite)" type="STANDARD" schema="" session="Main"><![CDATA[create table if not exists Users (
+      <console name="DBeaver Sample Database (SQLite)" type="STANDARD" schema="main" session="Main"><![CDATA[create table if not exists Users (
  id integer primary key autoincrement,
  name varchar(20) not null, 
  phone varchar(20) default null
@@ -28,12 +28,13 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="c91e5d22-4780-4c68-8c70-1874b1af48df" object-ref="consoles/DBeaver Sample Database (SQLite)" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="c91e5d22-4780-4c68-8c70-1874b1af48df" dataset="main.Users" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
