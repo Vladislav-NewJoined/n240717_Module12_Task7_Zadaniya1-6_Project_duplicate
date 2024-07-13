@@ -47,15 +47,32 @@ public class Task12_2_1 {
                 ```
             \s""");
 
+        connect();
 
-        String url = "jdbc:sqlite:C:\\Users\\User\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1";
+    }
 
+    public static void connect() {
+        Connection conn = null;
         try {
-            Connection connection = DriverManager.getConnection(url);
-            System.out.println("Соединение с базой данных установлено.");
-            // Дальнейшая работа с базой данных
+            // db parametets
+            String url = "jdbc:sqlite:sq.db";
+//            String url = "jdbc:sqlite:some.db";
+//            String url = "jdbc:sqlite:D:\\database\\some.db";
+//            String url = "jdbc:sqlite:./some.db";
+            // create a connection to database
+            conn = DriverManager.getConnection(url);
+
+            System.out.println("Connection to SQLite has been established.");
         } catch (SQLException e) {
-            System.out.println("Ошибка при установлении соединения с базой данных: " + e.getMessage());
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 }
