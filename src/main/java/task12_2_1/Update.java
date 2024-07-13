@@ -2,7 +2,7 @@ package task12_2_1;
 
 import java.sql.*;
 
-public class Udate {
+public class Update {
     private Connection connect() {
         // SQLite connection String
         String url = "jdbc:sqlite:C:\\Users\\User\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1\\Chinook.db";
@@ -29,7 +29,7 @@ public class Udate {
     }
 
     public static void main(String[] args) {
-        Udate app = new Udate();
+        Update app = new Update();
         app.selectAll();
     }
 }
