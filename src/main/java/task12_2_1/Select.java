@@ -17,8 +17,8 @@ public class Select {
     }
 
     public void selectAll() {
-        String sql = "select id,name,phone from Users where name like '%Petya%';";
-//        String sql = "select * from Users";
+//        String sql = "select id,name,phone from Users where name like '%Petya%';";
+        String sql = "select * from Users";
 
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
