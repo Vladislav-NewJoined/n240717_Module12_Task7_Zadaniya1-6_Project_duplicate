@@ -23,23 +23,13 @@
  phone varchar(20) default null
 );
 
-select
-    u.id,
-    u.name,
-    u.phone
-from
-    "Users" u;
-
 insert into Users (name, phone) values
  ('Petya', '125453'),
  ('Vasya', '654321'), 
  ('Katya', null);
 
-update Users
-  set name = 'Ne Petya', phone = '+79991112233' 
-  where id=1;
-  
-  SELECT * FROM "Users";]]></console>
+
+select id,name,phone from Users where name like '%Petya%';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
