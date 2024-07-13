@@ -47,6 +47,7 @@ public class Task12_2_1 {
                 ```
             \s""");
 
+        System.out.println("Результат соединения:");
         connect();
 
     }
@@ -56,10 +57,6 @@ public class Task12_2_1 {
         try {
             // db parametets
             String url = "jdbc:sqlite:sq.db";
-//            String url = "jdbc:sqlite:some.db";
-//            String url = "jdbc:sqlite:D:\\database\\some.db";
-//            String url = "jdbc:sqlite:./some.db";
-            // create a connection to database
             conn = DriverManager.getConnection(url);
 
             System.out.println("Connection to SQLite has been established.");

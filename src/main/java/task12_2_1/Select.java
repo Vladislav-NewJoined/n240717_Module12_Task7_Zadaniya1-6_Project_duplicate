@@ -36,6 +36,8 @@ public class Select {
     }
 
     public static void main(String[] args) {
+
+        System.out.println("Результаты запроса по классу Select:");
         Select app = new Select();
         app.selectAll();
     }

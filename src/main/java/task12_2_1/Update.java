@@ -29,7 +29,11 @@ public class Update {
     }
 
     public static void main(String[] args) {
+
+
+        System.out.println("Результаты запроса по классу Update:");
         Update app = new Update();
         app.selectAll();
+        System.out.println("Соединение удалило все данные из таблицы Users");
     }
 }
