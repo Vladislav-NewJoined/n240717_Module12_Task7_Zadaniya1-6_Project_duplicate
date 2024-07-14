@@ -1,10 +1,10 @@
-package task12_2_1;
+package task12_2_0_part2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Task12_2_1 {
+public class Task12_2_0_part2 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s

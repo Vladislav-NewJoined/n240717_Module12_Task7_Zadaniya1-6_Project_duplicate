@@ -1,8 +1,8 @@
-package task12_2_1;
+package task12_2_0_part2;
 
 import java.sql.*;
 
-public class Select {
+public class Update {
     private Connection connect() {
         // SQLite connection String
         String url = "jdbc:sqlite:C:\\Users\\User\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1\\Chinook.db";
@@ -18,18 +18,11 @@ public class Select {
 
     public void selectAll() {
 //        String sql = "select id,name,phone from Users where name like '%Petya%';";
-        String sql = "select * from Users";
+//        String sql = "select * from Users";
 
         try (Connection conn = this.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("name") + "\t" +
-                        rs.getString("phone"));
-            }
+             Statement stmt = conn.createStatement()) {
+            stmt.execute("DELETE from Users");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -37,8 +30,10 @@ public class Select {
 
     public static void main(String[] args) {
 
-        System.out.println("Результаты запроса по классу Select:");
-        Select app = new Select();
+
+        System.out.println("Результаты запроса по классу Update:");
+        Update app = new Update();
         app.selectAll();
+        System.out.println("Соединение удалило все данные из таблицы Users");
     }
 }
