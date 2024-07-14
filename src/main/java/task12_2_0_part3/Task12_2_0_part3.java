@@ -56,7 +56,7 @@ public class Task12_2_0_part3 {
         Connection conn = null;
         try {
             // db parametets
-            String url = "jdbc:sqlite:sq.db";
+            String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part2\\src\\main\\java\\task12_2_0_part3\\sqlite.dbase";
             conn = DriverManager.getConnection(url);
 
             System.out.println("Connection to SQLite has been established.");

@@ -31,23 +31,8 @@ insert into Users (name, phone) values
 
 select id,name,phone from Users where name like '%Petya%';]]></console>
     </connection>
-    <connection id="f70aabc7-01da-4493-83ef-c9e7d6b8e2a9">
-      <console name="sqlite.dbase" type="STANDARD" schema="main" session="Main"><![CDATA[insert into "Users" (
-    id,
-    name,
-    phone)
-values (
-    :id,
-    :name,
-    :phone)
-;
-
-select
-    u.id,
-    u.name,
-    u.phone
-from
-    "Users" u;]]></console>
+    <connection id="bb05fa85-3f09-49a7-a354-f54401d67b7f">
+      <console name="sqlite.db" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -58,11 +43,10 @@ from
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df" />
-    <connection id="f70aabc7-01da-4493-83ef-c9e7d6b8e2a9" />
+    <connection id="bb05fa85-3f09-49a7-a354-f54401d67b7f" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="f70aabc7-01da-4493-83ef-c9e7d6b8e2a9" dataset="main.sqlite_sequence" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="f70aabc7-01da-4493-83ef-c9e7d6b8e2a9" dataset="main.Users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="bb05fa85-3f09-49a7-a354-f54401d67b7f" dataset="main.Users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="c91e5d22-4780-4c68-8c70-1874b1af48df" dataset="main.Users" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
@@ -175,9 +159,9 @@ from
           </object-type-filter>
         </object-filters>
       </connection>
-      <connection id="f70aabc7-01da-4493-83ef-c9e7d6b8e2a9" active="true" signed="true">
+      <connection id="bb05fa85-3f09-49a7-a354-f54401d67b7f" active="true" signed="true">
         <database>
-          <name value="sqlite.dbase" />
+          <name value="sqlite.db" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -186,7 +170,7 @@ from
           <driver-library value="" />
           <driver value="" />
           <url-type value="CUSTOM" />
-          <url value="jdbc:sqlite:C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task2_Zadaniya1-6_part2\src\main\java\task12_2_0_part2\sqlite.dbase" />
+          <url value="jdbc:sqlite:C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task2_Zadaniya1-6_part2\src\main\java\sqlite.db" />
           <type value="NONE" />
           <user value="" />
           <deprecated-pwd value="" />
