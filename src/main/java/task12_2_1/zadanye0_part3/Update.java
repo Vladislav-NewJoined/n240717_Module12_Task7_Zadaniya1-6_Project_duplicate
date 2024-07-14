@@ -5,7 +5,7 @@ import java.sql.*;
 public class Update {
     private Connection connect() {
         // SQLite connection String
-        String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part2\\src\\main\\java\\task12_2_1\\sqlite.dbase";
+        String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part3\\src\\main\\java\\task12_2_1\\sqlite.dbase";
 //        String url = "jdbc:sqlite:sq.db";
         Connection conn = null;
         try {
