@@ -1,4 +1,4 @@
-package zadanye0_part3;
+package task12_2_1.zadanye0_part3;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,12 +13,12 @@ public class Select {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
 
-//            // Создание таблицы 'Users'
-//            String createTableQuery = "create table if not exists Users (" +
-//                    "id integer primary key autoincrement, " +
-//                    "name varchar(20) not null, " +
-//                    "phone varchar(20) default null);";
-//            stmt.execute(createTableQuery);
+            // Создание таблицы 'Users'
+            String createTableQuery = "create table if not exists Users (" +
+                    "id integer primary key autoincrement, " +
+                    "name varchar(20) not null, " +
+                    "phone varchar(20) default null);";
+            stmt.execute(createTableQuery);
 
             // Вставка данных в таблицу 'Users'
             String insertDataQuery = "insert into Users (name, phone) values " +

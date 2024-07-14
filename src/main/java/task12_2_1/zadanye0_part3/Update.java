@@ -1,4 +1,4 @@
-package zadanye0_part2;
+package task12_2_1.zadanye0_part3;
 
 import java.sql.*;
 

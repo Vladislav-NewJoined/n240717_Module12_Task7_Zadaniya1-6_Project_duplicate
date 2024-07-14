@@ -1,10 +1,10 @@
-package zadanye0_part2;
+package task12_2_1.zadanye0_part3;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Zadanye0_part2 {
+public class Zadanye0_part3 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
