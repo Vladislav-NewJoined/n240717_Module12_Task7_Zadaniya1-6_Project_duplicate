@@ -1,12 +1,11 @@
-package task12_2_0;
+package zadanye0;
 
 import java.sql.*;
 
 public class Select {
     private Connection connect() {
         // SQLite connection String
-        String url = "jdbc:sqlite:C:\\Users\\User\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\sample-database-sqlite-1\\Chinook.db";
-//        String url = "jdbc:sqlite:sq.db";
+        String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part2\\src\\main\\java\\task12_2_1\\sqlite.dbase";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

@@ -31,8 +31,8 @@ insert into Users (name, phone) values
 
 select id,name,phone from Users where name like '%Petya%';]]></console>
     </connection>
-    <connection id="bb05fa85-3f09-49a7-a354-f54401d67b7f">
-      <console name="sqlite.db" type="STANDARD" schema="" session="Main" />
+    <connection id="d670ec80-0f79-4b81-8123-d581003c0e63">
+      <console name="sqlite.dbase" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -159,9 +159,9 @@ select id,name,phone from Users where name like '%Petya%';]]></console>
           </object-type-filter>
         </object-filters>
       </connection>
-      <connection id="bb05fa85-3f09-49a7-a354-f54401d67b7f" active="true" signed="true">
+      <connection id="d670ec80-0f79-4b81-8123-d581003c0e63" active="true" signed="true">
         <database>
-          <name value="sqlite.db" />
+          <name value="sqlite.dbase" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -170,7 +170,7 @@ select id,name,phone from Users where name like '%Petya%';]]></console>
           <driver-library value="" />
           <driver value="" />
           <url-type value="CUSTOM" />
-          <url value="jdbc:sqlite:C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task2_Zadaniya1-6_part2\src\main\java\sqlite.db" />
+          <url value="jdbc:sqlite:C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task2_Zadaniya1-6_part2\src\main\java\task12_2_1\sqlite.dbase" />
           <type value="NONE" />
           <user value="" />
           <deprecated-pwd value="" />

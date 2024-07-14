@@ -1,6 +1,6 @@
-package task12_2_1;
+package task12_2_1.zadanye1;
 
-public class Task12_2_1 {
+public class Zadanye1 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s

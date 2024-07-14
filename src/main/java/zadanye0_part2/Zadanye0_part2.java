@@ -1,10 +1,10 @@
-package task12_2_0;
+package zadanye0_part2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Task12_2_0 {
+public class Zadanye0_part2 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
@@ -56,7 +56,7 @@ public class Task12_2_0 {
         Connection conn = null;
         try {
             // db parametets
-            String url = "jdbc:sqlite:sq.db";
+            String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part2\\src\\main\\java\\task12_2_1\\sqlite.dbase";
             conn = DriverManager.getConnection(url);
 
             System.out.println("Connection to SQLite has been established.");
