@@ -16,21 +16,6 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df">
-      <console name="DBeaver Sample Database (SQLite)" type="STANDARD" schema="main" session="Main"><![CDATA[create table if not exists Users (
- id integer primary key autoincrement,
- name varchar(20) not null, 
- phone varchar(20) default null
-);
-
-insert into Users (name, phone) values
- ('Petya', '125453'),
- ('Vasya', '654321'), 
- ('Katya', null);
-
-
-select id,name,phone from Users where name like '%Petya%';]]></console>
-    </connection>
     <connection id="b12b79a8-5a50-4464-a0aa-b4937c86b2af">
       <console name="sqlite.dbase" type="STANDARD" schema="" session="Main" />
     </connection>
@@ -42,11 +27,10 @@ select id,name,phone from Users where name like '%Petya%';]]></console>
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df" />
     <connection id="b12b79a8-5a50-4464-a0aa-b4937c86b2af" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="c91e5d22-4780-4c68-8c70-1874b1af48df" dataset="main.Users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b12b79a8-5a50-4464-a0aa-b4937c86b2af" dataset="main.Users" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -68,96 +52,6 @@ select id,name,phone from Users where name like '%Petya%';]]></console>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df" active="true" signed="true">
-        <database>
-          <name value="DBeaver Sample Database (SQLite)" />
-          <description value="" />
-          <database-type value="SQLITE" />
-          <config-type value="BASIC" />
-          <database-version value="3.44" />
-          <driver-source value="BUNDLED" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="CUSTOM" />
-          <url value="jdbc:sqlite:C:\Users\User\AppData\Roaming\DBeaverData\workspace6\.metadata\sample-database-sqlite-1\Chinook.db" />
-          <type value="NONE" />
-          <user value="" />
-          <deprecated-pwd value="" />
-        </database>
-        <properties>
-          <auto-commit value="false" />
-        </properties>
-        <ssh-settings>
-          <active value="false" />
-          <proxy-host value="" />
-          <proxy-port value="22" />
-          <proxy-user value="" />
-          <deprecated-proxy-pwd value="" />
-          <auth-type value="PASSWORD" />
-          <key-file value="" />
-          <key-passphrase value="" />
-        </ssh-settings>
-        <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
-        </ssl-settings>
-        <details>
-          <charset value="UTF-8" />
-          <session-management value="true" />
-          <ddl-file-binding value="true" />
-          <database-logging value="true" />
-          <connect-automatically value="true" />
-          <restore-workspace value="true" />
-          <restore-workspace-deep value="false" />
-          <environment-type value="default" />
-          <connectivity-timeout value="30" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
-          <credential-expiry-time value="10" />
-          <max-connection-pool-size value="7" />
-          <alternative-statement-delimiter value="" />
-        </details>
-        <debugger>
-          <compile-dependencies value="true" />
-          <tcp-driver-tunneling value="false" />
-          <tcp-host-address value="" />
-          <tcp-port-from value="4000" />
-          <tcp-port-to value="4999" />
-          <debugger-type value="ASK" />
-        </debugger>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
-          <object-filters />
-          <object-type-filter use-master-settings="true">
-            <object-type name="SCHEMA" enabled="true" />
-            <object-type name="USER" enabled="true" />
-            <object-type name="ROLE" enabled="true" />
-            <object-type name="PRIVILEGE" enabled="true" />
-            <object-type name="CHARSET" enabled="true" />
-            <object-type name="TABLE" enabled="true" />
-            <object-type name="VIEW" enabled="true" />
-            <object-type name="MATERIALIZED_VIEW" enabled="true" />
-            <object-type name="NESTED_TABLE" enabled="true" />
-            <object-type name="COLUMN" enabled="true" />
-            <object-type name="INDEX" enabled="true" />
-            <object-type name="CONSTRAINT" enabled="true" />
-            <object-type name="DATASET_TRIGGER" enabled="true" />
-            <object-type name="DATABASE_TRIGGER" enabled="true" />
-            <object-type name="SYNONYM" enabled="true" />
-            <object-type name="SEQUENCE" enabled="true" />
-            <object-type name="PROCEDURE" enabled="true" />
-            <object-type name="FUNCTION" enabled="true" />
-            <object-type name="PACKAGE" enabled="true" />
-            <object-type name="TYPE" enabled="true" />
-            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
-            <object-type name="ARGUMENT" enabled="true" />
-            <object-type name="DIMENSION" enabled="true" />
-            <object-type name="CLUSTER" enabled="true" />
-            <object-type name="DBLINK" enabled="true" />
-          </object-type-filter>
-        </object-filters>
-      </connection>
       <connection id="b12b79a8-5a50-4464-a0aa-b4937c86b2af" active="true" signed="true">
         <database>
           <name value="sqlite.dbase" />

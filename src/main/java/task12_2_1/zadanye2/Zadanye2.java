@@ -27,6 +27,14 @@ public class Zadanye2 {
                     "last_name varchar(20) not null);";
             stmt.execute(createTableQuery);
 
+            // Удаление всех строк из таблицы Users
+            String deleteDataQuery = "DELETE FROM Users";
+            stmt.execute(deleteDataQuery); // Удаление всех строк из таблицы Users
+
+            // Сброс автоинкрементного значения для таблицы Users
+            String resetAutoIncrementQuery = "DELETE FROM sqlite_sequence WHERE name='Users'";
+            stmt.execute(resetAutoIncrementQuery);
+
             // Вставка данных в таблицу 'Users'
             String insertDataQuery = "insert into Users (first_name, last_name) values " +
                     "('Petya', 'Ivanov'), " +
