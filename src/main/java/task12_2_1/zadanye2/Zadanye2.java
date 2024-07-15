@@ -31,7 +31,7 @@ public class Zadanye2 {
             String deleteDataQuery = "DELETE FROM Users";
             stmt.execute(deleteDataQuery); // Удаление всех строк из таблицы Users
 
-            // Сброс автоинкрементного значения для таблицы Users
+            // Сброс автоинкрементного значения для таблицы Users, чтобы в новом запросе таблица заполнялась с нуля.
             String resetAutoIncrementQuery = "DELETE FROM sqlite_sequence WHERE name='Users'";
             stmt.execute(resetAutoIncrementQuery);
 
