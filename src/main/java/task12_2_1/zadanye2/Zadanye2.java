@@ -25,7 +25,6 @@ public class Zadanye2 {
                     "id integer primary key autoincrement, " +
                     "first_name varchar(20) not null, " +
                     "last_name varchar(20) not null);";
-//            System.out.println(createTableQuery);
             stmt.execute(createTableQuery);
 
             // Вставка данных в таблицу 'Users'
@@ -41,7 +40,6 @@ public class Zadanye2 {
 
             // Запрос на выборку данных
             String selectQuery = "select id, first_name, last_name from Users";
-//            System.out.println(selectQuery);
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
@@ -51,9 +49,6 @@ public class Zadanye2 {
                 String last_name = rs.getString("last_name");
                 System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
             }
-
-            System.out.println("Выборка данных выполнена успешно.");
-
         } catch (SQLException e) {
             System.err.println("Ошибка выполнения SQL запроса: " + e.getMessage());
         }
