@@ -25,6 +25,7 @@ public class Zadanye2 {
                     "id integer primary key autoincrement, " +
                     "first_name varchar(20) not null, " +
                     "last_name varchar(20) not null);";
+            System.out.println(createTableQuery);
             stmt.execute(createTableQuery);
 
             // Вставка данных в таблицу 'Users'
@@ -35,10 +36,11 @@ public class Zadanye2 {
                     "('Sasha', 'Chernov'), " +
                     "('Pasha', 'Belov'), " +
                     "('Misha', 'Smirnov');";
+            System.out.println(insertDataQuery);
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id, first_name, last_name from Users where name like '%Petya%'";
+            String selectQuery = "select id, first_name, last_name from Users where first_name like '%Petya%'";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
@@ -46,7 +48,8 @@ public class Zadanye2 {
                 int id = rs.getInt("id");
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
-                System.out.println("ID: " + id + ", First name: " + first_name + ", Last name: " + last_name);
+                System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
+//                System.out.println("ID: " + id + ", First name: " + first_name + ", Last name: " + last_name);
             }
 
             System.out.println("Выборка данных выполнена успешно.");
