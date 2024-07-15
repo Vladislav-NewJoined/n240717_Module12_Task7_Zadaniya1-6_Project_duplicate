@@ -9,7 +9,7 @@ public class Zadanye5 {
             Модуль 12. Базы данных и Git. Задание №2:\s
             Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
                 Задание:
-                4. Напишите запрос, чтобы получить первые 3 символа имени из таблицы сотрудников
+                5. Напишите запрос, чтобы получить первые 3 символа имени из таблицы сотрудников
                    (Пример таблицы  см. таблица 1)
             
                 Решение:
@@ -47,15 +47,15 @@ public class Zadanye5 {
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id, first_name, last_name from Users";
+            String selectQuery = "select id, SUBSTR(first_name, 1, 3) as first_name_substr, last_name from Users";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String first_name = rs.getString("first_name");
+                String first_name_substr = rs.getString("first_name_substr");
                 String last_name = rs.getString("last_name");
-                System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
+                System.out.println("ID: " + id + ", Префикс имени: " + first_name_substr + ", Фамилия: " + last_name);
             }
         } catch (SQLException e) {
             System.err.println("Ошибка выполнения SQL запроса: " + e.getMessage());
