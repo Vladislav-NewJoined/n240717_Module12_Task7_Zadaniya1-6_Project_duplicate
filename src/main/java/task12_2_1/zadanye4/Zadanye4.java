@@ -1,16 +1,15 @@
-package task12_2_1.zadanye3;
+package task12_2_1.zadanye4;
 
 import java.sql.*;
 
-public class Zadanye3 {
+public class Zadanye4 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
             Модуль 12. Базы данных и Git. Задание №2:\s
             Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
                 Задание:
-                3. Напишите запрос и получите все имена из таблицы сотрудников в верхнем регистре (Пример таблицы
-                   см. таблица 1)
+                4. Напишите запрос и получите все id сотрудников (Пример таблицы  см. таблица 1)
             
                 Решение:
             \s""");
@@ -43,18 +42,17 @@ public class Zadanye3 {
                     "('Sasha', 'Chernov'), " +
                     "('Pasha', 'Belov'), " +
                     "('Misha', 'Smirnov');";
+//            System.out.println(insertDataQuery);
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id, UPPER(first_name) as first_name, UPPER(last_name) as last_name from Users";
+            String selectQuery = "select id from Users"; // Запрос на выборку только id сотрудников
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String first_name = rs.getString("first_name");
-                String last_name = rs.getString("last_name");
-                System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
+                System.out.println("ID: " + id);
             }
         } catch (SQLException e) {
             System.err.println("Ошибка выполнения SQL запроса: " + e.getMessage());

@@ -1,21 +1,21 @@
-package task12_2_1.zadanye3;
+package task12_2_1.zadanye5;
 
 import java.sql.*;
 
-public class Zadanye3 {
+public class Zadanye5 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
             Модуль 12. Базы данных и Git. Задание №2:\s
             Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
                 Задание:
-                3. Напишите запрос и получите все имена из таблицы сотрудников в верхнем регистре (Пример таблицы
-                   см. таблица 1)
+                4. Напишите запрос, чтобы получить первые 3 символа имени из таблицы сотрудников
+                   (Пример таблицы  см. таблица 1)
             
                 Решение:
             \s""");
 
-        String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part3\\src\\main\\java\\task12_2_1\\sqlite.dbase";
+        String url = "jdbc:sqlite:src/main/java/task12_2_1/sqlite.dbase";
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
@@ -43,10 +43,11 @@ public class Zadanye3 {
                     "('Sasha', 'Chernov'), " +
                     "('Pasha', 'Belov'), " +
                     "('Misha', 'Smirnov');";
+//            System.out.println(insertDataQuery);
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id, UPPER(first_name) as first_name, UPPER(last_name) as last_name from Users";
+            String selectQuery = "select id, first_name, last_name from Users";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
