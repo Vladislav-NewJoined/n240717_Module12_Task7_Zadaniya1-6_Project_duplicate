@@ -31,10 +31,10 @@ public class Zadanye2 {
             String insertDataQuery = "insert into Users (first_name, last_name) values " +
                     "('Petya', 'Ivanov'), " +
                     "('Vasya', 'Petrov'), " +
-                    "('Katya', Sidorova), " +
-                    "('Sasha', Chernov), " +
-                    "('Pasha', Belov), " +
-                    "('Misha', Stolyarov);";
+                    "('Katya', 'Sidorova'), " +
+                    "('Sasha', 'Chernov'), " +
+                    "('Pasha', 'Belov'), " +
+                    "('Misha', 'Smirnov');";
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
