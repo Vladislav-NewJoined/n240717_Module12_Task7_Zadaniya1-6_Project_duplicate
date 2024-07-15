@@ -39,9 +39,7 @@ select id,name,phone from Users where name like '%Petya%';]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="d670ec80-0f79-4b81-8123-d581003c0e63" object-ref="schemas/main/tables/Users" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c91e5d22-4780-4c68-8c70-1874b1af48df" />

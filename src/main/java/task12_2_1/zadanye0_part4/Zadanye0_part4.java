@@ -1,13 +1,20 @@
-package task12_2_1.zadanye0_part3;
+package task12_2_1.zadanye0_part4;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class Select {
+public class Zadanye0_part4 {
     public static void main(String[] args) {
+        System.out.println("""
+            Задание:\s
+            Модуль 12. Базы данных и Git. Задание №2:\s
+            Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
+                Задание:
+                2. Напишите запрос для отображения имен (first_name, last_name), используя псевдонимы «Имя»,
+                   «Фамилия».  (Пример таблицы  см. таблица 1)
+            
+                Решение:
+            \s""");
+
         String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task2_Zadaniya1-6_part3\\src\\main\\java\\task12_2_1\\sqlite.dbase";
 
         try (Connection conn = DriverManager.getConnection(url);

@@ -34,6 +34,6 @@ public class Update {
         System.out.println("Результаты запроса по классу Update:");
         Update app = new Update();
         app.selectAll();
-        System.out.println("Соединение удалило все данные из таблицы Users");
+        System.out.println("Обновление SQLite удалило все данные из таблицы Users");
     }
 }
