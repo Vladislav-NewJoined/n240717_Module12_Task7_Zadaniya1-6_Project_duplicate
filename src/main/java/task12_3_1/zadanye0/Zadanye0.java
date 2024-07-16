@@ -2,6 +2,10 @@ package task12_3_1.zadanye0;
 
 import java.sql.*;
 
+// Пользователь и пароль для MariaDB
+// CREATE USER 'root'@'localhost' IDENTIFIED BY 'rooroo1967.A';
+// mysql -u root -p rooroo1967.A
+
 public class Zadanye0 {
     public static void main(String[] args) {
         System.out.println("""
