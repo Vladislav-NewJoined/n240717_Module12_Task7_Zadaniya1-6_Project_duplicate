@@ -1,21 +1,20 @@
-package task12_2_1.zadanye2;
+package task12_3_1.zadanye1;
 
 import java.sql.*;
 
-public class Zadanye2 {
+public class Zadanye1 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
-            Модуль 12. Базы данных и Git. Задание №2:\s
+            Модуль 12. Базы данных и Git. Задание №3:\s
             Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
                 Задание:
-                2. Напишите запрос для отображения имен (first_name, last_name), используя псевдонимы «Имя»,
-                   «Фамилия».  (Пример таблицы  см. таблица 1)
+                1. Что такое MySQL?
             
                 Решение:
             \s""");
 
-        String url = "jdbc:sqlite:src/main/java/task12_2_1/sqlite.dbase";
+        String url = "jdbc:sqlite:src/main/java/task12_3_1/sqlite.dbase";
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
@@ -47,15 +46,16 @@ public class Zadanye2 {
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id, first_name, last_name from Users";
+            String selectQuery = "select id, SUBSTR(first_name, 1, 3) as first_name_substr, last_name from Users";
+//            String selectQuery = "select id, first_name, last_name from Users";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String first_name = rs.getString("first_name");
+                String first_name_substr = rs.getString("first_name_substr");
                 String last_name = rs.getString("last_name");
-                System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
+                System.out.println("ID: " + id + ", Префикс имени: " + first_name_substr + ", Фамилия: " + last_name);
             }
         } catch (SQLException e) {
             System.err.println("Ошибка выполнения SQL запроса: " + e.getMessage());

@@ -1,20 +1,30 @@
-package task12_2_1.zadanye4;
+package task12_3_1.zadanye0;
 
 import java.sql.*;
 
-public class Zadanye4 {
+public class Zadanye0 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
-            Модуль 12. Базы данных и Git. Задание №2:\s
+            Модуль 12. Базы данных и Git. Задание №3:\s
             Цель задания: знакомство и формирование базовых навыков с по работе  с SQLite\s
                 Задание:
-                4. Напишите запрос и получите все id сотрудников (Пример таблицы  см. таблица 1)
+                1. Что такое MySQL?
+                2. Напишите запрос, чтобы отобразить имя и фамилию всех сотрудников, в именах которых есть «b» и «c»
+                   (Пример таблицы  см. таблица 2)
+                3. Напишите запрос, чтобы отобразить имя (имя, фамилия) и дату приема на работу для всех сотрудников,
+                   которые были приняты на работу в 1987 году. (Пример таблицы  см. таблица 2)
+                4. Напишите запрос, чтобы получить максимальную и минимальную зарплату из таблицы сотрудников
+                   (Пример таблицы  см. таблица 4)
+                5. Напишите запрос, чтобы получить четные записи из таблицы сотрудников  (Пример таблицы
+                   см. таблица 2)
+                6. Напишите запрос, чтобы получить нечетные записи из таблицы сотрудников  (Пример таблицы
+                   см. таблица 2)
             
                 Решение:
             \s""");
 
-        String url = "jdbc:sqlite:src/main/java/task12_2_1/sqlite.dbase";
+        String url = "jdbc:sqlite:src/main/java/task12_3_1/sqlite.dbase";
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
@@ -46,13 +56,19 @@ public class Zadanye4 {
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select id from Users"; // Запрос на выборку только id сотрудников
+            String selectQuery = "select id, first_name, last_name from Users";
+//            // Запрос на выборку данных
+//            String selectQuery = "select id, SUBSTR(first_name, 1, 3) as first_name_substr, last_name from Users";
+            //            String selectQuery = "select id, first_name, last_name from Users where first_name like '%Petya%'";
+            System.out.println(selectQuery);
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
             while (rs.next()) {
                 int id = rs.getInt("id");
-                System.out.println("ID: " + id);
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                System.out.println("ID: " + id + ", Имя: " + first_name + ", Фамилия: " + last_name);
             }
         } catch (SQLException e) {
             System.err.println("Ошибка выполнения SQL запроса: " + e.getMessage());
