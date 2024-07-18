@@ -22,7 +22,7 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="b12b79a8-5a50-4464-a0aa-b4937c86b2af" />
+    <connection id="fc79430a-6edc-4f3a-94e1-b66fd61317d1" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="b12b79a8-5a50-4464-a0aa-b4937c86b2af" dataset="main.Users" active-filter-id="EMPTY_FILTER" />

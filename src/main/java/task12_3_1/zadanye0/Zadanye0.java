@@ -2,9 +2,12 @@ package task12_3_1.zadanye0;
 
 import java.sql.*;
 
-// Пользователь и пароль для MariaDB
-// CREATE USER '
-// mysql
+// Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
+// Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
+// База данных: somedb (значение переменной окружения MYSQL_DATABASE)
+// Пользователь: someuser (значение переменной окружения MYSQL_USER)
+// Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
+// Драйвер: MySQL
 
 public class Zadanye0 {
     public static void main(String[] args) {
