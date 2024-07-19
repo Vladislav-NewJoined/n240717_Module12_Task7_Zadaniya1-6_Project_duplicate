@@ -31,21 +31,26 @@ public class Zadanye2 {
 
             // Создание таблицы 'Users'
             String createTableQuery = "create table Users (\n" +
-                    "   id int primary key auto_increment,\n" +
-                    "   name varchar(20) not null,\n" +
-                    "   phone varchar(20) default null\n" +
+                    "   employee_id int primary key auto_increment,\n" +
+                    "   first_name varchar(20) not null,\n" +
+                    "   last_name varchar(20) not null,\n" +
+                    "   email varchar(20) not null,\n" +
+                    "   phone_number varchar(20) not null,\n" +
+                    "   hire_date varchar(20) not null,\n" +
+                    "   job_id varchar(20) not null\n" +
                     ");";
             stmt.execute(createTableQuery);
             System.out.println("Table created");
 
             // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (name, phone) values " +
-                    "('Petya', '125453'), " +
-                    "('Vasya', '654321'), " +
-                    "('Katya', '111111'), " +
-                    "('Sasha', '222222'), " +
-                    "('Pasha', '333333'), " +
-                    "('Misha', null);";
+            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
+                    "('Steven', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
+                    "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
+                    "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
+                    "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1987-06-20', 'ID_PROG'), " +
+                    "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1987-06-21', 'ID_PROG'), " +
+                    "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1987-06-22', 'ID_PROG'), " +
+                    "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1987-06-23', 'ID_PROG');";
             stmt.execute(insertDataQuery);
 
         } catch (SQLException e) {
