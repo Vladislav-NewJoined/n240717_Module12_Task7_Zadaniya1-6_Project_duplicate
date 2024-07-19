@@ -1,15 +1,15 @@
-package task12_3_1.zadanye0;
+package task12_3_1.zadanye2;
 
 import java.sql.*;
 
-// Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
+// Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
 // База данных: somedb (значение переменной окружения MYSQL_DATABASE)
 // Пользователь: someuser (значение переменной окружения MYSQL_USER)
 // Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
 // Драйвер: MySQL
 
-public class Zadanye0 {
+public class ZadanyeX {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
