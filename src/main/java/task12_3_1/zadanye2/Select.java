@@ -5,6 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+// Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
+// Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
+// База данных: somedb (значение переменной окружения MYSQL_DATABASE)
+// Пользователь: someuser (значение переменной окружения MYSQL_USER)
+// Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
+// Драйвер: mariadb-java-client-3.4.1.jar
+// Как соединяться через драйвер здесь: https://ya.ru/video/preview/14732760414458014911
+// Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
+
 public class Select {
 
     private static Connection connect() {

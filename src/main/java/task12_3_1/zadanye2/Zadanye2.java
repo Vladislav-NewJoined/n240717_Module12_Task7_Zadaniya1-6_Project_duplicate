@@ -11,7 +11,10 @@ import java.sql.SQLException;
 // База данных: somedb (значение переменной окружения MYSQL_DATABASE)
 // Пользователь: someuser (значение переменной окружения MYSQL_USER)
 // Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
-// Драйвер: MySQL
+// Драйвер: mariadb-java-client-3.4.1.jar
+// Как соединяться через драйвер здесь: https://ya.ru/video/preview/14732760414458014911
+// Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
+
 
 public class Zadanye2 {
 
