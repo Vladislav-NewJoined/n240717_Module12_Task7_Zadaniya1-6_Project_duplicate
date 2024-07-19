@@ -9,25 +9,25 @@ public class Select {
 
     private static Connection connect() {
         Connection conn = null;
+        Statement stmt = null; // Создаем объект Statement stmt
+
         try {
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/somedb", "someuser", "123");
-            System.out.println("Connection to MaMariaDB has been established.");
-            conn.createStatement().execute("create table if not exists Users (\n" +
+            System.out.println("Connection to MariaDB has been established.");
+            stmt = conn.createStatement();
+
+            // Удаление таблицы, если она уже существует
+            String dropTableQuery = "DROP TABLE IF EXISTS Users";
+            stmt.execute(dropTableQuery);
+
+            // Создание таблицы 'Users'
+            String createTableQuery = "create table Users (\n" +
                     "   id int primary key auto_increment,\n" +
                     "   name varchar(20) not null,\n" +
                     "   phone varchar(20) default null\n" +
-                    ");");
+                    ");";
+            stmt.execute(createTableQuery);
             System.out.println("Table created");
-
-
-//            // Удаление всех строк из таблицы Users
-//            String deleteDataQuery = "DELETE FROM Users";
-//            stmt.execute(deleteDataQuery); // Удаление всех строк из таблицы Users
-//
-//            // Сброс автоинкрементного значения для таблицы Users, чтобы в новом запросе таблица заполнялась с нуля.
-//            String resetAutoIncrementQuery = "DELETE FROM sqlite_sequence WHERE name='Users'";
-//            stmt.execute(resetAutoIncrementQuery);
-
 
             // Вставка данных в таблицу 'Users'
             String insertDataQuery = "insert into Users (name, phone) values " +
@@ -37,19 +37,21 @@ public class Select {
                     "('Sasha', '222222'), " +
                     "('Pasha', '333333'), " +
                     "('Misha', null);";
-            Statement stmt = conn.createStatement();
             stmt.execute(insertDataQuery);
-
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return conn;
     }
-
-//    public void selectAll() {
-//        String sql = "select id,name,phone from Users where name like '%Petya%'";
-//    }
 
     public static void main(String[] args) {
         connect();
