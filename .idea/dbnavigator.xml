@@ -151,9 +151,9 @@
           <description value="" />
           <database-type value="GENERIC" />
           <config-type value="CUSTOM" />
-          <database-version value="9999.0" />
+          <database-version value="10.11" />
           <driver-source value="EXTERNAL" />
-          <driver-library value="C:\connectors\mariadb-java-client-3.4.1.jar" />
+          <driver-library value="C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task3_Zadaniya1-6_part6\src\main\java\task12_3_1\connectors\mariadb-java-client-3.4.1.jar" />
           <driver value="org.mariadb.jdbc.Driver" />
           <url-type value="CUSTOM" />
           <url value="jdbc:mariadb://localhost:3306/somedb" />
