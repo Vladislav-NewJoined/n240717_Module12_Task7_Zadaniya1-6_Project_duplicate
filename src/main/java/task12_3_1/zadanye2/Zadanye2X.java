@@ -1,9 +1,10 @@
 package task12_3_1.zadanye2;
 
+//import java.sql.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
@@ -14,52 +15,27 @@ import java.sql.Statement;
 // Как соединяться через драйвер здесь: https://ya.ru/video/preview/14732760414458014911
 // Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
 
-public class Zadanye2 {
+public class Zadanye2X {
 
-    private static Connection connect() {
+    public static void connect() {
         Connection conn = null;
-        Statement stmt = null; // Создаем объект Statement stmt
-
         try {
+            // create a connection to the database
             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/somedb", "someuser", "123");
-            System.out.println("Connection to MariaDB has been established.");
-            stmt = conn.createStatement();
 
-            // Удаление таблицы, если она уже существует
-            String dropTableQuery = "DROP TABLE IF EXISTS Users";
-            stmt.execute(dropTableQuery);
-
-            // Создание таблицы 'Users'
-            String createTableQuery = "create table Users (\n" +
-                    "   id int primary key auto_increment,\n" +
-                    "   name varchar(20) not null,\n" +
-                    "   phone varchar(20) default null\n" +
-                    ");";
-            stmt.execute(createTableQuery);
-            System.out.println("Table created");
-
-            // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (name, phone) values " +
-                    "('Petya', '125453'), " +
-                    "('Vasya', '654321'), " +
-                    "('Katya', '111111'), " +
-                    "('Sasha', '222222'), " +
-                    "('Pasha', '333333'), " +
-                    "('Misha', null);";
-            stmt.execute(insertDataQuery);
+            System.out.println("Connection to MaMariaDB has been established.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (conn != null) {
+                    conn.close();
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return conn;
     }
 
     public static void main(String[] args) {
@@ -74,6 +50,6 @@ public class Zadanye2 {
                 Решение:
             \s""");
 
-        connect();
+        connect(); // Подключаемся к базе данных
     }
 }
