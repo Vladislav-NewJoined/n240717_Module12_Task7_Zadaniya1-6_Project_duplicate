@@ -7,12 +7,12 @@ import java.sql.*;
 public class ConnectUpdate {
     private Connection connect() {
         // SQLite connection String
-        String url = "jdbc:sqlite:C:\\Владислав\\IdeaProjectsDrafts\\Draft_Module12_Task3_Zadaniya1-6\\src\\main\\java\\task12_3_1\\sqlite.dbase";
+        String url = "jdbc:sqlite:src/main/java/task12_3_1/sqlite.dbase";
 //        String url = "jdbc:sqlite:src/main/java/task12_3_1/sqlite.dbase";
-        Connection conn = null;
+        Connection conn2 = null;
         try {
-            conn = DriverManager.getConnection(url);
-            conn.createStatement().execute("CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT DEFAULT NULL);");
+            conn2 = DriverManager.getConnection(url);
+            conn2.createStatement().execute("CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT DEFAULT NULL);");
 //            conn.createStatement().execute("create table if not exists Users (\n" +
 //                     " id integer primary key autoincrement,\n" +
 //                     " name varchar(20) not null,\n" +
@@ -22,7 +22,7 @@ public class ConnectUpdate {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
+        return conn2;
     }
 
     public void update() {
@@ -56,16 +56,16 @@ public class ConnectUpdate {
                    см. таблица 2)
                 6. Напишите запрос, чтобы получить нечетные записи из таблицы сотрудников  (Пример таблицы
                    см. таблица 2)
-            
+
                 Решение:
             \s""");
 
         ConnectUpdate app = new ConnectUpdate();
-        Connection conn = app.connect(); // Подключаемся к базе данных
+        Connection conn2 = app.connect(); // Подключаемся к базе данных
 //        app.connect(); // Первым делом вызываем метод connect() для создания таблицы
 
         try {
-            Statement statement = conn.createStatement();
+            Statement statement = conn2.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT DEFAULT NULL);");
             System.out.println("Table Users created successfully");
         } catch (SQLException e) {

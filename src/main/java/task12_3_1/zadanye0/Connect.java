@@ -1,12 +1,32 @@
 package task12_3_1.zadanye0;
 
-import java.sql.*;
+//import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Connect {
-//    private Connection connect() {
-//    }
 
-    public void update() {
+    public static void connect() {
+        Connection conn = null;
+        try {
+            // create a connection to the database
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/somedb", "someuser", "123");
+
+            System.out.println("Connection to MaMariaDB has been established.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -26,9 +46,12 @@ public class Connect {
                    см. таблица 2)
                 6. Напишите запрос, чтобы получить нечетные записи из таблицы сотрудников  (Пример таблицы
                    см. таблица 2)
-            
+
                 Решение:
             \s""");
 
+
+
+        connect(); // Подключаемся к базе данных
     }
 }
