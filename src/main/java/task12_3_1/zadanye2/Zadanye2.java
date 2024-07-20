@@ -42,13 +42,13 @@ public class Zadanye2 {
 
             // Создание таблицы 'Users'
             String createTableQuery = "create table Users (\n" +
-                    "   EMPLOYEE_ID int primary key auto_increment,\n" +
-                    "   FIRST_NAME varchar(20) not null,\n" +
-                    "   LAST_NAME varchar(20) not null,\n" +
-                    "   EMAIL varchar(20) not null,\n" +
-                    "   PHONE_NUMBER varchar(20) not null,\n" +
-                    "   HIRE_DATE varchar(20) not null,\n" +
-                    "   JOB_ID varchar(20) not null\n" +
+                    "   employee_id int primary key auto_increment,\n" +
+                    "   first_name varchar(20) not null,\n" +
+                    "   last_name varchar(20) not null,\n" +
+                    "   email varchar(20) not null,\n" +
+                    "   phone_number varchar(20) not null,\n" +
+                    "   hire_date varchar(20) not null,\n" +
+                    "   job_id varchar(20) not null\n" +
                     ");";
             stmt.execute(createTableQuery);
             System.out.println("Table created");
@@ -58,7 +58,7 @@ public class Zadanye2 {
             stmt.execute(setInitialValueQuery);
 
             // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID) values " +
+            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
                     "('Steven', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
                     "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
                     "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
@@ -69,14 +69,14 @@ public class Zadanye2 {
             stmt.execute(insertDataQuery);
 
 // Выборка и отображение имен и фамилий сотрудников, в именах которых есть буквы 'b' и 'c'
-            String selectEmployeesQuery = "SELECT FIRST_NAME, LAST_NAME FROM Users WHERE FIRST_NAME LIKE '%b%' AND FIRST_NAME LIKE '%c%' OR LAST_NAME LIKE '%b%' AND LAST_NAME LIKE '%c%'";
+            String selectEmployeesQuery = "SELECT first_name, last_name FROM Users WHERE first_name LIKE '%b%' AND first_name LIKE '%c%' OR last_name LIKE '%b%' AND last_name LIKE '%c%'";
             ResultSet resultSet = stmt.executeQuery(selectEmployeesQuery);
 
 // Вывод результатов запроса
             while (resultSet.next()) {
-                int id = resultSet.getInt("EMPLOYEE_ID");
-                String firstName = resultSet.getString("FIRST_NAME");
-                String lastName = resultSet.getString("LAST_NAME");
+                int id = resultSet.getInt("employee_id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
                 System.out.println("Имя: " + firstName + ", Фамилия: " + lastName);
             }
             System.out.println("Выборка данных выполнена успешно.");
