@@ -1,6 +1,9 @@
 package task12_3_1.zadanye2;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
@@ -24,6 +27,12 @@ public class Zadanye2_2 {
 
                 Решение:
             \s""");
+
+        // Получить корневой логгер
+        Logger rootLogger = LogManager.getLogManager().getLogger("");
+
+        // Установить уровень логирования на INFO
+        rootLogger.setLevel(Level.INFO);
 
         connect();
     }
