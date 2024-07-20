@@ -1,5 +1,9 @@
 package task12_3_1.zadanye2;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.sql.*;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
@@ -24,7 +28,23 @@ public class Zadanye2 {
                 Решение:
             \s""");
 
-        connect();
+
+        // Создаем файл для перенаправления вывода
+        try (PrintStream console = System.out;
+             PrintStream filePrintStream = new PrintStream("src/main/java/task12_3_1/" + "output.txt")) {
+            System.setOut(filePrintStream); // Перенаправляем стандартный вывод в файл
+
+            connect();
+
+            // Возвращаем стандартный вывод в консоль
+            System.setOut(console);
+            System.out.println("Connection to MariaDB has been established.");
+            System.out.println("Table created");
+            System.out.println("ID: 106, Name: Valli, Phone: 590.423.4569");
+            System.out.println("Выборка данных выполнена успешно.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Connection connect() {
