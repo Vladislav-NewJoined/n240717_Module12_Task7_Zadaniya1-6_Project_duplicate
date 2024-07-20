@@ -10,6 +10,7 @@ import java.sql.*;
 // Драйвер: mariadb-java-client-3.4.1.jar
 // Как соединяться через драйвер здесь: https://ya.ru/video/preview/14732760414458014911
 // Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
+// запрос для создания базы данных MariaDB: docker run --name mysql -d -p 3306:3306 -e MYSQL_DATABASE=somedb -e MYSQL_USER=someuser -e MYSQL_PASSWORD=123 yobasystems/alpine-mariadb
 
 public class Zadanye2_2 {
     public static void main(String[] args) {
@@ -69,7 +70,7 @@ public class Zadanye2_2 {
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select employee_id, first_name, last_name from Users where first_name like '%b%' and first_name like '%c%'";
+            String selectQuery = "select employee_id, first_name, last_name from Users where first_name like '%b%' or first_name like '%c%'";
 //            String selectQuery = "select employee_id, first_name, phone_number from Users where first_name like '%Valli%'";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
