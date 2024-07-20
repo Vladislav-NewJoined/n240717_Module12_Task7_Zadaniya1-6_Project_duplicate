@@ -31,19 +31,23 @@ public class Zadanye2 {
 
             // Создание таблицы 'Users'
             String createTableQuery = "create table Users (\n" +
-                    "   employee_id int primary key auto_increment,\n" +
-                    "   first_name varchar(20) not null,\n" +
-                    "   last_name varchar(20) not null,\n" +
-                    "   email varchar(20) not null,\n" +
-                    "   phone_number varchar(20) not null,\n" +
-                    "   hire_date varchar(20) not null,\n" +
-                    "   job_id varchar(20) not null\n" +
+                    "   EMPLOYEE_ID int primary key auto_increment,\n" +
+                    "   FIRST_NAME varchar(20) not null,\n" +
+                    "   LAST_NAME varchar(20) not null,\n" +
+                    "   EMAIL varchar(20) not null,\n" +
+                    "   PHONE_NUMBER varchar(20) not null,\n" +
+                    "   HIRE_DATE varchar(20) not null,\n" +
+                    "   JOB_ID varchar(20) not null\n" +
                     ");";
             stmt.execute(createTableQuery);
             System.out.println("Table created");
 
+// Установка начального значения для 'employee_id'
+            String setInitialValueQuery = "alter table Users auto_increment = 100;";
+            stmt.execute(setInitialValueQuery);
+
             // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
+            String insertDataQuery = "insert into Users (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID) values " +
                     "('Steven', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
                     "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
                     "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
