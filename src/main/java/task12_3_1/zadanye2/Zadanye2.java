@@ -68,22 +68,22 @@ public class Zadanye2 {
                     "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1987-06-23', 'ID_PROG');";
             stmt.execute(insertDataQuery);
 
-// Выборка и отображение имен и фамилий сотрудников, в именах которых есть буквы 'b' и 'c'
-            String selectEmployeesQuery = "SELECT first_name, last_name FROM Users WHERE first_name LIKE '%b%' AND first_name LIKE '%c%' OR last_name LIKE '%b%' AND last_name LIKE '%c%'";
-            ResultSet resultSet = stmt.executeQuery(selectEmployeesQuery);
+            // Запрос на выборку данных
+            String selectQuery = "select employee_id, first_name, phone_number from Users where first_name like '%Valli%'";
+            ResultSet rs = stmt.executeQuery(selectQuery);
 
-// Вывод результатов запроса
-            while (resultSet.next()) {
-                int id = resultSet.getInt("employee_id");
-                String firstName = resultSet.getString("first_name");
-                String lastName = resultSet.getString("last_name");
-                System.out.println("Имя: " + firstName + ", Фамилия: " + lastName);
+            // Вывод результатов запроса
+            while (rs.next()) {
+                int id = rs.getInt("employee_id");
+                String name = rs.getString("first_name");
+                String phone = rs.getString("phone_number");
+                System.out.println("ID: " + id + ", Name: " + name + ", Phone: " + phone);
             }
+
             System.out.println("Выборка данных выполнена успешно.");
 
-
 //            // Запрос на выборку данных
-//            String selectQuery = "select id, name, phone from Users where name like '%Petya%'";
+//            String selectQuery = "select id, name, phone_number from Users where name like '%Petya%'";
 //            ResultSet rs = stmt.executeQuery(selectQuery);
 //
 //            // Вывод результатов запроса
@@ -97,14 +97,14 @@ public class Zadanye2 {
 
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         } finally {
             try {
                 if (stmt != null) {
                     stmt.close();
                 }
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+//                System.out.println(e.getMessage());
             }
         }
         return conn;
