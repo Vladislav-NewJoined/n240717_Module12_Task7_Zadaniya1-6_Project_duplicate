@@ -1,9 +1,6 @@
 package task12_3_1.zadanye2;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
@@ -15,6 +12,20 @@ import java.sql.Statement;
 // Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
 
 public class Zadanye2 {
+    public static void main(String[] args) {
+        System.out.println("""
+            Задание:\s
+            Модуль 12. Базы данных и Git. Задание №3:\s
+            Цель задания: знакомство и формирование базовых навыков с по работе  с MySQL\s
+                Задание:
+                2. Напишите запрос, чтобы отобразить имя и фамилию всех сотрудников, в именах которых есть «b» и «c»
+                   (Пример таблицы  см. таблица 2)
+
+                Решение:
+            \s""");
+
+        connect();
+    }
 
     private static Connection connect() {
         Connection conn = null;
@@ -57,6 +68,34 @@ public class Zadanye2 {
                     "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1987-06-23', 'ID_PROG');";
             stmt.execute(insertDataQuery);
 
+// Выборка и отображение имен и фамилий сотрудников, в именах которых есть буквы 'b' и 'c'
+            String selectEmployeesQuery = "SELECT FIRST_NAME, LAST_NAME FROM Users WHERE FIRST_NAME LIKE '%b%' AND FIRST_NAME LIKE '%c%' OR LAST_NAME LIKE '%b%' AND LAST_NAME LIKE '%c%'";
+            ResultSet resultSet = stmt.executeQuery(selectEmployeesQuery);
+
+// Вывод результатов запроса
+            while (resultSet.next()) {
+                int id = resultSet.getInt("EMPLOYEE_ID");
+                String firstName = resultSet.getString("FIRST_NAME");
+                String lastName = resultSet.getString("LAST_NAME");
+                System.out.println("Имя: " + firstName + ", Фамилия: " + lastName);
+            }
+            System.out.println("Выборка данных выполнена успешно.");
+
+
+//            // Запрос на выборку данных
+//            String selectQuery = "select id, name, phone from Users where name like '%Petya%'";
+//            ResultSet rs = stmt.executeQuery(selectQuery);
+//
+//            // Вывод результатов запроса
+//            while (rs.next()) {
+//                int id = rs.getInt("id");
+//                String name = rs.getString("name");
+//                String phone = rs.getString("phone");
+//                System.out.println("ID: " + id + ", Name: " + name + ", Phone: " + phone);
+//            }
+
+
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -71,18 +110,4 @@ public class Zadanye2 {
         return conn;
     }
 
-    public static void main(String[] args) {
-        System.out.println("""
-            Задание:\s
-            Модуль 12. Базы данных и Git. Задание №3:\s
-            Цель задания: знакомство и формирование базовых навыков с по работе  с MySQL\s
-                Задание:
-                2. Напишите запрос, чтобы отобразить имя и фамилию всех сотрудников, в именах которых есть «b» и «c»
-                   (Пример таблицы  см. таблица 2)
-
-                Решение:
-            \s""");
-
-        connect();
-    }
 }
