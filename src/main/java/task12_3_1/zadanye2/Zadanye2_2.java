@@ -1,9 +1,5 @@
 package task12_3_1.zadanye2;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 import java.sql.*;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
@@ -15,7 +11,7 @@ import java.sql.*;
 // Как соединяться через драйвер здесь: https://ya.ru/video/preview/14732760414458014911
 // Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
 
-public class Zadanye2 {
+public class Zadanye2_2 {
     public static void main(String[] args) {
         System.out.println("""
             Задание:\s
@@ -63,7 +59,7 @@ public class Zadanye2 {
 
             // Вставка данных в таблицу 'Users'
             String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
-                    "('Steven', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
+                    "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
                     "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
                     "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
                     "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1987-06-20', 'ID_PROG'), " +
@@ -73,16 +69,24 @@ public class Zadanye2 {
             stmt.execute(insertDataQuery);
 
             // Запрос на выборку данных
-            String selectQuery = "select employee_id, first_name, phone_number from Users where first_name like '%Valli%'";
+            String selectQuery = "select employee_id, first_name, last_name from Users where first_name like '%b%' and first_name like '%c%'";
+//            String selectQuery = "select employee_id, first_name, phone_number from Users where first_name like '%Valli%'";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
             while (rs.next()) {
                 int id = rs.getInt("employee_id");
-                String name = rs.getString("first_name");
-                String phone = rs.getString("phone_number");
-                System.out.println("ID: " + id + ", Name: " + name + ", Phone: " + phone);
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName);
             }
+
+//            while (rs.next()) {
+//                int id = rs.getInt("employee_id");
+//                String name = rs.getString("first_name");
+//                String phone = rs.getString("phone_number");
+//                System.out.println("ID: " + id + ", Name: " + name + ", Phone: " + phone);
+//            }
 
             System.out.println("Выборка данных выполнена успешно.");
 
