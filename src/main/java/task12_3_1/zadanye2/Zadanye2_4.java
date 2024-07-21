@@ -32,7 +32,6 @@ public class Zadanye2_4 {
 
         Logger.getLogger("").setLevel(Level.SEVERE); // Установить уровень логирования для корневого логгера
 
-
         connect();
     }
 
