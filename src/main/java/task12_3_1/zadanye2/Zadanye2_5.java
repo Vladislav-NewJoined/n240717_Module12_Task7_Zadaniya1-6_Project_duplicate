@@ -1,8 +1,6 @@
 package task12_3_1.zadanye2;
 
 import java.sql.*;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 
 // Вот значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
@@ -14,7 +12,7 @@ import java.sql.*;
 // Скачивать драйвер здесь: https://downloads.mariadb.com/Connectors/java/connector-java-3.4.1/
 // запрос для создания базы данных MariaDB: docker run --name mysql -d -p 3306:3306 -e MYSQL_DATABASE=somedb -e MYSQL_USER=someuser -e MYSQL_PASSWORD=123 yobasystems/alpine-mariadb
 
-public class Zadanye2_4 {
+public class Zadanye2_5 {
 
     public static void main(String[] args) {
         System.out.println("""
@@ -27,11 +25,6 @@ public class Zadanye2_4 {
 
                 Решение:
             \s""");
-
-//        Logger logger = Logger.getLogger(Zadanye2_3.class.getName());
-//        logger.setLevel(Level.SEVERE); // Установить уровень логирования на SEVERE (эквивалентно ERROR)
-//
-//        Logger.getLogger("").setLevel(Level.SEVERE); // Установить уровень логирования для корневого логгера
 
         connect();
     }
@@ -89,13 +82,6 @@ public class Zadanye2_4 {
                 String lastName = rs.getString("last_name");
                 System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName);
             }
-
-//            while (rs.next()) {
-//                int id = rs.getInt("employee_id");
-//                String name = rs.getString("first_name");
-//                String phone = rs.getString("phone_number");
-//                System.out.println("ID: " + id + ", Name: " + name + ", Phone: " + phone);
-//            }
 
             System.out.println("Выборка данных выполнена успешно.");
 
