@@ -78,7 +78,6 @@
                 </exclusion>
                 <!-- Добавьте другие исключения, если они есть -->
             </exclusions>
-
         </dependency>
 
 <!--&lt;!&ndash;         https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client&ndash;&gt;-->
@@ -100,7 +99,6 @@
 <!--                </exclusion>-->
 <!--            </exclusions>-->
 <!--        </dependency>-->
-
     </dependencies>
 
     <properties>
