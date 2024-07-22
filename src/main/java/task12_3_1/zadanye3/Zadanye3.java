@@ -60,8 +60,8 @@ public class Zadanye3 {
                     "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG');";
             stmt.execute(insertDataQuery);
 
-            // Запрос на выборку данных
-            String selectQuery = "select employee_id, first_name, last_name from Users where first_name like '%b%' or first_name like '%c%'";
+            // Запрос на выборку данных для сотрудников, принятых на работу в 1987 году
+            String selectQuery = "select employee_id, first_name, last_name, hire_date from Users where hire_date like '%1987%'";
             ResultSet rs = stmt.executeQuery(selectQuery);
 
             // Вывод результатов запроса
@@ -69,7 +69,8 @@ public class Zadanye3 {
                 int id = rs.getInt("employee_id");
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
-                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName);
+                String DateOfHiring = rs.getString("hire_date");
+                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName + ", Date of hiring: " + DateOfHiring);
             }
 
             System.out.println("Выборка данных выполнена успешно.");
