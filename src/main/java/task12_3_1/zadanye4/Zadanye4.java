@@ -18,7 +18,7 @@ public class Zadanye4 {
         connect();
     }
 
-    private static void connect() throws SQLException {
+    private static void connect() {
 
         Connection conn;
         Statement stmt = null; // Создаем объект Statement stmt
@@ -46,7 +46,7 @@ public class Zadanye4 {
             stmt.execute(createTableQuery);
             System.out.println("Table created\n");
 
-// Установка начального значения для 'employee_id'
+            // Установка начального значения для 'employee_id'
             String setInitialValueQuery = "alter table Users auto_increment = 100;";
             stmt.execute(setInitialValueQuery);
 
@@ -64,7 +64,7 @@ public class Zadanye4 {
             String minMaxSalaryQuery = "SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary FROM Users";
             ResultSet minMaxRs = stmt.executeQuery(minMaxSalaryQuery);
 
-// Чтение и вывод минимальной и максимальной зарплаты
+            // Чтение и вывод минимальной и максимальной зарплаты
             while (minMaxRs.next()) {
                 double minSalary = minMaxRs.getDouble("min_salary");
                 double maxSalary = minMaxRs.getDouble("max_salary");
