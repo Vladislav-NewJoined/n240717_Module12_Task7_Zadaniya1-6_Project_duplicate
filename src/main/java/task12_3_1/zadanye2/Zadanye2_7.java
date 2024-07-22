@@ -12,6 +12,8 @@ public class Zadanye2_7 {
     }
 
     private static void connect() throws SQLException {
+        System.out.println("Again, hello World");
+
         Connection conn;
         Statement stmt = null; // Создаем объект Statement stmt
 
