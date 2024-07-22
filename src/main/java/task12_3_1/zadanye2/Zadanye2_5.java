@@ -61,7 +61,7 @@ public class Zadanye2_5 {
 
             // Вставка данных в таблицу 'Users'
             String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
-                    "('Stebeb', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
+                    "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
                     "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
                     "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
                     "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1987-06-20', 'ID_PROG'), " +

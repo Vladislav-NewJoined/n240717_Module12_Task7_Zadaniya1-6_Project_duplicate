@@ -27,8 +27,37 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+
+
+
+
+
+
+        <dependency>
+            <groupId>com.github.waffle</groupId>
+            <artifactId>waffle-jna</artifactId>
+            <version>3.3.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+                <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <version>1.2.3</version>
+                </dependency>
     </dependencies>
-</project>
+
+        <properties>
+            <maven.compiler.source>17</maven.compiler.source>
+            <maven.compiler.target>17</maven.compiler.target>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        </properties>
+<!--</project>-->
 
 
 
@@ -125,23 +154,7 @@
 
 
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.waffle</groupId>-->
-<!--            <artifactId>waffle-jna</artifactId>-->
-<!--            <version>3.3.0</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.slf4j</groupId>-->
-<!--                    <artifactId>jcl-over-slf4j</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>ch.qos.logback</groupId>-->
-<!--            <artifactId>logback-classic</artifactId>-->
-<!--            <version>1.2.3</version>-->
-<!--        </dependency>-->
 
 
 
@@ -149,9 +162,4 @@
 
 <!--    </dependencies>-->
 
-<!--    <properties>-->
-<!--        <maven.compiler.source>17</maven.compiler.source>-->
-<!--        <maven.compiler.target>17</maven.compiler.target>-->
-<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--    </properties>-->
-<!--</project>-->
+</project>
