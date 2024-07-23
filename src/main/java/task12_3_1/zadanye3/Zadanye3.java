@@ -45,7 +45,8 @@ public class Zadanye3 {
                     "   email varchar(20) not null,\n" +
                     "   phone_number varchar(20) not null,\n" +
                     "   hire_date varchar(20) not null,\n" +
-                    "   job_id varchar(20) not null\n" +
+                    "   job_id varchar(20) not null,\n" +
+                    "   salary decimal(10,2) not null\n" +
                     ");";
             stmt.execute(createTableQuery);
             System.out.println("Table created\n");
@@ -55,27 +56,28 @@ public class Zadanye3 {
             stmt.execute(setInitialValueQuery);
 
             // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id) values " +
-                    "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES'), " +
-                    "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP'), " +
-                    "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP'), " +
-                    "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1986-06-20', 'ID_PROG'), " +
-                    "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1986-06-21', 'ID_PROG'), " +
-                    "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1986-06-22', 'ID_PROG'), " +
-                    "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG');";
+            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id, salary) values " +
+                    "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES', 24000.0), " +
+                    "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP', 17000.0), " +
+                    "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00), " +
+                    "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1986-06-20', 'ID_PROG', 9000.0), " +
+                    "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1986-06-21', 'ID_PROG', 6000.0), " +
+                    "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1986-06-22', 'ID_PROG', 4800.0), " +
+                    "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG', 4800.0);";
             stmt.execute(insertDataQuery);
 
-            // Запрос на выборку данных
-            String selectQuery = "select employee_id, first_name, last_name from Users where first_name like '%b%' or first_name like '%c%'";
-            ResultSet rs = stmt.executeQuery(selectQuery);
+            String minMaxSalaryQuery = "SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary FROM Users";
+            ResultSet minMaxRs = stmt.executeQuery(minMaxSalaryQuery);
 
-            // Вывод результатов запроса
-            while (rs.next()) {
-                int id = rs.getInt("employee_id");
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName);
+// Чтение и вывод минимальной и максимальной зарплаты
+            while (minMaxRs.next()) {
+                double minSalary = minMaxRs.getDouble("min_salary");
+                double maxSalary = minMaxRs.getDouble("max_salary");
+                System.out.println("Минимальная зарплата: " + minSalary);
+                System.out.println("Максимальная зарплата: " + maxSalary);
             }
+
+            minMaxRs.close();
 
             System.out.println("Выборка данных выполнена успешно.");
 
