@@ -19,7 +19,7 @@
     <connection id="a583896d-2cc1-4785-a0f0-774890b115d6">
       <console name="somedbPostgres" type="STANDARD" schema="public" session="Main" />
     </connection>
-    <connection id="0e22ad38-838f-4bf7-8727-38659f131661">
+    <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea">
       <console name="somedb" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
@@ -27,14 +27,16 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" object-ref="schemas/somedb/tables/Users" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a583896d-2cc1-4785-a0f0-774890b115d6" />
-    <connection id="0e22ad38-838f-4bf7-8727-38659f131661" />
+    <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="bc9c6ccf-86a0-4c22-b2f8-c8aacef59268" dataset="somedb.Users" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" dataset="somedb.Users" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -150,7 +152,7 @@
           </object-type-filter>
         </object-filters>
       </connection>
-      <connection id="0e22ad38-838f-4bf7-8727-38659f131661" active="true" signed="true">
+      <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea" active="true" signed="true">
         <database>
           <name value="somedb" />
           <description value="" />
