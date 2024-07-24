@@ -35,11 +35,11 @@ public class Zadanye3_2 {
             stmt = conn.createStatement();
 
             // Удаление таблицы, если она уже существует
-            String dropTableQuery = "DROP TABLE IF EXISTS Users";
+            String dropTableQuery = "DROP TABLE IF EXISTS users";
             stmt.executeUpdate(dropTableQuery);
 
-            // Создание таблицы 'Users'
-            String createTableQuery = "CREATE TABLE Users ("
+            // Создание таблицы 'users'
+            String createTableQuery = "CREATE TABLE users ("
                     + "employee_id SERIAL PRIMARY KEY,"
                     + "first_name VARCHAR(20) NOT NULL,"
                     + "last_name VARCHAR(20) NOT NULL,"
@@ -53,11 +53,11 @@ public class Zadanye3_2 {
             System.out.println("Table created.\n");
 
             // Установка начального значения для 'employee_id'
-            String setInitialValueQuery = "SELECT setval(pg_get_serial_sequence('Users', 'employee_id'), 100, false);";
+            String setInitialValueQuery = "SELECT setval(pg_get_serial_sequence('users', 'employee_id'), 100, false);";
             stmt.execute(setInitialValueQuery);
 
-            // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "INSERT INTO Users (first_name, last_name, email, phone_number, hire_date, job_id, salary) VALUES "
+            // Вставка данных в таблицу 'users'
+            String insertDataQuery = "INSERT INTO users (first_name, last_name, email, phone_number, hire_date, job_id, salary) VALUES "
                     + "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES', 24000.00), "
                     + "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP', 17000.00), "
                     + "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00), "
@@ -68,7 +68,7 @@ public class Zadanye3_2 {
             stmt.executeUpdate(insertDataQuery);
 
 // Выполнение запроса на выборку всех имен и Employee ID
-            String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM Users";
+            String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
             ResultSet namesAndIdsRs = stmt.executeQuery(selectNamesAndIdsQuery);
 
             while (namesAndIdsRs.next()) {

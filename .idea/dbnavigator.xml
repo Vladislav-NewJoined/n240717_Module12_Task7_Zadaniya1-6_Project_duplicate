@@ -17,7 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a583896d-2cc1-4785-a0f0-774890b115d6">
-      <console name="somedbPostgres" type="STANDARD" schema="public" session="Main" />
+      <console name="somedbPostgres" type="STANDARD" schema="public" session="Main"><![CDATA[SELECT * FROM users;]]></console>
     </connection>
     <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea">
       <console name="somedb" type="STANDARD" schema="" session="Main"><![CDATA[select * from Users;]]></console>
@@ -27,9 +27,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" object-ref="consoles/somedb" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a583896d-2cc1-4785-a0f0-774890b115d6" />
