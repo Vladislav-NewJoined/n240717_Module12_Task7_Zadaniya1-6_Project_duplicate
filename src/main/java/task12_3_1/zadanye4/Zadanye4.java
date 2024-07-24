@@ -41,8 +41,6 @@ public class Zadanye4 {
                 String dropTableQuery = "DROP TABLE IF EXISTS users";
                 statement.executeUpdate(dropTableQuery);
 
-
-
                 // Создание таблицы 'users' с другой структурой
                 String createTableQuery = "CREATE TABLE users (" +
                         "employee_id SERIAL PRIMARY KEY," +
@@ -60,7 +58,6 @@ public class Zadanye4 {
                 e.printStackTrace();
             }
 
-
             try (Statement statement = connection.createStatement()) {
                 // Установка начального значения для столбца 'id' в таблице 'users'
                 String setInitialValueQuery = "ALTER SEQUENCE users_employee_id_seq RESTART WITH 100";
@@ -69,7 +66,6 @@ public class Zadanye4 {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
 
             try (Statement statement = connection.createStatement()) {
                 // Новая вставка данных в таблицу 'users'
