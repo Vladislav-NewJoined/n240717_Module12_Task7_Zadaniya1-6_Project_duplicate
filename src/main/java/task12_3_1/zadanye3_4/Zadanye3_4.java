@@ -34,55 +34,53 @@ public class Zadanye3_4 {
         Statement stmt = null; // Создаем объект Statement stmt
 
         try {
-            conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/somedb", "someuser", "123");
-            System.out.println("Connection to MariaDB has been established.");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/somedbPostgres", "someuser", "123");
+            System.out.println("Connection to PostgreSQL has been established.");
             stmt = conn.createStatement();
 
             // Удаление таблицы, если она уже существует
-            String dropTableQuery = "DROP TABLE IF EXISTS Users";
+            String dropTableQuery = "DROP TABLE IF EXISTS users";
             stmt.execute(dropTableQuery);
+//            stmt.executeUpdate(dropTableQuery);
 
-            // Создание таблицы 'Users'
-            String createTableQuery = "create table Users (\n" +
-                    "   employee_id int primary key auto_increment,\n" +
-                    "   first_name varchar(20) not null,\n" +
-                    "   last_name varchar(20) not null,\n" +
-                    "   email varchar(20) not null,\n" +
-                    "   phone_number varchar(20) not null,\n" +
-                    "   hire_date varchar(20) not null,\n" +
-                    "   job_id varchar(20) not null,\n" +
-                    "   salary decimal(10,2) not null\n" +
-                    ");";
-            stmt.execute(createTableQuery);
-            System.out.println("Table created\n");
+            // Создание таблицы 'users'
+            String createTableQuery = "CREATE TABLE users ("
+                    + "employee_id SERIAL PRIMARY KEY,"
+                    + "first_name VARCHAR(20) NOT NULL,"
+                    + "last_name VARCHAR(20) NOT NULL,"
+                    + "email VARCHAR(20) NOT NULL,"
+                    + "phone_number VARCHAR(20) NOT NULL,"
+                    + "hire_date VARCHAR(20) NOT NULL,"
+                    + "job_id VARCHAR(20) NOT NULL,"
+                    + "salary DECIMAL(10,2) NOT NULL"
+                    + ")";
+            stmt.executeUpdate(createTableQuery);
+            System.out.println("Table created.\n");
 
             // Установка начального значения для 'employee_id'
-            String setInitialValueQuery = "alter table Users auto_increment = 100;";
+            String setInitialValueQuery = "ALTER SEQUENCE users_employee_id_seq RESTART WITH 100;";
             stmt.execute(setInitialValueQuery);
 
-            // Вставка данных в таблицу 'Users'
-            String insertDataQuery = "insert into Users (first_name, last_name, email, phone_number, hire_date, job_id, salary) values " +
-                    "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES', 24000.0), " +
-                    "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP', 17000.0), " +
-                    "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00), " +
-                    "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1986-06-20', 'ID_PROG', 9000.0), " +
-                    "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1986-06-21', 'ID_PROG', 6000.0), " +
-                    "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1986-06-22', 'ID_PROG', 4800.0), " +
-                    "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG', 4800.0);";
-            stmt.execute(insertDataQuery);
+            // Вставка данных в таблицу 'users'
+            String insertDataQuery = "INSERT INTO users (first_name, last_name, email, phone_number, hire_date, job_id, salary) VALUES "
+                    + "('Steben', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES', 24000.00), "
+                    + "('Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP', 17000.00), "
+                    + "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00), "
+                    + "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1986-06-20', 'ID_PROG', 9000.00), "
+                    + "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1986-06-21', 'ID_PROG', 6000.00), "
+                    + "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1986-06-22', 'ID_PROG', 4800.00), "
+                    + "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG', 4800.00)";
+            stmt.executeUpdate(insertDataQuery);
 
-            String minMaxSalaryQuery = "SELECT MIN(salary) AS min_salary, MAX(salary) AS max_salary FROM Users";
-            ResultSet minMaxRs = stmt.executeQuery(minMaxSalaryQuery);
+            // Выполнение запроса на выборку всех имен и Employee ID
+            String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
+            ResultSet namesAndIdsRs = stmt.executeQuery(selectNamesAndIdsQuery);
 
-            // Чтение и вывод минимальной и максимальной зарплаты
-            while (minMaxRs.next()) {
-                double minSalary = minMaxRs.getDouble("min_salary");
-                double maxSalary = minMaxRs.getDouble("max_salary");
-                System.out.println("Минимальная зарплата: " + minSalary);
-                System.out.println("Максимальная зарплата: " + maxSalary);
+            while (namesAndIdsRs.next()) {
+                int employeeId = namesAndIdsRs.getInt("employee_id");
+                String firstName = namesAndIdsRs.getString("first_name");
+                System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
             }
-
-            minMaxRs.close();
 
             System.out.println("Выборка данных выполнена успешно.");
 

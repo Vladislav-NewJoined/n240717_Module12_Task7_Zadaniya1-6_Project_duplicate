@@ -67,7 +67,7 @@ public class Zadanye3_2 {
                     + "('Valli', 'Pataballa', 'VPATABAL', '590.423.4569', '1986-06-23', 'ID_PROG', 4800.00)";
             stmt.executeUpdate(insertDataQuery);
 
-// Выполнение запроса на выборку всех имен и Employee ID
+            // Выполнение запроса на выборку всех имен и Employee ID
             String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
             ResultSet namesAndIdsRs = stmt.executeQuery(selectNamesAndIdsQuery);
 
