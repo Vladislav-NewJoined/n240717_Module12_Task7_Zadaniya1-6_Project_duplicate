@@ -20,7 +20,7 @@
       <console name="somedb" type="STANDARD" schema="" session="Main"><![CDATA[select * from Users;]]></console>
     </connection>
     <connection id="80289a0f-84ea-42c9-8e22-5d973eeab80b">
-      <console name="somedbPGtest" type="STANDARD" schema="" session="Main"><![CDATA[SELECT * FROM users;]]></console>
+      <console name="somedbPGtest" type="STANDARD" schema="" session="Main"><![CDATA[SELECT * FROM Users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
