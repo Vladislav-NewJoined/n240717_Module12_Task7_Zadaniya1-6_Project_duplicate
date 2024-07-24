@@ -2,7 +2,7 @@ package task12_3_1.zadanye3_4;
 
 import java.sql.*;
 
-// Команда в терминале для создания базы данных MMariaDB: docker run --name mysql -d -p 3306:3306 -e MYSQL_DATABASE=somedb -e MYSQL_USER=someuser -e MYSQL_PASSWORD=123 yobasystems/alpine-mariadb
+// Команда в терминале для создания базы данных MariaDB: docker run --name postgres -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser -e POSTGRES_PASSWORD=123 postgres:alpine
 // Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
 // База данных: somedb (значение переменной окружения MYSQL_DATABASE)
@@ -16,11 +16,9 @@ public class Zadanye3_4 {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s
-            Модуль 12. Базы данных и Git. Задание №3:\s
-            Цель задания: знакомство и формирование базовых навыков с по работе  с MySQL\s
+            Модуль 12. Базы данных и Git. Задание №4:\s
                 Задание:
-                4. Напишите запрос, чтобы получить максимальную и минимальную зарплату из таблицы сотрудников
-                   (Пример таблицы  см. таблица 4)
+                3. Напишите запрос для вывода всех имен и  Employee ID
 
                 Решение:
             \s""");

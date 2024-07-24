@@ -16,11 +16,11 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="a583896d-2cc1-4785-a0f0-774890b115d6">
-      <console name="somedbPostgres" type="STANDARD" schema="public" session="Main"><![CDATA[SELECT * FROM users;]]></console>
-    </connection>
     <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea">
       <console name="somedb" type="STANDARD" schema="" session="Main"><![CDATA[select * from Users;]]></console>
+    </connection>
+    <connection id="80289a0f-84ea-42c9-8e22-5d973eeab80b">
+      <console name="somedbPGtest" type="STANDARD" schema="" session="Main"><![CDATA[SELECT * FROM users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -30,10 +30,11 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="a583896d-2cc1-4785-a0f0-774890b115d6" />
     <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea" />
+    <connection id="80289a0f-84ea-42c9-8e22-5d973eeab80b" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="80289a0f-84ea-42c9-8e22-5d973eeab80b" dataset="public.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" dataset="somedb.Users" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
@@ -56,22 +57,18 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="a583896d-2cc1-4785-a0f0-774890b115d6" active="true" signed="true">
+      <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea" active="true" signed="true">
         <database>
-          <name value="somedbPostgres" />
+          <name value="somedb" />
           <description value="" />
-          <database-type value="POSTGRES" />
-          <config-type value="BASIC" />
-          <database-version value="16.3" />
-          <driver-source value="BUNDLED" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="DATABASE" />
-          <host value="localhost" />
-          <port value="5432" />
-          <database value="postgres" />
-          <tns-folder value="" />
-          <tns-profile value="" />
+          <database-type value="GENERIC" />
+          <config-type value="CUSTOM" />
+          <database-version value="10.11" />
+          <driver-source value="EXTERNAL" />
+          <driver-library value="C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task4_Zadaniya1-5_part2\src\main\java\task12_3_1\connectors\mariadb-java-client-3.4.1.jar" />
+          <driver value="org.mariadb.jdbc.Driver" />
+          <url-type value="CUSTOM" />
+          <url value="jdbc:mariadb://localhost:3306/somedb" />
           <type value="USER_PASSWORD" />
           <user value="someuser" />
           <deprecated-pwd value="MTIz" />
@@ -150,18 +147,18 @@
           </object-type-filter>
         </object-filters>
       </connection>
-      <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea" active="true" signed="true">
+      <connection id="80289a0f-84ea-42c9-8e22-5d973eeab80b" active="true" signed="true">
         <database>
-          <name value="somedb" />
+          <name value="somedbPGtest" />
           <description value="" />
-          <database-type value="GENERIC" />
-          <config-type value="CUSTOM" />
-          <database-version value="10.11" />
-          <driver-source value="EXTERNAL" />
-          <driver-library value="C:\Владислав\IdeaProjectsDrafts\Draft_Module12_Task4_Zadaniya1-5_part2\src\main\java\task12_3_1\connectors\mariadb-java-client-3.4.1.jar" />
-          <driver value="org.mariadb.jdbc.Driver" />
+          <database-type value="POSTGRES" />
+          <config-type value="BASIC" />
+          <database-version value="16.3" />
+          <driver-source value="BUNDLED" />
+          <driver-library value="" />
+          <driver value="" />
           <url-type value="CUSTOM" />
-          <url value="jdbc:mariadb://localhost:3306/somedb" />
+          <url value="jdbc:postgresql://localhost:5432/somedbPGtest" />
           <type value="USER_PASSWORD" />
           <user value="someuser" />
           <deprecated-pwd value="MTIz" />
