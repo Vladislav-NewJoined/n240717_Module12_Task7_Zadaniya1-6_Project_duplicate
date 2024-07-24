@@ -20,7 +20,7 @@
       <console name="somedbPostgres" type="STANDARD" schema="public" session="Main" />
     </connection>
     <connection id="d6856e62-0157-424d-a29b-6b3f976f4dea">
-      <console name="somedb" type="STANDARD" schema="" session="Main" />
+      <console name="somedb" type="STANDARD" schema="" session="Main"><![CDATA[select * from Users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -28,7 +28,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
-      <object connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" object-ref="schemas/somedb/tables/Users" />
+      <object connection-id="d6856e62-0157-424d-a29b-6b3f976f4dea" object-ref="consoles/somedb" />
     </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">

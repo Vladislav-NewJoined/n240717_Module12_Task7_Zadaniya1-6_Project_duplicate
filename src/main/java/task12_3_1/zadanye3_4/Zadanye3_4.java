@@ -1,4 +1,4 @@
-package task12_3_1.zadanye3_3;
+package task12_3_1.zadanye3_4;
 
 import java.sql.*;
 
@@ -12,7 +12,7 @@ import java.sql.*;
 // Про соединение с базой данных видео здесь:https://youtu.be/_R1hLusMK4c
 // Запрос нужно сделать такой:  "select * from Users;" в DB Browser в папке «Consoles → somedb»
 
-public class Zadanye3_3 {
+public class Zadanye3_4 {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s

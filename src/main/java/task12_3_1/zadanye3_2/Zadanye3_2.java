@@ -9,6 +9,8 @@ import java.sql.*;
 // Пользователь: someuser (значение переменной окружения MYSQL_USER)
 // Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
 // Драйвер: MySQL
+// Про соединение с базой данных видео здесь:https://youtu.be/_R1hLusMK4c
+// Запрос нужно сделать такой:  "select * from Users;" в DB Browser в папке «Consoles → somedb»
 
 public class Zadanye3_2 {
     public static void main(String[] args) throws SQLException {
