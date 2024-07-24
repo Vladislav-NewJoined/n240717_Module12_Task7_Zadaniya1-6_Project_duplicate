@@ -22,8 +22,10 @@ public class Zadanye4 {
             Задание:
             Модуль 12. Базы данных и Git. Задание №4:
             Задание:
-            3. Напишите запрос для вывода всех имен и Employee ID
-            Решение (при каждом последующем запуске кода перезагрузите соединение
+            4. Напишите запрос для вывода фамилии и даты рождения
+            Решение (я вывел не дату рождения, а дату приёма на работу, т.к. в предложенной
+                    в качестве примера таблице 2, отсутствует столбец "дата рождения")
+                    (при каждом последующем запуске кода перезагрузите соединение
                     с базой данных somedbPostgres, т.е. нажмите disconnect' и затем
                     'connect' в блоке 'DB Browser' внутри 'IntelliJ IDEA'
                     и обновите папку 'public' внутри базы данных):
@@ -86,14 +88,14 @@ public class Zadanye4 {
             }
 
             try (Statement statement = connection.createStatement()) {
-                // Выполнение нового запроса на выборку всех имен и Employee ID
-                String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
-                ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
+                // Выполнение нового запроса на выборку фамилии и даты приема на работу
+                String selectLastNamesAndHireDateQuery = "SELECT last_name, hire_date FROM users";
+                ResultSet lastNamesAndHireDateRs = statement.executeQuery(selectLastNamesAndHireDateQuery);
 
-                while (namesAndIdsRs.next()) {
-                    int employeeId = namesAndIdsRs.getInt("employee_id");
-                    String firstName = namesAndIdsRs.getString("first_name");
-                    System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
+                while (lastNamesAndHireDateRs.next()) {
+                    String lastName = lastNamesAndHireDateRs.getString("last_name");
+                    String hireDate = lastNamesAndHireDateRs.getString("hire_date");
+                    System.out.println("Last Name: " + lastName + ", Hire Date: " + hireDate);
                 }
 
             } catch (SQLException e) {

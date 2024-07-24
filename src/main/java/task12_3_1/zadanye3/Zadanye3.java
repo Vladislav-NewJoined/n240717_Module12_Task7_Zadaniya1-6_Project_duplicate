@@ -86,7 +86,7 @@ public class Zadanye3 {
             }
 
             try (Statement statement = connection.createStatement()) {
-                // Выполнение нового запроса на выборку всех имен и Employee ID
+                // Выполнение запроса на выборку всех имен и Employee ID
                 String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
                 ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
 
