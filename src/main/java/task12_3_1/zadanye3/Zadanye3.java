@@ -8,7 +8,6 @@ import java.sql.*;
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
-// Драйвер: MySQL
 // Про соединение с базой данных видео здесь:https://youtu.be/_R1hLusMK4c
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from Users;" в DB Browser в папке "Consoles -→ somedbPGtest"
 
