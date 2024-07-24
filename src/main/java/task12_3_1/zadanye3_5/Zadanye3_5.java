@@ -46,6 +46,17 @@ public class Zadanye3_5 {
                 e.printStackTrace();
             }
 
+
+            try (Statement statement = connection.createStatement()) {
+                // Установка начального значения для столбца 'id' в таблице 'users'
+                String setInitialValueQuery = "ALTER SEQUENCE users_id_seq RESTART WITH 100";
+                statement.executeUpdate(setInitialValueQuery);
+                System.out.println("Начальное значение столбца 'id' установлено на 100.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
             try (Statement statement = connection.createStatement()) {
                 String insertDataQuery = "INSERT INTO users (name) VALUES ('Иван'), ('Мария'), ('Петр')";
                 statement.executeUpdate(insertDataQuery);
