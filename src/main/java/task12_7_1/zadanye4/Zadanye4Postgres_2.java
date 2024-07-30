@@ -76,7 +76,7 @@ public class Zadanye4Postgres_2 {
 
                     String setInitialValueQuery = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
                     statement.executeUpdate(setInitialValueQuery);
-                    System.out.println("Начальное значение столбца 'id' установлено на 100.");
+//                    System.out.println("Начальное значение столбца 'id' установлено на 100.");
 
                 // Вставка данных в таблицу 'users3'
                 String insertDataQueryUsers3 = "INSERT INTO users3 (first_name, email, job_id) VALUES " +
@@ -86,10 +86,10 @@ public class Zadanye4Postgres_2 {
                 statement.executeUpdate(insertDataQueryUsers3);
                 System.out.println("Данные в таблицу 'users3' добавлены успешно.\n");
 
-                // Установка начального значения для столбца 'id' в таблице 'users3'
-                String setInitialValueQuery3 = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
-                statement.executeUpdate(setInitialValueQuery3);
-                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
+//                // Установка начального значения для столбца 'id' в таблице 'users3'
+//                String setInitialValueQuery3 = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
+//                statement.executeUpdate(setInitialValueQuery3);
+//                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
 
                 // Удаление таблицы 'users4', если она уже существует
                 String dropTableQueryUsers4 = "DROP TABLE IF EXISTS users4";
@@ -106,7 +106,7 @@ public class Zadanye4Postgres_2 {
 
                 String setInitialValueQuery4 = "ALTER SEQUENCE users4_employee_id_seq RESTART WITH 100";
                 statement.executeUpdate(setInitialValueQuery4);
-                System.out.println("Начальное значение столбца 'id' установлено на 100.");
+//                System.out.println("Начальное значение столбца 'id' установлено на 100.");
 
                 // Вставка данных в таблицу 'users4'
                 String insertDataQueryUsers4 = "INSERT INTO users4 (phone_number, salary) VALUES " +
@@ -114,7 +114,7 @@ public class Zadanye4Postgres_2 {
                         "('555-4321', 60000.00), " +
                         "('555-6789', 70000.00)";
                 statement.executeUpdate(insertDataQueryUsers4);
-                System.out.println("Данные в таблицу 'users4' добавлены успешно.\n");
+                System.out.println("Данные в таблицу 'users4' добавлены успешно.");
 
             } catch (SQLException e) {
                 e.printStackTrace();
