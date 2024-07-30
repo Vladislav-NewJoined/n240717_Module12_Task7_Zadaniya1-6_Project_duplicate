@@ -60,140 +60,89 @@ public class Zadanye4Postgres_2 {
     private static void connect() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             try (Statement statement = connection.createStatement()) {
-                // Удаление таблицы 'users3', если она уже существует
-                String dropTableQuery = "DROP TABLE IF EXISTS users3";
-                statement.executeUpdate(dropTableQuery);
+                // Удаление таблицы 'users4', если она уже существует
+                String dropTableQueryUsers3 = "DROP TABLE IF EXISTS users3";
+                statement.executeUpdate(dropTableQueryUsers3);
 
                 // Создание таблицы 'users3' с другой структурой
-                String createTableQuery = "CREATE TABLE users3 (" +
+                String createTableQueryUsers3 = "CREATE TABLE users3 (" +
                         "employee_id SERIAL PRIMARY KEY," +
                         "first_name VARCHAR(20) NOT NULL," +
-//                        "last_name VARCHAR(20) NOT NULL," +
-                        "email VARCHAR(20) NOT NULL," +
-//                        "phone_number VARCHAR(20) NOT NULL," +
-//                        "hire_date VARCHAR(20) NOT NULL," +
-//                        "job_id VARCHAR(20) NOT NULL," +
-//                        "salary DECIMAL(10,2) NOT NULL" +
+                        "email VARCHAR(20) NOT NULL" +
                         ")";
-                statement.executeUpdate(createTableQuery);
+                statement.executeUpdate(createTableQueryUsers3);
                 System.out.println("Таблица 'users3' с новой структурой создана успешно.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-            try (Statement statement = connection.createStatement()) {
-                // Установка начального значения для столбца 'id' в таблице 'users3'
-                String setInitialValueQuery = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
-                statement.executeUpdate(setInitialValueQuery);
-                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-            try (Statement statement = connection.createStatement()) {
-                // Новая вставка данных в таблицу 'users3'
-                String insertDataQuery = "INSERT INTO users3 (first_name, email) VALUES " +
+//                try (Statement statement = connection.createStatement()) {
+                    // Установка начального значения для столбца 'id' в таблице 'users3'
+                    String setInitialValueQuery = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
+                    statement.executeUpdate(setInitialValueQuery);
+                    System.out.println("Начальное значение столбца 'id' установлено на 100.");
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+
+
+
+                // Вставка данных в таблицу 'users3'
+                String insertDataQueryUsers3 = "INSERT INTO users3 (first_name, email) VALUES " +
                         "('Steben', 'SKING'), " +
                         "('Neena', 'NKOCHHAR'), " +
                         "('Valli', 'VPATABAL')";
-                statement.executeUpdate(insertDataQuery);
-                System.out.println("Данные в таблицу users3 добавлены успешно.\n");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                statement.executeUpdate(insertDataQueryUsers3);
+                System.out.println("Данные в таблицу 'users3' добавлены успешно.\n");
 
-//            try (Statement statement = connection.createStatement()) {
-//                // Выполнение запроса на выборку всех имен и Employee ID
-//                String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
-//                ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
-//
-//                while (namesAndIdsRs.next()) {
-//                    int employeeId = namesAndIdsRs.getInt("employee_id");
-//                    String firstName = namesAndIdsRs.getString("first_name");
-//                    System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
-//                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                // Установка начального значения для столбца 'id' в таблице 'users3'
+                String setInitialValueQuery3 = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
+                statement.executeUpdate(setInitialValueQuery3);
+                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
 
 
-
-
-
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            try (Statement statement = connection.createStatement()) {
                 // Удаление таблицы 'users4', если она уже существует
-                String dropTableQuery = "DROP TABLE IF EXISTS users4";
-                statement.executeUpdate(dropTableQuery);
+                String dropTableQueryUsers4 = "DROP TABLE IF EXISTS users4";
+                statement.executeUpdate(dropTableQueryUsers4);
 
                 // Создание таблицы 'users4' с другой структурой
-                String createTableQuery = "CREATE TABLE users4 (" +
+                String createTableQueryUsers4 = "CREATE TABLE users4 (" +
                         "employee_id SERIAL PRIMARY KEY," +
-//                        "first_name VARCHAR(20) NOT NULL," +
-//                        "last_name VARCHAR(20) NOT NULL," +
-//                        "email VARCHAR(20) NOT NULL," +
                         "phone_number VARCHAR(20) NOT NULL," +
-//                        "hire_date VARCHAR(20) NOT NULL," +
-//                        "job_id VARCHAR(20) NOT NULL," +
                         "salary DECIMAL(10,2) NOT NULL" +
                         ")";
-                statement.executeUpdate(createTableQuery);
+                statement.executeUpdate(createTableQueryUsers4);
                 System.out.println("Таблица 'users4' с новой структурой создана успешно.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-            try (Statement statement = connection.createStatement()) {
+
+//                try (Statement statement = connection.createStatement()) {
                 // Установка начального значения для столбца 'id' в таблице 'users4'
-                String setInitialValueQuery = "ALTER SEQUENCE users4_employee_id_seq RESTART WITH 100";
-                statement.executeUpdate(setInitialValueQuery);
-                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            try (Statement statement = connection.createStatement()) {
-                // Новая вставка данных в таблицу 'users4'
-                String insertDataQuery = "INSERT INTO users (first_name, phone_number, salary) VALUES " +
-                        "('Steben', '515.123.4567', 24000.00), " +
-                        "('Neena', '515.123.4568', 17000.00), " +
-//                        "('Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00), " +
-//                        "('Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1986-06-20', 'ID_PROG', 9000.00), " +
-//                        "('Bruce', 'Ernst', 'BERNST', '590.423.4568', '1986-06-21', 'ID_PROG', 6000.00), " +
-//                        "('David', 'Austin', 'DAUSTIN', '590.423.4569', '1986-06-22', 'ID_PROG', 4800.00), " +
-                        "('Valli', '590.423.4569', 4800.00)";
-                statement.executeUpdate(insertDataQuery);
-                System.out.println("Данные в таблицу users4 добавлены успешно.\n");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-//            try (Statement statement = connection.createStatement()) {
-//                // Выполнение запроса на выборку всех имен и Employee ID
-//                String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users4";
-//                ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
-//
-//                while (namesAndIdsRs.next()) {
-//                    int employeeId = namesAndIdsRs.getInt("employee_id");
-//                    String firstName = namesAndIdsRs.getString("first_name");
-//                    System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
+                String setInitialValueQuery4 = "ALTER SEQUENCE users4_employee_id_seq RESTART WITH 100";
+                statement.executeUpdate(setInitialValueQuery4);
+                System.out.println("Начальное значение столбца 'id' установлено на 100.");
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
 //                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
 
+
+
+
+                // Вставка данных в таблицу 'users4'
+                String insertDataQueryUsers4 = "INSERT INTO users4 (phone_number, salary) VALUES " +
+                        "('555-1234', 50000.00), " +
+                        "('555-4321', 60000.00), " +
+                        "('555-6789', 70000.00)";
+                statement.executeUpdate(insertDataQueryUsers4);
+                System.out.println("Данные в таблицу 'users4' добавлены успешно.\n");
+
+//                // Установка начального значения для столбца 'id' в таблице 'users4'
+//                String setInitialValueQuery4 = "ALTER SEQUENCE users4_employee_id_seq RESTART WITH 100";
+//                statement.executeUpdate(setInitialValueQuery4);
+//                System.out.println("Начальное значение столбца 'employee_id' установлено на 100.");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
     }
 }
