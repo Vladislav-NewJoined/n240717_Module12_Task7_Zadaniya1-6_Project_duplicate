@@ -1,6 +1,6 @@
-package task12_3_1.zadanye2;
+package task12_7_1.zadanye2;
 
-import java.sql.*;
+import java.sql.SQLException;
 
 // Команда в терминале для создания базы данных PostgreSQL: docker run --name postgresTest -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser -e POSTGRES_PASSWORD=123 postgres:alpine
 // Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect postgresTest
@@ -10,7 +10,7 @@ import java.sql.*;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye2 {
+public class Zadanye2MongoDB {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s

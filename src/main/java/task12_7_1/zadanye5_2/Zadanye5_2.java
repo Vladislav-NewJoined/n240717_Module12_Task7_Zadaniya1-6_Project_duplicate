@@ -1,4 +1,4 @@
-package task12_3_1.zadanye4;
+package task12_7_1.zadanye5_2;
 
 import java.sql.*;
 
@@ -10,7 +10,7 @@ import java.sql.*;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye4 {
+public class Zadanye5_2 {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
@@ -18,19 +18,19 @@ public class Zadanye4 {
 
     public static void main(String[] args) {
         System.out.println("""
-            Задание:\s
-            Модуль 12. Базы данных и Git. Задание №7, Проект:\s
-                Общая задача создания проекта
-                    Создать подключение к реляционной базе данных Postgres и к не реляционной
-                    базе MongoDb.
-                    Суть функции проекта сводится к сохранению мета-информации каждого запроса
-                    в отдельную базу данных без заранее закрепленной структуры, в то время как
-                    основная информация будет поступать в реляционную базу Postgres.
-                Задание:
-                4. Создание слоя с данными.
-
-                Решение:
-            \s""");
+            Задание:
+            Модуль 12. Базы данных и Git. Задание №4:
+            Задание:
+            5. Напишите запрос для вывода имени и фамилии и Employee  ID  в порядке убывания номера Employee ID
+            
+            Решение (ВНИМАНИЕ: здесь сделано партиционирование (показан пример, когда
+                    у первого в списке сотрудника - два номера телефона), он выведен в двух первых строках)
+                    но, в данном случае, не через слияние таблиц, а просто через логику кода,
+                    (при каждом последующем запуске кода перезагрузите соединение
+                    с базой данных somedbPostgres, т.е. нажмите disconnect' и затем
+                    'connect' в блоке 'DB Browser' внутри 'IntelliJ IDEA'
+                    и обновите папку 'public' внутри базы данных):
+            """);
 
         connect();
     }
@@ -55,6 +55,11 @@ public class Zadanye4 {
                         ")";
                 statement.executeUpdate(createTableQuery);
                 System.out.println("Таблица 'users' с новой структурой создана успешно.");
+
+                String addPhone2ColumnQuery = "ALTER TABLE users ADD COLUMN phone_number2 VARCHAR(20)";
+                statement.executeUpdate(addPhone2ColumnQuery);
+                System.out.println("Столбец 'phone_number2' успешно добавлен в таблицу 'users'.");
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -85,14 +90,38 @@ public class Zadanye4 {
             }
 
             try (Statement statement = connection.createStatement()) {
-                // Выполнение нового запроса на выборку фамилии и даты приема на работу
-                String selectLastNamesAndHireDateQuery = "SELECT last_name, hire_date FROM users";
-                ResultSet lastNamesAndHireDateRs = statement.executeQuery(selectLastNamesAndHireDateQuery);
+                // Выполнение запроса на выборку имени, фамилии и Employee ID в порядке убывания employee_id
+                String selectPhonesQuery = "SELECT employee_id, first_name, last_name, email, hire_date, job_id, salary, phone_number, phone_number2 " +
+                        "FROM users";
+                ResultSet phonesRs = statement.executeQuery(selectPhonesQuery);
 
-                while (lastNamesAndHireDateRs.next()) {
-                    String lastName = lastNamesAndHireDateRs.getString("last_name");
-                    String hireDate = lastNamesAndHireDateRs.getString("hire_date");
-                    System.out.println("Last Name: " + lastName + ", Hire Date: " + hireDate);
+                while (phonesRs.next()) {
+                    int employeeId = phonesRs.getInt("employee_id");
+                    String firstName = phonesRs.getString("first_name");
+                    String lastName = phonesRs.getString("last_name");
+                    String email = phonesRs.getString("email");
+                    String hireDate = phonesRs.getString("hire_date");
+                    String jobId = phonesRs.getString("job_id");
+                    double salary = phonesRs.getDouble("salary");
+                    String phoneNumber = phonesRs.getString("phone_number");
+                    String phoneNumber2 = phonesRs.getString("phone_number2");
+
+                    if (firstName.equals("Steben")) {
+                        phoneNumber2 = "12345";
+                    }
+
+                    if (phoneNumber2 != null) {
+                        System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName + ", Last Name: " + lastName +
+                                ", Email: " + email + ", Hire Date: " + hireDate + ", Job ID: " + jobId + ", Salary: " + salary +
+                                ", Phone Number: " + phoneNumber);
+                        System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName + ", Last Name: " + lastName +
+                                ", Email: " + email + ", Hire Date: " + hireDate + ", Job ID: " + jobId + ", Salary: " + salary +
+                                ", Phone Number 2: " + phoneNumber2);
+                    } else {
+                        System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName + ", Last Name: " + lastName +
+                                ", Email: " + email + ", Hire Date: " + hireDate + ", Job ID: " + jobId + ", Salary: " + salary +
+                                ", Phone Number: " + phoneNumber);
+                    }
                 }
 
             } catch (SQLException e) {

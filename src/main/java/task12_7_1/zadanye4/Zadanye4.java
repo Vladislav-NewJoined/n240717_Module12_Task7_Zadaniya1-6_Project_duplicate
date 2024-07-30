@@ -1,4 +1,4 @@
-package task12_3_1.zadanye3;
+package task12_7_1.zadanye4;
 
 import java.sql.*;
 
@@ -10,7 +10,7 @@ import java.sql.*;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye3 {
+public class Zadanye4 {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
@@ -27,7 +27,7 @@ public class Zadanye3 {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                3. Создание конфигов подключения к базам
+                4. Создание слоя с данными.
 
                 Решение:
             \s""");
@@ -85,14 +85,14 @@ public class Zadanye3 {
             }
 
             try (Statement statement = connection.createStatement()) {
-                // Выполнение запроса на выборку всех имен и Employee ID
-                String selectNamesAndIdsQuery = "SELECT first_name, employee_id FROM users";
-                ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
+                // Выполнение нового запроса на выборку фамилии и даты приема на работу
+                String selectLastNamesAndHireDateQuery = "SELECT last_name, hire_date FROM users";
+                ResultSet lastNamesAndHireDateRs = statement.executeQuery(selectLastNamesAndHireDateQuery);
 
-                while (namesAndIdsRs.next()) {
-                    int employeeId = namesAndIdsRs.getInt("employee_id");
-                    String firstName = namesAndIdsRs.getString("first_name");
-                    System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName);
+                while (lastNamesAndHireDateRs.next()) {
+                    String lastName = lastNamesAndHireDateRs.getString("last_name");
+                    String hireDate = lastNamesAndHireDateRs.getString("hire_date");
+                    System.out.println("Last Name: " + lastName + ", Hire Date: " + hireDate);
                 }
 
             } catch (SQLException e) {
