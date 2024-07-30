@@ -68,7 +68,8 @@ public class Zadanye4Postgres_2 {
                 String createTableQueryUsers3 = "CREATE TABLE users3 (" +
                         "employee_id SERIAL PRIMARY KEY," +
                         "first_name VARCHAR(20) NOT NULL," +
-                        "email VARCHAR(20) NOT NULL" +
+                        "email VARCHAR(20) NOT NULL," +
+                        "job_id VARCHAR(20) NOT NULL" +
                         ")";
                 statement.executeUpdate(createTableQueryUsers3);
                 System.out.println("Таблица 'users3' с новой структурой создана успешно.");
@@ -78,10 +79,10 @@ public class Zadanye4Postgres_2 {
                     System.out.println("Начальное значение столбца 'id' установлено на 100.");
 
                 // Вставка данных в таблицу 'users3'
-                String insertDataQueryUsers3 = "INSERT INTO users3 (first_name, email) VALUES " +
-                        "('Steben', 'SKING'), " +
-                        "('Neena', 'NKOCHHAR'), " +
-                        "('Valli', 'VPATABAL')";
+                String insertDataQueryUsers3 = "INSERT INTO users3 (first_name, email, job_id) VALUES " +
+                        "('Steben', 'SKING', 'AD_PRES'), " +
+                        "('Neena', 'NKOCHHAR', 'AD_VP'), " +
+                        "('Valli', 'VPATABAL', 'ID_PROG')";
                 statement.executeUpdate(insertDataQueryUsers3);
                 System.out.println("Данные в таблицу 'users3' добавлены успешно.\n");
 
