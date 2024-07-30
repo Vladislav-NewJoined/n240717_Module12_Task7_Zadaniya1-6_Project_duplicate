@@ -1,8 +1,13 @@
 package task12_7_1.zadanye1;
 
-// Команда в терминале для создания базы данных PostgreSQL: docker run --name postgresTest -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser -e POSTGRES_PASSWORD=123 postgres:alpine
-// Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect postgresTest
-// Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
+// На сервере Docker создан контейнер с базой данных PostgreSQL с именем "postgresTest" при помощи
+// команды в терминале Docker Desktop или в терминале среды разработки, например IntelliJ IDEA:
+// "docker run --name postgresTest -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser
+//  -e POSTGRES_PASSWORD=123 postgres:alpine".
+// В приложении DBeaver создано соединение с базой данных с именем "somedbPGtest".
+// Для настройки соединения в DBeaver использованы следующие параметры (можно получить в ответ на команду в терминале: docker inspect postgresTest):
+// Сервер (Хост): localhost (для соединения не со своего компьютера: 172.17.0.2
+// Порт: 5432
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
