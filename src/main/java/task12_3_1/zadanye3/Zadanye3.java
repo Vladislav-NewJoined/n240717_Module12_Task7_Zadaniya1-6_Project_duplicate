@@ -8,8 +8,7 @@ import java.sql.*;
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
-// Про соединение с базой данных видео здесь:https://youtu.be/_R1hLusMK4c
-// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users;" в DB Browser в папке "Consoles -→ somedbPGtest"
+// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
 public class Zadanye3 {
 

@@ -2,13 +2,13 @@ package task12_3_1.zadanye2;
 
 import java.sql.*;
 
-// Команда в терминале для создания базы данных MMariaDB: docker run --name mysql -d -p 3306:3306 -e MYSQL_DATABASE=somedb -e MYSQL_USER=someuser -e MYSQL_PASSWORD=123 yobasystems/alpine-mariadb
-// Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect mysql:
+// Команда в терминале для создания базы данных PostgreSQL: docker run --name postgresTest -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser -e POSTGRES_PASSWORD=123 postgres:alpine
+// Значения параметров для настройки соединения в DBeaver (пришли в ответ на команду в терминале: docker inspect postgresTest
 // Сервер (Хост): 172.17.0.2 (нужно писать localhost вместо этого)
-// База данных: somedb (значение переменной окружения MYSQL_DATABASE)
-// Пользователь: someuser (значение переменной окружения MYSQL_USER)
-// Пароль: 123 (значение переменной окружения MYSQL_PASSWORD)
-// Драйвер: MySQL
+// База данных: somedbPGtest
+// Пользователь: someuser
+// Пароль: 123
+// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
 public class Zadanye2 {
     public static void main(String[] args) throws SQLException {
