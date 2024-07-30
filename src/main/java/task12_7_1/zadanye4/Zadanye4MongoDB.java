@@ -1,4 +1,4 @@
-package task12_7_1.zadanye3;
+package task12_7_1.zadanye4;
 
 import java.sql.SQLException;
 
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 // Пользователь: нет
 // Пароль: нет
 
-public class Zadanye3MongoDB {
+public class Zadanye4MongoDB {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s
@@ -25,7 +25,7 @@ public class Zadanye3MongoDB {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                3. Создание конфигов подключения к базам.
+                4. Создание слоя с данными.
 
                 Решение:\s""");
 

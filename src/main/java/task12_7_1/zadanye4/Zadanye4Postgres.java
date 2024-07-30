@@ -1,4 +1,4 @@
-package task12_7_1.zadanye3;
+package task12_7_1.zadanye4;
 
 import java.sql.SQLException;
 
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye3Postgres {
+public class Zadanye4Postgres {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s
@@ -27,7 +27,7 @@ public class Zadanye3Postgres {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                3. Создание конфигов подключения к базам.
+                4. Создание слоя с данными.
 
                 Решение:\s""");
 
