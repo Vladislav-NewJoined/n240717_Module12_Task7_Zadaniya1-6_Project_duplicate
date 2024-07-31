@@ -1,7 +1,10 @@
-package task12_7_1.zadanye5_3;
+package task12_7_1.zadanye5_4;
 
 import com.mongodb.client.*;
 import org.bson.Document;
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClients;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import java.util.Map;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye5_3Postgres {
+public class Zadanye5_4Postgres {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
@@ -57,7 +60,7 @@ public class Zadanye5_3Postgres {
                 команды в терминале Docker Desktop или в терминале среды разработки, например IntelliJ IDEA:
                 "docker run --name postgresTest -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest -e POSTGRES_USER=someuser
                  -e POSTGRES_PASSWORD=123 postgres:alpine".
-                
+                            
                 В приложении DBeaver создано соединение с базой данных с именем "somedbPGtest".
                 Для настройки соединения в DBeaver использованы следующие параметры (можно получить в ответ на команду
                 в терминале: docker inspect postgresTest):
@@ -73,7 +76,7 @@ public class Zadanye5_3Postgres {
     }
 
     private static void connect() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/somedbPGtest", "someuser", "123")) {
             try (Statement statement = connection.createStatement()) {
                 // Удаление таблицы 'users2', если она уже существует
                 String dropTableQueryUsers1 = "DROP TABLE IF EXISTS users1";
@@ -175,74 +178,49 @@ public class Zadanye5_3Postgres {
     }
 
     private static void connect3() {
-        System.out.println("\nОбъединяем данные из базы данных Postgres (таблицы users1) с документом из " +
-                "коллекции базы данных MongoDB (коллекции mongoTestCollection):");
         try {
-            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-            MongoDatabase database = mongoClient.getDatabase("mongoTest");
-            MongoDatabase mongoDatabase = mongoClient.getDatabase("mongoTest");
+            // Подключение к PostgreSQL
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/somedbPGtest", "someuser", "123");
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM users1");
 
-            // Удаление предыдущей коллекции, если она существует
-            if (mongoDatabase.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection2")) {
-                mongoDatabase.getCollection("mongoTestCollection2").drop();
-                System.out.println("Предыдущая коллекция 'mongoTestCollection2' успешно удалена");
+// Обработка результатов выборки и вывод на консоль
+            while (rs.next()) {
+                int employeeId = rs.getInt("employeeId");
+                String firstName = rs.getString("firstName");
+                String email = rs.getString("email");
+                String jobId = rs.getString("jobId");
+                System.out.println("EmployeeId: " + employeeId + ", FirstName: " + firstName + ", Email: " + email + ", JobId: " + jobId);
             }
 
-            MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("mongoTestCollection");
-            FindIterable<Document> cursor = mongoCollection.find();
+            // Подключение к MongoDB
+// Установка строки подключения
+            ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
 
-// Получение данных из базы данных Postgres
-            Map<String, Map<String, Object>> postgresData = new HashMap<>();
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                 Statement statement = connection.createStatement();
-                 ResultSet resultSet1 = statement.executeQuery("SELECT employeeId, firstName, email, jobId FROM users1")) {
+// Создание настроек клиента с помощью строки подключения
+            MongoClientSettings settings = MongoClientSettings.builder()
+                    .applyConnectionString(connectionString)
+                    .build();
 
-                while (resultSet1.next()) {
-                    String firstName = resultSet1.getString("firstName");
-                    Map<String, Object> userData = new HashMap<>();
-                    userData.put("email", resultSet1.getString("email"));
-                    userData.put("jobId", resultSet1.getString("jobId"));
-                    postgresData.put(firstName, userData);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+// Создание клиента MongoDB
+            MongoClient mongoClient = MongoClients.create(settings);
+            MongoDatabase database = mongoClient.getDatabase("momongoTest");
+            MongoCursor<Document> cursor = database.getCollection("mongoTestCollection").find().iterator();
+
+            // Объединение данных
+            while (rs.next()) {
+                System.out.println("PostgreSQL Data: " + rs.getString("column_name"));
             }
 
-// Получение документа из коллекции mongoTestCollection в MongoDB
-            Map<String, Map<String, Object>> mongoData = new HashMap<>();
-            Document mongoDocument = cursor.first();
-            if (mongoDocument != null) {
-                String firstName = mongoDocument.getString("firstName");
-                Map<String, Object> mongoUserData = new HashMap<>();
-                mongoUserData.put("age", mongoDocument.getInteger("age"));
-                mongoUserData.put("city", mongoDocument.getString("city"));
-                mongoData.put(firstName, mongoUserData);
+            while (cursor.hasNext()) {
+                Document document = cursor.next();
+                System.out.println("MongoDB Data: " + document.toJson());
             }
 
-            List<Map<String, Object>> combinedData = new ArrayList<>();
-
-        // Создание новой базы данных mongoTest2 и коллекции mongoTestCollection2
-            mongoClient.getDatabase("mongoTest2").createCollection("mongoTestCollection2");
-
-            // Создание и сохранение объединенных данных в коллекцию mongoTestCollection2
-            MongoCollection<Document> collection2 = mongoDatabase.getCollection("mongoTestCollection2");
-
-            System.out.println("Объединенные данные успешно сохранены в коллекцию 'mongoTestCollection2' в базе данных 'mongoTest2'");
-
-            // Вывод содержимого коллекции 'mongoTestCollection'
-            System.out.println("\nСодержимое коллекции mongoTestCollection: ");
-            MongoCollection<Document> collection = mongoDatabase.getCollection("mongoTestCollection");
-            FindIterable<Document> documents = collection.find();
-            for (Document document : documents) {
-                System.out.println(document.toJson());
-            }
-
-            // Закрытие соединения с MongoDB
+            connection.close();
             mongoClient.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

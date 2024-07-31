@@ -202,7 +202,7 @@ public class Zadanye5Postgres {
 
 //            mongoClient.close();
 
-            // Подключение к базе данных Postgres и выполнение запроса
+            // Получение данных из базы данных Postgres
             Map<String, Map<String, Object>> postgresData = new HashMap<>();
             try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                  Statement statement = connection.createStatement();
