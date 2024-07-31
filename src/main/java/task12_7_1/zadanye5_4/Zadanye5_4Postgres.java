@@ -133,6 +133,30 @@ public class Zadanye5_4Postgres {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+            MongoDatabase database = mongoClient.getDatabase("mongoTest");
+
+            // Удаление предыдущей коллекции, если она существует
+            if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection")) {
+                database.getCollection("mongoTestCollection").drop();
+                System.out.println("Предыдущая коллекция успешно удалена");
+            }
+
+            // Создание новой коллекции "mongoTestCollection"
+            MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
+
+            Document doc = new Document("firstName", "Alice").append("age", 26).append("city", "Paris");
+            collection.insertOne(doc);
+
+            System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
+            System.out.println("\nСлой с данными успешно создан");
+
+            mongoClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 //    private static void connect2() {
