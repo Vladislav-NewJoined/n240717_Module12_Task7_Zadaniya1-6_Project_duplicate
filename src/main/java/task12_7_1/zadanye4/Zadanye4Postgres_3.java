@@ -1,6 +1,9 @@
 package task12_7_1.zadanye4;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 // На сервере Docker создан контейнер с базой данных PostgreSQL с именем "postgresTest" при помощи
 // команды в терминале Docker Desktop или в терминале среды разработки, например IntelliJ IDEA:
@@ -15,7 +18,7 @@ import java.sql.*;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye4Postgres_2 {
+public class Zadanye4Postgres_3 {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
@@ -64,47 +67,45 @@ public class Zadanye4Postgres_2 {
                 String dropTableQueryUsers3 = "DROP TABLE IF EXISTS users3";
                 statement.executeUpdate(dropTableQueryUsers3);
 
-                // Создание таблицы 'users3' с другой структурой
+// Создание таблицы 'users3' с другой структурой
                 String createTableQueryUsers3 = "CREATE TABLE users3 (" +
-                        "employee_id SERIAL PRIMARY KEY," +
-                        "first_name VARCHAR(20) NOT NULL," +
+                        "employeeId SERIAL PRIMARY KEY," +
+                        "firstName VARCHAR(20) NOT NULL," +
                         "email VARCHAR(20) NOT NULL," +
-                        "job_id VARCHAR(20) NOT NULL" +
+                        "jobId VARCHAR(20) NOT NULL" +
                         ")";
                 statement.executeUpdate(createTableQueryUsers3);
                 System.out.println("Таблица 'users3' с новой структурой создана успешно.");
 
-                    String setInitialValueQuery = "ALTER SEQUENCE users3_employee_id_seq RESTART WITH 100";
-                    statement.executeUpdate(setInitialValueQuery);
-//                    System.out.println("Начальное значение столбца 'id' установлено на 100.");
+                String setInitialValueQuery1 = "ALTER SEQUENCE users3_employeeId_seq RESTART WITH 100";
+                statement.executeUpdate(setInitialValueQuery1);
 
-                // Вставка данных в таблицу 'users3'
-                String insertDataQueryUsers3 = "INSERT INTO users3 (first_name, email, job_id) VALUES " +
+// Вставка данных в таблицу 'users3'
+                String insertDataQueryUsers3 = "INSERT INTO users3 (firstName, email, jobId) VALUES " +
                         "('Steben', 'SKING', 'AD_PRES'), " +
                         "('Neena', 'NKOCHHAR', 'AD_VP'), " +
                         "('Valli', 'VPATABAL', 'ID_PROG')";
                 statement.executeUpdate(insertDataQueryUsers3);
                 System.out.println("Данные в таблицу 'users3' добавлены успешно.\n");
 
-                // Удаление таблицы 'users4', если она уже существует
+// Удаление таблицы 'users4', если она уже существует
                 String dropTableQueryUsers4 = "DROP TABLE IF EXISTS users4";
                 statement.executeUpdate(dropTableQueryUsers4);
 
-                // Создание таблицы 'users4' с другой структурой
+// Создание таблицы 'users4' с другой структурой
                 String createTableQueryUsers4 = "CREATE TABLE users4 (" +
-                        "employee_id SERIAL PRIMARY KEY," +
-                        "phone_number VARCHAR(20) NOT NULL," +
+                        "employeeId SERIAL PRIMARY KEY," +
+                        "phoneNumber VARCHAR(20) NOT NULL," +
                         "salary DECIMAL(10,2) NOT NULL" +
                         ")";
                 statement.executeUpdate(createTableQueryUsers4);
                 System.out.println("Таблица 'users4' с новой структурой создана успешно.");
 
-                String setInitialValueQuery4 = "ALTER SEQUENCE users4_employee_id_seq RESTART WITH 100";
+                String setInitialValueQuery4 = "ALTER SEQUENCE users4_employeeId_seq RESTART WITH 100";
                 statement.executeUpdate(setInitialValueQuery4);
-//                System.out.println("Начальное значение столбца 'id' установлено на 100.");
 
-                // Вставка данных в таблицу 'users4'
-                String insertDataQueryUsers4 = "INSERT INTO users4 (phone_number, salary) VALUES " +
+// Вставка данных в таблицу 'users4'
+                String insertDataQueryUsers4 = "INSERT INTO users4 (phoneNumber, salary) VALUES " +
                         "('555-1234', 50000.00), " +
                         "('555-4321', 60000.00), " +
                         "('555-6789', 70000.00)";
