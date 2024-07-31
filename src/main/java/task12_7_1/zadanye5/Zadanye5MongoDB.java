@@ -1,10 +1,11 @@
-package task12_7_1.zadanye4;
+package task12_7_1.zadanye5;
 
-import org.bson.Document;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 // Пользователь: нет
 // Пароль: нет
 
-public class Zadanye4MongoDB {
+public class Zadanye5MongoDB {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s
@@ -31,7 +32,7 @@ public class Zadanye4MongoDB {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                4. Создание слоя с данными.
+                5. Создание сервиса для управления данными.
 
                 Решение:\s""");
 
@@ -78,33 +79,5 @@ public class Zadanye4MongoDB {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
-//        try {
-//            // Подключение к MongoDB по URL
-//            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-//            MongoDatabase database = mongoClient.getDatabase("mongoTest");
-//
-//            // Создание коллекции "mongoTestCollection" (если её не существует)
-//            MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
-//
-//            // Добавление документов в коллекцию
-//            Document doc1 = new Document("firstName", "John").append("age", 30).append("city", "New York");
-//            Document doc2 = new Document("firstName", "Alice").append("age", 25).append("city", "Paris");
-//
-//            collection.insertOne(doc1);
-//            collection.insertOne(doc2);
-//
-//            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection'");
-//
-//            // Закрытие соединения с MongoDB
-//            mongoClient.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
     }
 }

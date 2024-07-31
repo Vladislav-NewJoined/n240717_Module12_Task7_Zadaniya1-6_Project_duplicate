@@ -27,7 +27,7 @@ public class Zadanye5 {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                5. Создание сервиса для управления данными.
+                4. Создание слоя с данными.
 
                 Решение:
             \s""");
@@ -85,16 +85,16 @@ public class Zadanye5 {
             }
 
             try (Statement statement = connection.createStatement()) {
-                // Выполнение запроса на выборку имени, фамилии и Employee ID в порядке убывания employee_id
-                String selectNamesAndIdsQuery = "SELECT employee_id, first_name, last_name FROM users ORDER BY employee_id DESC";
-                ResultSet namesAndIdsRs = statement.executeQuery(selectNamesAndIdsQuery);
+                // Выполнение нового запроса на выборку фамилии и даты приема на работу
+                String selectLastNamesAndHireDateQuery = "SELECT last_name, hire_date FROM users";
+                ResultSet lastNamesAndHireDateRs = statement.executeQuery(selectLastNamesAndHireDateQuery);
 
-                while (namesAndIdsRs.next()) {
-                    int employeeId = namesAndIdsRs.getInt("employee_id");
-                    String firstName = namesAndIdsRs.getString("first_name");
-                    String lastName = namesAndIdsRs.getString("last_name");
-                    System.out.println("Employee ID: " + employeeId + ", First Name: " + firstName + ", Last Name: " + lastName);
+                while (lastNamesAndHireDateRs.next()) {
+                    String lastName = lastNamesAndHireDateRs.getString("last_name");
+                    String hireDate = lastNamesAndHireDateRs.getString("hire_date");
+                    System.out.println("Last Name: " + lastName + ", Hire Date: " + hireDate);
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
