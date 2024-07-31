@@ -71,7 +71,7 @@ public class Zadanye5_4Postgres {
                 Пароль: 123\s""");
 
         connect();
-        connect2();
+//        connect2();
         connect3();
     }
 
@@ -103,29 +103,29 @@ public class Zadanye5_4Postgres {
                 statement.executeUpdate(insertDataQueryUsers1);
                 System.out.println("Данные в таблицу 'users1' добавлены успешно.\n");
 
-                // Удаление таблицы 'users2', если она уже существует
-                String dropTableQueryUsers2 = "DROP TABLE IF EXISTS users2";
-                statement.executeUpdate(dropTableQueryUsers2);
-
-                // Создание таблицы 'users2' с другой структурой
-                String createTableQueryUsers2 = "CREATE TABLE users2 (" +
-                        "employeeId SERIAL PRIMARY KEY," +
-                        "phoneNumber VARCHAR(20) NOT NULL," +
-                        "salary DECIMAL(10,2) NOT NULL" +
-                        ")";
-                statement.executeUpdate(createTableQueryUsers2);
-                System.out.println("Таблица 'users2' успешно создана.");
-
-                String setInitialValueQuery2 = "ALTER SEQUENCE users2_employeeId_seq RESTART WITH 100";
-                statement.executeUpdate(setInitialValueQuery2);
-
-                // Вставка данных в таблицу 'users2'
-                String insertDataQueryUsers2 = "INSERT INTO users2 (phoneNumber, salary) VALUES " +
-                        "('555-1234', 50000.00), " +
-                        "('555-4321', 60000.00), " +
-                        "('555-6789', 70000.00)";
-                statement.executeUpdate(insertDataQueryUsers2);
-                System.out.println("Данные в таблицу 'users2' добавлены успешно.\n");
+//                // Удаление таблицы 'users2', если она уже существует
+//                String dropTableQueryUsers2 = "DROP TABLE IF EXISTS users2";
+//                statement.executeUpdate(dropTableQueryUsers2);
+//
+//                // Создание таблицы 'users2' с другой структурой
+//                String createTableQueryUsers2 = "CREATE TABLE users2 (" +
+//                        "employeeId SERIAL PRIMARY KEY," +
+//                        "phoneNumber VARCHAR(20) NOT NULL," +
+//                        "salary DECIMAL(10,2) NOT NULL" +
+//                        ")";
+//                statement.executeUpdate(createTableQueryUsers2);
+//                System.out.println("Таблица 'users2' успешно создана.");
+//
+//                String setInitialValueQuery2 = "ALTER SEQUENCE users2_employeeId_seq RESTART WITH 100";
+//                statement.executeUpdate(setInitialValueQuery2);
+//
+//                // Вставка данных в таблицу 'users2'
+//                String insertDataQueryUsers2 = "INSERT INTO users2 (phoneNumber, salary) VALUES " +
+//                        "('555-1234', 50000.00), " +
+//                        "('555-4321', 60000.00), " +
+//                        "('555-6789', 70000.00)";
+//                statement.executeUpdate(insertDataQueryUsers2);
+//                System.out.println("Данные в таблицу 'users2' добавлены успешно.\n");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -135,47 +135,47 @@ public class Zadanye5_4Postgres {
         }
     }
 
-    private static void connect2() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            if (connection != null) {
-                System.out.println("Соединение с базой данных произошло успешно!\n");
-
-                try (Statement statement = connection.createStatement()) {
-                    // Удаляем таблицу 'users3', если она существует
-                    String dropTableQueryUsers3 = "DROP TABLE IF EXISTS users3";
-                    statement.executeUpdate(dropTableQueryUsers3);
-
-                    // INNER JOIN между таблицами users1 и users2 по столбцу employeeId
-                    String sqlQuery = "SELECT u1.employeeId, u1.firstName, u1.email, u1.jobId, u2.phoneNumber, u2.salary " +
-                            "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
-                    ResultSet resultSet = statement.executeQuery(sqlQuery);
-
-                    while (resultSet.next()) {
-                        System.out.println("EmployeeId: " + resultSet.getInt(1)
-                                + ", FirstName: " + resultSet.getString(2)
-                                + ", Email: " + resultSet.getString(3)
-                                + ", JobId: " + resultSet.getString(4)
-                                + ", PhoneNumber: " + resultSet.getString(5)
-                                + ", Salary: " + resultSet.getDouble(6));
-                    }
-
-                    // Создаем таблицу 'users3' для хранения результата объединения данных
-                    String createTableQueryUsers3 = "CREATE TABLE users3 AS " +
-                            "SELECT u1.employeeId, u1.firstName, u1.email, u1.jobId, u2.phoneNumber, u2.salary " +
-                            "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
-                    statement.executeUpdate(createTableQueryUsers3);
-                    System.out.println("\nТаблица 'users3' создана на основе результатов объединения таблиц " +
-                            "'users1' и 'users2' с использованием метода 'INNER JOIN'.\n");
-
-                    System.out.println("Таким образом, созданы слои сданными в виде таблиц ‘users1’, ‘users2’ и ‘users3’.");
-                }
-            } else {
-                System.out.println("Failed to make connection!");
-            }
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        }
-    }
+//    private static void connect2() {
+//        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+//            if (connection != null) {
+//                System.out.println("Соединение с базой данных произошло успешно!\n");
+//
+//                try (Statement statement = connection.createStatement()) {
+//                    // Удаляем таблицу 'users3', если она существует
+//                    String dropTableQueryUsers3 = "DROP TABLE IF EXISTS users3";
+//                    statement.executeUpdate(dropTableQueryUsers3);
+//
+//                    // INNER JOIN между таблицами users1 и users2 по столбцу employeeId
+//                    String sqlQuery = "SELECT u1.employeeId, u1.firstName, u1.email, u1.jobId, u2.phoneNumber, u2.salary " +
+//                            "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
+//                    ResultSet resultSet = statement.executeQuery(sqlQuery);
+//
+//                    while (resultSet.next()) {
+//                        System.out.println("EmployeeId: " + resultSet.getInt(1)
+//                                + ", FirstName: " + resultSet.getString(2)
+//                                + ", Email: " + resultSet.getString(3)
+//                                + ", JobId: " + resultSet.getString(4)
+//                                + ", PhoneNumber: " + resultSet.getString(5)
+//                                + ", Salary: " + resultSet.getDouble(6));
+//                    }
+//
+//                    // Создаем таблицу 'users3' для хранения результата объединения данных
+//                    String createTableQueryUsers3 = "CREATE TABLE users3 AS " +
+//                            "SELECT u1.employeeId, u1.firstName, u1.email, u1.jobId, u2.phoneNumber, u2.salary " +
+//                            "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
+//                    statement.executeUpdate(createTableQueryUsers3);
+//                    System.out.println("\nТаблица 'users3' создана на основе результатов объединения таблиц " +
+//                            "'users1' и 'users2' с использованием метода 'INNER JOIN'.\n");
+//
+//                    System.out.println("Таким образом, созданы слои сданными в виде таблиц ‘users1’, ‘users2’ и ‘users3’.");
+//                }
+//            } else {
+//                System.out.println("Failed to make connection!");
+//            }
+//        } catch (SQLException e) {
+//            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+//        }
+//    }
 
     private static void connect3() {
         try {
