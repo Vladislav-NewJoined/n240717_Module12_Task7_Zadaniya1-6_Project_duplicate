@@ -1,9 +1,6 @@
 package task12_7_1.zadanye4;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 // На сервере Docker создан контейнер с базой данных PostgreSQL с именем "postgresTest" при помощи
 // команды в терминале Docker Desktop или в терминале среды разработки, например IntelliJ IDEA:
@@ -58,6 +55,7 @@ public class Zadanye4Postgres_3 {
             \s""");
 
         connect();
+        connect2();
     }
 
     private static void connect() {
@@ -117,6 +115,45 @@ public class Zadanye4Postgres_3 {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void connect2() {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            if (connection != null) {
+                System.out.println("Connected to the database!");
+
+                try (Statement statement = connection.createStatement()) {
+                    // Удаление и создание таблиц users3 и users4 (ваш текущий код)
+
+                    // INNER JOIN между таблицами users3 и users4 по столбцу employeeId
+                    String sqlQuery = "SELECT u3.employeeId, u3.firstName, u3.email, u3.jobId, u4.phoneNumber, u4.salary "
+                            + "FROM users3 u3 "
+                            + "INNER JOIN users4 u4 ON u3.employeeId = u4.employeeId";
+                    ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+                    while (resultSet.next()) {
+                        System.out.println("EmployeeId: " + resultSet.getInt(1)
+                                + ", FirstName: " + resultSet.getString(2)
+                                + ", Email: " + resultSet.getString(3)
+                                + ", JobId: " + resultSet.getString(4)
+                                + ", PhoneNumber: " + resultSet.getString(5)
+                                + ", Salary: " + resultSet.getDouble(6));
+                    }
+
+                    // Создание таблицы 'users5' для хранения результата объединения данных
+                    String createTableQueryUsers5 = "CREATE TABLE users5 AS "
+                            + "SELECT u3.employeeId, u3.firstName, u3.email, u3.jobId, u4.phoneNumber, u4.salary "
+                            + "FROM users3 u3 "
+                            + "INNER JOIN users4 u4 ON u3.employeeId = u4.employeeId";
+                    statement.executeUpdate(createTableQueryUsers5);
+                    System.out.println("Таблица 'users5' создана на основе результатов объединения.");
+                }
+            } else {
+                System.out.println("Failed to make connection!");
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
     }
 }
