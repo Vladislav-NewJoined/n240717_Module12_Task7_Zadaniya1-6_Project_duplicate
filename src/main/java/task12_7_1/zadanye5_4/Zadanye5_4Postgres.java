@@ -148,7 +148,7 @@ public class Zadanye5_4Postgres {
             // Создание новой коллекции "mongoTestCollection"
             MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
 
-            Document doc = new Document("firstName", "Alice").append("age", 26).append("city", "Paris");
+            Document doc = new Document("firstName", "Steben").append("age", 26).append("city", "Paris");
             collection.insertOne(doc);
 
             System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");

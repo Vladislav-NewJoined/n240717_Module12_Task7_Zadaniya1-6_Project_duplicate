@@ -47,8 +47,8 @@ public class Zadanye5Postgres {
                 5. Создание сервиса для управления данными.
 
                 Решение:
-                Параллельно с выполнением данного задания, выполнено объединение таблиц '' и '' методом
-                'INNER JOIN', и по результатам объединения создана новая таблица: ''.
+                Параллельно с выполнением данного задания, выполнено объединение таблиц 'users1' и 'users2' методом
+                'INNER JOIN', и по результатам объединения создана новая таблица: 'users3'.
             
                 (ПРИМЕЧАНИЕ: при каждом последующем запуске кода перезагрузите соединение
                 с базой данных somedbPostgres, т.е. нажмите disconnect' и затем
@@ -179,125 +179,85 @@ public class Zadanye5Postgres {
     }
 
     private static void connect3() {
-        System.out.println("\nОбъединяем данные из базы данных Postgres (таблицы users1) с документом из " +
-                "коллекции базы данных MongoDB (коллекции mongoTestCollection):");
         try {
+// Подключение к базе данных PostgreSQL
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/somedbPGtest", "someuser", "123");
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM users1");
+            Map<String, Map<String, String>> pgData = new HashMap<>();
+            while (rs.next()) {
+                String firstName = rs.getString("firstName");
+                String email = rs.getString("email");
+                String jobId = rs.getString("jobId");
+
+                Map<String, String> userData = new HashMap<>();
+                userData.put("email", email);
+                userData.put("jobId", jobId);
+
+                pgData.put(firstName, userData);
+            }
+            connection.close();
+
+// Подключение к базе данных MongoDB
             MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
             MongoDatabase database = mongoClient.getDatabase("mongoTest");
-
-            // Удаление предыдущей коллекции, если она существует
-            if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection")) {
-                database.getCollection("mongoTestCollection").drop();
-//                System.out.println("Предыдущая коллекция успешно удалена");
-            }
-
-            // Создание новой коллекции "mongoTestCollection"
             MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
 
-            Document doc = new Document("firstName", "Alice").append("age", 26).append("city", "Paris");
-            collection.insertOne(doc);
+            Map<String, Map<String, String>> mongoData = new HashMap<>();
+            for (Document doc : collection.find()) {
+                String firstName = doc.getString("firstName");
+                int age = doc.getInteger("age", 0);
+                String city = doc.getString("city");
 
-//            System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
-//            System.out.println("\nСлой с данными успешно создан");
+                Map<String, String> userData = new HashMap<>();
+                userData.put("age", String.valueOf(age));
+                userData.put("city", city);
 
-//            mongoClient.close();
-
-            // Получение данных из базы данных Postgres
-            Map<String, Map<String, Object>> postgresData = new HashMap<>();
-            try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                 Statement statement = connection.createStatement();
-                 ResultSet resultSet1 = statement.executeQuery("SELECT employeeId, firstName, email, jobId FROM users1")) {
-
-                while (resultSet1.next()) {
-                    String firstName = resultSet1.getString("firstName");
-                    Map<String, Object> userData = new HashMap<>();
-                    userData.put("email", resultSet1.getString("email"));
-                    userData.put("jobId", resultSet1.getString("jobId"));
-                    postgresData.put(firstName, userData);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                mongoData.put(firstName, userData);
             }
 
-// Получение документа из коллекции mongoTestCollection в MongoDB
-            Map<String, Map<String, Object>> mongoData = new HashMap<>();
+            // Подключение к базе данных MongoDB
+            MongoClient mongoClient2 = MongoClients.create("mongodb://localhost:27017");
+            MongoDatabase database2 = mongoClient2.getDatabase("mongoTest2");
 
-            Document mongoDocument = collection.find().first();
-            if (mongoDocument != null) {
-                String firstName = mongoDocument.getString("firstName");
-                Map<String, Object> mongoUserData = new HashMap<>();
-                mongoUserData.put("age", mongoDocument.getInteger("age"));
-                mongoUserData.put("city", mongoDocument.getString("city"));
-                mongoData.put(firstName, mongoUserData);
-            }
-
-// Объединение данных по общему элементу firstName
-            List<Map<String, Map<String, Object>>> combinedData = new ArrayList<>();
-            for (String key : postgresData.keySet()) {
-                if (mongoData.containsKey(key)) {
-                    Map<String, Map<String, Object>> result = new HashMap<>();
-                    result.put(key, new HashMap<>());
-                    result.get(key).putAll(postgresData.get(key));
-                    result.get(key).putAll(mongoData.get(key));
-                    combinedData.add(result);
-                }
-            }
-
-// Вывод объединенных данных
-            for (Map<String, Map<String, Object>> entry : combinedData) {
-                System.out.println(entry);
-            }
-
-// Удаление предыдущей коллекции 'mongoTestCollection2', если она существует
+            // Удаление предыдущей коллекции, если она существует
             if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection2")) {
                 database.getCollection("mongoTestCollection2").drop();
-                System.out.println("Предыдущая коллекция 'mongoTestCollection2' успешно удалена");
+                System.out.println("Предыдущая коллекция успешно удалена");
             }
 
-// Создание новой коллекции 'mongoTestCollection2'
-            MongoCollection<Document> collection2 = database.getCollection("mongoTestCollection2");
+            // Получить или создать коллекцию 'mongoTestCollection2' в базе данных
+            MongoCollection<Document> collection2 = database2.getCollection("mongoTestCollection2");
 
-// Сохранение объединенных данных в новую коллекцию
-            for (Map<String, Map<String, Object>> entry : combinedData) {
-                Document combinedDocument = new Document();
-                for (Map.Entry<String, Map<String, Object>> mapEntry : entry.entrySet()) {
-                    Document innerDocument = new Document(mapEntry.getValue());
-                    combinedDocument.append(mapEntry.getKey(), innerDocument);
-                }
-                collection2.insertOne(combinedDocument);
-            }
+// Объединение данных по полю "firstName"
+            Map<String, Map<String, String>> combinedData = new HashMap<>();
+            for (Map.Entry<String, Map<String, String>> entry : pgData.entrySet()) {
+                String firstName = entry.getKey();
+                if (mongoData.containsKey(firstName)) {
+                    Map<String, String> userData = new HashMap<>();
+                    userData.putAll(entry.getValue());
+                    userData.putAll(mongoData.get(firstName));
+                    combinedData.put(firstName, userData);
 
-            System.out.println("Данные успешно сохранены в коллекции 'mongoTestCollection2'");
-
-// Объединение данных из PostgreSQL и MongoDB
-            List<Document> combinedDocuments = new ArrayList<>();
-            for (String key : postgresData.keySet()) {
-                if (mongoData.containsKey(key)) {
-                    Document combinedDocument = new Document();
-                    combinedDocument.append("firstName", key);
-                    combinedDocument.append("mongoData", mongoData.get(key));
-                    combinedDocument.append("postgresData", postgresData.get(key));
-                    combinedDocuments.add(combinedDocument);
+                    // Вывод результата объединения в формате строки
+                    System.out.println("Combined Document for " + firstName + ": " + userData);
                 }
             }
+            // Для каждого объединенного документа, создать объект Document и вставить его в коллекцию
+            for (Map.Entry<String, Map<String, String>> entry : combinedData.entrySet()) {
+                Document doc = new Document();
+                doc.put("firstName", entry.getKey());
 
-// Создание коллекции и сохранение объединенных данных
-//            MongoCollection<Document> collection2 = database.getCollection("mongoTestCollection2");
-            collection2.insertMany(combinedDocuments);
-            System.out.println("Объединенные данные успешно сохранены в коллекцию 'mongoTestCollection2' в базе данных 'mongoTest'");
+                // Добавить остальные поля данных из объединенного документа
+                Map<String, String> userData = entry.getValue();
+                doc.putAll(userData);
 
-
-// Проверка, что список combinedDocuments не пустой перед сохранением
-            if (combinedDocuments != null && !combinedDocuments.isEmpty()) {
-                // Создание коллекции и сохранение объединенных данных
-                collection2.insertMany(combinedDocuments);
-                System.out.println("Объединенные данные успешно сохранены в коллекцию 'mongoTestCollection2' в базе данных 'mongoTest'");
-            } else {
-                System.out.println("Ошибка: Список combinedDocuments пустой, данные не сохранены.");
+                // Вставить документ в коллекцию 'mongoTestCollection2'
+                collection2.insertOne(doc);
             }
 
+            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2'");
 
-// Закрытие соединения с MongoDB
             mongoClient.close();
 
         } catch (Exception e) {
