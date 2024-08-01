@@ -308,7 +308,8 @@ public class Zadanye5_7Postgres {
                 collection2.insertOne(doc);
             }
 
-            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2'");
+            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2', т.е. вновь" +
+                    " созданную коллекцию во вновь созданной базе данных 'mmongoTest2'");
 
             mongoClient.close();
 
