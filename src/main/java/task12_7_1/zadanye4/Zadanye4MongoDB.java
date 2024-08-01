@@ -78,33 +78,5 @@ public class Zadanye4MongoDB {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
-//        try {
-//            // Подключение к MongoDB по URL
-//            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
-//            MongoDatabase database = mongoClient.getDatabase("mongoTest");
-//
-//            // Создание коллекции "mongoTestCollection" (если её не существует)
-//            MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
-//
-//            // Добавление документов в коллекцию
-//            Document doc1 = new Document("firstName", "John").append("age", 30).append("city", "New York");
-//            Document doc2 = new Document("firstName", "Alice").append("age", 25).append("city", "Paris");
-//
-//            collection.insertOne(doc1);
-//            collection.insertOne(doc2);
-//
-//            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection'");
-//
-//            // Закрытие соединения с MongoDB
-//            mongoClient.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
     }
 }

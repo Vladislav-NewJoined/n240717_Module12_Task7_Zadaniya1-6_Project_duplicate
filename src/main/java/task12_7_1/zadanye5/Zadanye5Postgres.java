@@ -22,7 +22,6 @@ import java.util.Map;
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
-// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
 public class Zadanye5Postgres {
 
@@ -101,17 +100,6 @@ public class Zadanye5Postgres {
                 statement.executeUpdate(insertDataQueryUsers1);
                 System.out.println("Данные в таблицу 'users1' добавлены успешно.");
 
-                // Получение содержимого таблицы 'users1'
-                System.out.println("Содержимое 'users1':");
-                String selectQueryUsers1 = "SELECT * FROM users1";
-                ResultSet resultSetUsers1 = statement.executeQuery(selectQueryUsers1);
-                while (resultSetUsers1.next()) {
-                    System.out.println("EmployeeId: " + resultSetUsers1.getInt(1) +
-                            ", FirstName: " + resultSetUsers1.getString(2) +
-                            ", Email: " + resultSetUsers1.getString(3) +
-                            ", JobId: " + resultSetUsers1.getString(4));
-                }
-
                 // Удаление таблицы 'users2', если она уже существует
                 String dropTableQueryUsers2 = "DROP TABLE IF EXISTS users2";
                 statement.executeUpdate(dropTableQueryUsers2);
@@ -135,16 +123,6 @@ public class Zadanye5Postgres {
                         "('555-6789', 70000.00)";
                 statement.executeUpdate(insertDataQueryUsers2);
                 System.out.println("Данные в таблицу 'users2' добавлены успешно.");
-
-                System.out.println("Содержимое 'users2':");
-                String queryUsers2 = "SELECT * FROM users2";
-                ResultSet resultSet2 = statement.executeQuery(queryUsers2);
-                while (resultSet2.next()) {
-                    System.out.println("EmployeeId: " + resultSet2.getInt("employeeId")
-                            + ", PhoneNumber: " + resultSet2.getString("phoneNumber")
-                            + ", Salary: " + resultSet2.getString("salary"));
-                }
-                System.out.println();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -170,11 +148,6 @@ public class Zadanye5Postgres {
             collection.insertOne(doc);
 
             System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
-            // Получение содержимого коллекции "mongoTestCollection"
-            System.out.println("\nСодержимое 'mongoTestCollection':");
-            for (Document document : collection.find()) {
-                System.out.println(document.toJson());
-            }
 
             System.out.println("\nСлой с данными успешно создан");
 
@@ -199,16 +172,6 @@ public class Zadanye5Postgres {
                     String sqlQuery = "SELECT u1.employeeId, u1.firstName, u1.email, u1.jobId, u2.phoneNumber, u2.salary " +
                             "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
                     ResultSet resultSet = statement.executeQuery(sqlQuery);
-
-                    System.out.println("Содержимое 'users3', таблицы, объединившей в себе 'users1' и 'users2':");
-                    while (resultSet.next()) {
-                        System.out.println("EmployeeId: " + resultSet.getInt(1)
-                                + ", FirstName: " + resultSet.getString(2)
-                                + ", Email: " + resultSet.getString(3)
-                                + ", JobId: " + resultSet.getString(4)
-                                + ", PhoneNumber: " + resultSet.getString(5)
-                                + ", Salary: " + resultSet.getDouble(6));
-                    }
 
                     // Создаем таблицу 'users3' для хранения результата объединения данных
                     String createTableQueryUsers3 = "CREATE TABLE users3 AS " +
@@ -289,10 +252,10 @@ public class Zadanye5Postgres {
                     userData.putAll(mongoData.get(firstName));
                     combinedData.put(firstName, userData);
 
-                    // Вывод результата объединения в формате строки
-                    System.out.println("\nСодержимое объединённой коллекции 'mongoTestCollection2':");
-                    System.out.println("Combined Document for " + firstName + ": " + userData);
-                    System.out.println();
+//                    // Вывод результата объединения в формате строки
+//                    System.out.println("\nСодержимое объединённой коллекции 'mongoTestCollection2':");
+//                    System.out.println("Combined Document for " + firstName + ": " + userData);
+//                    System.out.println();
                 }
             }
             // Для каждого объединенного документа, создать объект Document и вставить его в коллекцию

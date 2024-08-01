@@ -13,7 +13,7 @@ import java.sql.SQLException;
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
-// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
+// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users1" в DB Browser в папке "Consoles -→ somedbPGtest"
 
 public class Zadanye3Postgres {
     public static void main(String[] args) throws SQLException {

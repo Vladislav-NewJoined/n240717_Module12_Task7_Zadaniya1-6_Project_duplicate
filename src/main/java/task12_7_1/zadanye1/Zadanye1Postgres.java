@@ -11,7 +11,7 @@ package task12_7_1.zadanye1;
 // База данных: somedbPGtest
 // Пользователь: someuser
 // Пароль: 123
-// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
+// Для проверки настроек можно сделать такой тестовый запрос:  "select * from users1" в DB Browser в папке "Consoles -→ somedbPGtest"
 
 public class Zadanye1Postgres {
     public static void main(String[] args) {
