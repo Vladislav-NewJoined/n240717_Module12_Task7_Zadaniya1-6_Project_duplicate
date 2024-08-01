@@ -1,4 +1,4 @@
-package task12_7_1.zadanye5;
+package task12_7_1.zadanye6;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 // Пользователь: нет
 // Пароль: нет
 
-public class Zadanye5MongoDB {
+public class Zadanye6MongoDB {
     public static void main(String[] args) throws SQLException {
         System.out.println("""
             Задание:\s
@@ -32,31 +32,12 @@ public class Zadanye5MongoDB {
                     в отдельную базу данных без заранее закрепленной структуры, в то время как
                     основная информация будет поступать в реляционную базу Postgres.
                 Задание:
-                5. Создание сервиса для управления данными.
+                6. Работа с выводом данных в консоль.
 
                 Решение:\s""");
 
         System.out.println("""
-            ВНИМАНИЕ: КОД ПО ОБЪЕДИНЕНИЮ ДВУХ БАЗ ДАННЫХ 'PostgreSQL' И 'MongoDB' ЗАПИСАН В КЛАССЕ Zadanye5Postgres.
-            
-            На сервере Docker создан контейнер с базой данных MongoDB с именем "mongoTest" при помощи
-            команды в терминале среды разработки, например IntelliJ IDEA:
-            "docker run --name mongoTest -d -p 27017:27017 mongo".
-            
-            В ‘MongoDB Compass’ создано соединение ‘localhost:27017’, в котором создана база данных
-            ‘mongoTest’, в которой создана коллекция ‘mongoTestCollection’. URL этого соединения:
-            mongodb://localhost:27017/mongoTest
-            URL непосредственно базы данных 'mongoTest’ такое: ‘mongodb://localhost:27017/mongoTest’
-            (как правильно, на практике нигде не используется.
-            
-            Значения параметров для настройки соединения (можно получить в ответ на команду в терминале:
-            'docker inspect mongoTest')
-            Сервер (Хост): localhost
-            Порт: 27017 (стандартный порт для MongoDB)
-            База данных: mongoTest
-            Коллекция: mongoTestCollection
-            Пользователь: нет
-            Пароль: нет\s""");
+            ВНИМАНИЕ: КОД ПО ВЫВОДУ ДАННЫХ В КОНСОЛЬ ЗАПИСАН В КЛАССЕ Zadanye6Postgres.\s""");
 
         try {
             MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
@@ -65,7 +46,6 @@ public class Zadanye5MongoDB {
             // Удаление предыдущей коллекции, если она существует
             if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection")) {
                 database.getCollection("mongoTestCollection").drop();
-                System.out.println("Предыдущая коллекция успешно удалена");
             }
 
             // Создание новой коллекции "mongoTestCollection"
@@ -73,9 +53,6 @@ public class Zadanye5MongoDB {
 
             Document doc = new Document("firstName", "Steben").append("age", 26).append("city", "Paris");
             collection.insertOne(doc);
-
-            System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
-            System.out.println("\nСлой с данными успешно создан");
 
             mongoClient.close();
         } catch (Exception e) {
