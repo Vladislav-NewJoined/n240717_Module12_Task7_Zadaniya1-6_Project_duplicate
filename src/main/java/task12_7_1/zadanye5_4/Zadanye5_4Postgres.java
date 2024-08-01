@@ -5,6 +5,7 @@ import org.bson.Document;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClients;
+import static com.mongodb.client.model.Filters.eq;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -153,26 +154,6 @@ public class Zadanye5_4Postgres {
             System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
             System.out.println("\nСлой с данными успешно создан");
 
-//// Обработка результатов выборки и вывод на консоль
-//            while (rs.next()) {
-//                int employeeId = rs.getInt("employeeId");
-//                String firstName = rs.getString("firstName");
-//                String email = rs.getString("email");
-//                String jobId = rs.getString("jobId");
-//                System.out.println("EmployeeId: " + employeeId + ", FirstName: " + firstName + ", Email: " + email + ", JobId: " + jobId);
-//
-//                // Объединение данных из Postgres и MongoDB по 'firstName'
-//                Document document = database.getCollection("mongoTestCollection").find(eq("firstName", firstName)).first();
-//                if (document != null) {
-//                    int age = document.getInteger("age");
-//                    String city = document.getString("city");
-//                    System.out.println("MongoDB Data: Age: " + age + ", City: " + city);
-//                } else {
-//                    System.out.println("No matching data found in MongoDB for FirstName: " + firstName);
-//                }
-//            }
-//
-//            connection.close();
             mongoClient.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,17 +229,43 @@ public class Zadanye5_4Postgres {
 
 // Создание клиента MongoDB
             MongoClient mongoClient = MongoClients.create(settings);
-            MongoDatabase database = mongoClient.getDatabase("momongoTest");
+            MongoDatabase database = mongoClient.getDatabase("mongoTest");
             MongoCursor<Document> cursor = database.getCollection("mongoTestCollection").find().iterator();
 
             // Объединение данных
-            while (rs.next()) {
-                System.out.println("PostgreSQL Data: " + rs.getString("column_name"));
-            }
+//            while (rs.next()) {
+//                System.out.println("PostgreSQL Data: " + rs.getString("column_name"));
+//            }
 
+//            while (cursor.hasNext()) {
+//                Document document = cursor.next();
+//                System.out.println("MongoDB Data: " + document.toJson());
+//            }
+
+// Вывод данных из коллекции MongoDB в консоль
+            System.out.println("Данные из коллекции 'mongoTestCollection':");
             while (cursor.hasNext()) {
                 Document document = cursor.next();
-                System.out.println("MongoDB Data: " + document.toJson());
+                System.out.println(document.toJson());
+            }
+
+// Обработка результатов выборки и вывод на консоль
+            while (rs.next()) {
+                int employeeId = rs.getInt("employeeId");
+                String firstName = rs.getString("firstName");
+                String email = rs.getString("email");
+                String jobId = rs.getString("jobId");
+                System.out.println("EmployeeId: " + employeeId + ", FirstName: " + firstName + ", Email: " + email + ", JobId: " + jobId);
+
+                // Объединение данных из Postgres и MongoDB по 'firstName'
+                Document document = database.getCollection("mongoTestCollection").find(eq("firstName", firstName)).first();
+                if (document != null) {
+                    int age = document.getInteger("age");
+                    String city = document.getString("city");
+                    System.out.println("MongoDB Data: Age: " + age + ", City: " + city);
+                } else {
+                    System.out.println("No matching data found in MongoDB for FirstName: " + firstName);
+                }
             }
 
             connection.close();

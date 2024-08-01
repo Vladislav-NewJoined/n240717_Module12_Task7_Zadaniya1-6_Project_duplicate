@@ -1,4 +1,4 @@
-package task12_7_1.zadanye5_5;
+package task12_7_1.zadanye5_6;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -7,6 +7,8 @@ import org.bson.Document;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -23,7 +25,7 @@ import static com.mongodb.client.model.Filters.eq;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye5_5Postgres {
+public class Zadanye5_6Postgres {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
@@ -134,95 +136,88 @@ public class Zadanye5_5Postgres {
 
     private static void connect3() {
         try {
-            // Подключение к PostgreSQL
+// Подключение к базе данных PostgreSQL
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/somedbPGtest", "someuser", "123");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM users1");
-
-//// Обработка результатов выборки и вывод на консоль
-//            while (rs.next()) {
-//                int employeeId = rs.getInt("employeeId");
-//                String firstName = rs.getString("firstName");
-//                String email = rs.getString("email");
-//                String jobId = rs.getString("jobId");
-//                System.out.println("EmployeeId: " + employeeId + ", FirstName: " + firstName + ", Email: " + email + ", JobId: " + jobId);
-//            }
-
-            // Подключение к MongoDB
-// Установка строки подключения
-            ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
-
-// Создание настроек клиента с помощью строки подключения
-            MongoClientSettings settings = MongoClientSettings.builder()
-                    .applyConnectionString(connectionString)
-                    .build();
-
-// Создание клиента MongoDB
-            MongoClient mongoClient = MongoClients.create(settings);
-            MongoDatabase database = mongoClient.getDatabase("mongoTest");
-            MongoCursor<Document> cursor = database.getCollection("mongoTestCollection").find().iterator();
-
-// Вывод данных из коллекции MongoDB в консоль
-            System.out.println("Данные из коллекции 'mongoTestCollection':");
-            while (cursor.hasNext()) {
-                Document document = cursor.next();
-                System.out.println(document.toJson());
-            }
-
-// Обработка результатов выборки и вывод на консоль
+            Map<String, Map<String, String>> pgData = new HashMap<>();
             while (rs.next()) {
-                int employeeId = rs.getInt("employeeId");
-                String firstName = rs.getString("firstName");
-                String email = rs.getString("email");
-                String jobId = rs.getString("jobId");
-                System.out.println("EmployeeId: " + employeeId + ", FirstName: " + firstName + ", Email: " + email + ", JobId: " + jobId);
-
-                // Объединение данных из Postgres и MongoDB по 'firstName'
-                Document document = database.getCollection("mongoTestCollection").find(eq("firstName", firstName)).first();
-                if (document != null) {
-                    int age = document.getInteger("age");
-                    String city = document.getString("city");
-                    System.out.println("MongoDB Data: Age: " + age + ", City: " + city);
-                } else {
-                    System.out.println("No matching data found in MongoDB for FirstName: " + firstName);
-                }
-            }
-
-// Создание нового документа для объединенных данных
-            Document combinedDocument = new Document();
-            while (rs.next()) {
-                int employeeId = rs.getInt("employeeId");
                 String firstName = rs.getString("firstName");
                 String email = rs.getString("email");
                 String jobId = rs.getString("jobId");
 
-                // Объединение данных из Postgres и MongoDB по 'firstName'
-                Document document = database.getCollection("mongoTestCollection").find(eq("firstName", firstName)).first();
-                if (document != null) {
-                    int age = document.getInteger("age");
-                    String city = document.getString("city");
-                    System.out.println("Добавлено в combinedDocument: ");
-                    System.out.println("employeeId: " + employeeId + ", firstName: " + firstName + ", email: " + email + ", jobId: " + jobId + ", age: " + age + ", city: " + city);
-                    combinedDocument.append("employeeId", employeeId);
-                    combinedDocument.append("firstName", firstName);
-                    combinedDocument.append("email", email);
-                    combinedDocument.append("jobId", jobId);
-                    combinedDocument.append("age", age);
-                    combinedDocument.append("city", city);
+                Map<String, String> userData = new HashMap<>();
+                userData.put("email", email);
+                userData.put("jobId", jobId);
 
-                    System.out.println("Достигнута точка Х");
-
-
-                }
+                pgData.put(firstName, userData);
             }
-
-//            System.out.println("Содержимое документа 'combinedDocument':");
-//            System.out.println(combinedDocument.toJson());
-
             connection.close();
+
+// Подключение к базе данных MongoDB
+            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+            MongoDatabase database = mongoClient.getDatabase("mongoTest");
+            MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
+
+            Map<String, Map<String, String>> mongoData = new HashMap<>();
+            for (Document doc : collection.find()) {
+                String firstName = doc.getString("firstName");
+                int age = doc.getInteger("age", 0);
+                String city = doc.getString("city");
+
+                Map<String, String> userData = new HashMap<>();
+                userData.put("age", String.valueOf(age));
+                userData.put("city", city);
+
+                mongoData.put(firstName, userData);
+            }
+
+            // Подключение к базе данных MongoDB
+            MongoClient mongoClient2 = MongoClients.create("mongodb://localhost:27017");
+            MongoDatabase database2 = mongoClient2.getDatabase("mongoTest2");
+
+            // Удаление предыдущей коллекции, если она существует
+            if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection2")) {
+                database.getCollection("mongoTestCollection2").drop();
+                System.out.println("Предыдущая коллекция успешно удалена");
+            }
+
+            // Получить или создать коллекцию 'mongoTestCollection2' в базе данных
+            MongoCollection<Document> collection2 = database2.getCollection("mongoTestCollection2");
+
+// Объединение данных по полю "firstName"
+            Map<String, Map<String, String>> combinedData = new HashMap<>();
+            for (Map.Entry<String, Map<String, String>> entry : pgData.entrySet()) {
+                String firstName = entry.getKey();
+                if (mongoData.containsKey(firstName)) {
+                    Map<String, String> userData = new HashMap<>();
+                    userData.putAll(entry.getValue());
+                    userData.putAll(mongoData.get(firstName));
+                    combinedData.put(firstName, userData);
+
+                    // Вывод результата объединения в формате строки
+                    System.out.println("Combined Document for " + firstName + ": " + userData);
+                }
+            }
+            // Для каждого объединенного документа, создать объект Document и вставить его в коллекцию
+            for (Map.Entry<String, Map<String, String>> entry : combinedData.entrySet()) {
+                Document doc = new Document();
+                doc.put("firstName", entry.getKey());
+
+                // Добавить остальные поля данных из объединенного документа
+                Map<String, String> userData = entry.getValue();
+                doc.putAll(userData);
+
+                // Вставить документ в коллекцию 'mongoTestCollection2'
+                collection2.insertOne(doc);
+            }
+
+            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2'");
+
             mongoClient.close();
-        } catch (Exception e) {
+
+            } catch (Exception e) {
             e.printStackTrace();
-        }
+            }
     }
 }
