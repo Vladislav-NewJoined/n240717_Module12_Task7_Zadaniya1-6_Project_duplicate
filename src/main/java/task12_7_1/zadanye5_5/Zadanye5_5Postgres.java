@@ -1,16 +1,12 @@
-package task12_7_1.zadanye5_4;
+package task12_7_1.zadanye5_5;
 
-import com.mongodb.client.*;
-import org.bson.Document;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
+import com.mongodb.client.*;
+import org.bson.Document;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 // На сервере Docker создан контейнер с базой данных PostgreSQL с именем "postgresTest" при помощи
@@ -26,7 +22,7 @@ import java.util.Map;
 // Пароль: 123
 // Для проверки настроек можно сделать такой тестовый запрос:  "select * from users" в DB Browser в папке "Consoles -→ somedbPGtest"
 
-public class Zadanye5_4Postgres {
+public class Zadanye5_5Postgres {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/somedbPGtest";
     private static final String USER = "someuser";
