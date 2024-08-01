@@ -153,7 +153,6 @@ public class Zadanye5_7Postgres {
             e.printStackTrace();
         }
 
-
         try {
             MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
             MongoDatabase database = mongoClient.getDatabase("mongoTest");
@@ -176,7 +175,6 @@ public class Zadanye5_7Postgres {
             for (Document document : collection.find()) {
                 System.out.println(document.toJson());
             }
-
 
             System.out.println("\nСлой с данными успешно создан");
 
@@ -202,6 +200,7 @@ public class Zadanye5_7Postgres {
                             "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
                     ResultSet resultSet = statement.executeQuery(sqlQuery);
 
+                    System.out.println("Содержимое 'users3':");
                     while (resultSet.next()) {
                         System.out.println("EmployeeId: " + resultSet.getInt(1)
                                 + ", FirstName: " + resultSet.getString(2)
