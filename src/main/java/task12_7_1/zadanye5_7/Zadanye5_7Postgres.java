@@ -290,7 +290,9 @@ public class Zadanye5_7Postgres {
                     combinedData.put(firstName, userData);
 
                     // Вывод результата объединения в формате строки
+                    System.out.println("\nСодержимое объединённой коллекции 'mongoTestCollection2':");
                     System.out.println("Combined Document for " + firstName + ": " + userData);
+                    System.out.println();
                 }
             }
             // Для каждого объединенного документа, создать объект Document и вставить его в коллекцию
