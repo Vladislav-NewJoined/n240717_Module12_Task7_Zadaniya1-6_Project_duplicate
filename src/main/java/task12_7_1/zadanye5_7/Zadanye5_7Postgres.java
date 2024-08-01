@@ -171,7 +171,7 @@ public class Zadanye5_7Postgres {
 
             System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
             // Получение содержимого коллекции "mongoTestCollection"
-            System.out.println("Содержимое 'mongoTestCollection':");
+            System.out.println("\nСодержимое 'mongoTestCollection':");
             for (Document document : collection.find()) {
                 System.out.println(document.toJson());
             }
@@ -200,7 +200,7 @@ public class Zadanye5_7Postgres {
                             "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
                     ResultSet resultSet = statement.executeQuery(sqlQuery);
 
-                    System.out.println("Содержимое 'users3':");
+                    System.out.println("Содержимое 'users3', таблицы, объединившей в себе 'users1' и 'users2':");
                     while (resultSet.next()) {
                         System.out.println("EmployeeId: " + resultSet.getInt(1)
                                 + ", FirstName: " + resultSet.getString(2)
