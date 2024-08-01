@@ -9,10 +9,7 @@ import org.bson.Document;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 
 // На сервере Docker создан контейнер с базой данных PostgreSQL с именем "postgresTest" при помощи
 // команды в терминале Docker Desktop или в терминале среды разработки, например IntelliJ IDEA:
@@ -102,7 +99,18 @@ public class Zadanye5Postgres {
                         "('Neena', 'NKOCHHAR', 'AD_VP'), " +
                         "('Valli', 'VPATABAL', 'ID_PROG')";
                 statement.executeUpdate(insertDataQueryUsers1);
-                System.out.println("Данные в таблицу 'users1' добавлены успешно.\n");
+                System.out.println("Данные в таблицу 'users1' добавлены успешно.");
+
+                // Получение содержимого таблицы 'users1'
+                System.out.println("Содержимое 'users1':");
+                String selectQueryUsers1 = "SELECT * FROM users1";
+                ResultSet resultSetUsers1 = statement.executeQuery(selectQueryUsers1);
+                while (resultSetUsers1.next()) {
+                    System.out.println("EmployeeId: " + resultSetUsers1.getInt(1) +
+                            ", FirstName: " + resultSetUsers1.getString(2) +
+                            ", Email: " + resultSetUsers1.getString(3) +
+                            ", JobId: " + resultSetUsers1.getString(4));
+                }
 
                 // Удаление таблицы 'users2', если она уже существует
                 String dropTableQueryUsers2 = "DROP TABLE IF EXISTS users2";
@@ -115,7 +123,7 @@ public class Zadanye5Postgres {
                         "salary DECIMAL(10,2) NOT NULL" +
                         ")";
                 statement.executeUpdate(createTableQueryUsers2);
-                System.out.println("Таблица 'users2' успешно создана.");
+                System.out.println("\nТаблица 'users2' успешно создана.");
 
                 String setInitialValueQuery2 = "ALTER SEQUENCE users2_employeeId_seq RESTART WITH 100";
                 statement.executeUpdate(setInitialValueQuery2);
@@ -126,7 +134,17 @@ public class Zadanye5Postgres {
                         "('555-4321', 60000.00), " +
                         "('555-6789', 70000.00)";
                 statement.executeUpdate(insertDataQueryUsers2);
-                System.out.println("Данные в таблицу 'users2' добавлены успешно.\n");
+                System.out.println("Данные в таблицу 'users2' добавлены успешно.");
+
+                System.out.println("Содержимое 'users2':");
+                String queryUsers2 = "SELECT * FROM users2";
+                ResultSet resultSet2 = statement.executeQuery(queryUsers2);
+                while (resultSet2.next()) {
+                    System.out.println("EmployeeId: " + resultSet2.getInt("employeeId")
+                            + ", PhoneNumber: " + resultSet2.getString("phoneNumber")
+                            + ", Salary: " + resultSet2.getString("salary"));
+                }
+                System.out.println();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -134,6 +152,37 @@ public class Zadanye5Postgres {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        try {
+            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+            MongoDatabase database = mongoClient.getDatabase("mongoTest");
+
+            // Удаление предыдущей коллекции, если она существует
+            if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection")) {
+                database.getCollection("mongoTestCollection").drop();
+                System.out.println("Предыдущая коллекция успешно удалена");
+            }
+
+            // Создание новой коллекции "mongoTestCollection"
+            MongoCollection<Document> collection = database.getCollection("mongoTestCollection");
+
+            Document doc = new Document("firstName", "Steben").append("age", 26).append("city", "Paris");
+            collection.insertOne(doc);
+
+            System.out.println("Документ успешно добавлен в коллекцию 'mongoTestCollection'");
+            // Получение содержимого коллекции "mongoTestCollection"
+            System.out.println("\nСодержимое 'mongoTestCollection':");
+            for (Document document : collection.find()) {
+                System.out.println(document.toJson());
+            }
+
+            System.out.println("\nСлой с данными успешно создан");
+
+            mongoClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void connect2() {
@@ -151,6 +200,7 @@ public class Zadanye5Postgres {
                             "FROM users1 u1 INNER JOIN users2 u2 ON u1.employeeId = u2.employeeId";
                     ResultSet resultSet = statement.executeQuery(sqlQuery);
 
+                    System.out.println("Содержимое 'users3', таблицы, объединившей в себе 'users1' и 'users2':");
                     while (resultSet.next()) {
                         System.out.println("EmployeeId: " + resultSet.getInt(1)
                                 + ", FirstName: " + resultSet.getString(2)
@@ -168,7 +218,7 @@ public class Zadanye5Postgres {
                     System.out.println("\nТаблица 'users3' создана на основе результатов объединения таблиц " +
                             "'users1' и 'users2' с использованием метода 'INNER JOIN'.\n");
 
-                    System.out.println("Таким образом, созданы слои сданными в виде таблиц ‘users1’, ‘users2’ и ‘users3’.");
+                    System.out.println("Таким образом, созданы слои с данными в виде таблиц ‘users1’, ‘users2’ и ‘users3’.");
                 }
             } else {
                 System.out.println("Failed to make connection!");
@@ -220,14 +270,14 @@ public class Zadanye5Postgres {
             MongoClient mongoClient2 = MongoClients.create("mongodb://localhost:27017");
             MongoDatabase database2 = mongoClient2.getDatabase("mongoTest2");
 
+            // Получить или создать коллекцию 'mongoTestCollection2' в базе данных
+            MongoCollection<Document> collection2 = database2.getCollection("mongoTestCollection2");
+
             // Удаление предыдущей коллекции, если она существует
             if (database.listCollectionNames().into(new ArrayList<>()).contains("mongoTestCollection2")) {
                 database.getCollection("mongoTestCollection2").drop();
                 System.out.println("Предыдущая коллекция успешно удалена");
             }
-
-            // Получить или создать коллекцию 'mongoTestCollection2' в базе данных
-            MongoCollection<Document> collection2 = database2.getCollection("mongoTestCollection2");
 
 // Объединение данных по полю "firstName"
             Map<String, Map<String, String>> combinedData = new HashMap<>();
@@ -240,7 +290,9 @@ public class Zadanye5Postgres {
                     combinedData.put(firstName, userData);
 
                     // Вывод результата объединения в формате строки
+                    System.out.println("\nСодержимое объединённой коллекции 'mongoTestCollection2':");
                     System.out.println("Combined Document for " + firstName + ": " + userData);
+                    System.out.println();
                 }
             }
             // Для каждого объединенного документа, создать объект Document и вставить его в коллекцию
@@ -256,7 +308,8 @@ public class Zadanye5Postgres {
                 collection2.insertOne(doc);
             }
 
-            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2'");
+            System.out.println("Документы успешно добавлены в коллекцию 'mongoTestCollection2', т.е. вновь" +
+                    " созданную коллекцию во вновь созданной базе данных 'mmongoTest2'");
 
             mongoClient.close();
 

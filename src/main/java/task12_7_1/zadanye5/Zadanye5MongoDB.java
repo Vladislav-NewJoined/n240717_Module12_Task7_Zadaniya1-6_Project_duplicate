@@ -37,6 +37,8 @@ public class Zadanye5MongoDB {
                 Решение:\s""");
 
         System.out.println("""
+            ВНИМАНИЕ: КОД ПО ОБЪЕДИНЕНИЮ ДВУХ БАЗ ДАННЫХ 'PostgreSQL' И 'MongoDB' ЗАПИСАН В КЛАССЕ Zadanye5Postgres.
+            
             На сервере Docker создан контейнер с базой данных MongoDB с именем "mongoTest" при помощи
             команды в терминале среды разработки, например IntelliJ IDEA:
             "docker run --name mongoTest -d -p 27017:27017 mongo".
